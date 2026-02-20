@@ -27,6 +27,19 @@ export class QgisController {
 
   };
 
+  public getByCodigo2 = async (req: Request, res: Response) => {
+    const CODIGO_LOTE = req.params.id;
+
+    try {
+      const row = await this.service.findByCODIGO_LOTE(CODIGO_LOTE);
+      res.json(row);
+
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+
+  };
+
 
 
 }
