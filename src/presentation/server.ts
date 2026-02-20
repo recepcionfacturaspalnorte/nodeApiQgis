@@ -32,7 +32,9 @@ export class Server {
 
     //* Configuración CORS
     this.app.use(cors({
-      origin: 'http://localhost:5173', // tu frontend
+      origin: true,
+
+      //origin: 'http://localhost:5173', // tu frontend
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true // si usas cookies o auth
     }))
