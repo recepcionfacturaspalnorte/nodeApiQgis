@@ -18,7 +18,8 @@ export class QgisService {
     SELECT 
       "CODIGO_FINCA",
       "CODIGO_LOTE",
-      ST_AsText(geom) AS WKT
+      ST_AsText(geom) AS WKT,
+      ST_AsEWKT(ST_Force3DZ(geom))::text AS geom
     FROM "poligonos_productores"
     WHERE "CODIGO_LOTE" = ${CODIGO_LOTE}
     LIMIT 1
