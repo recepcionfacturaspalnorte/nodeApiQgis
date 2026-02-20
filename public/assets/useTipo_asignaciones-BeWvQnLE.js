@@ -1,0 +1,1 @@
+import{w as o,c as t,l as r}from"./index-DpBsFldO.js";import{g as n}from"./get-categoria_activo.action-C7oCT0rX.js";const u=()=>{const{gender:c}=o(),[s]=t(),a=s.get("query")||void 0,e=s.get("limit")||9,i=s.get("page")||1;return r({queryKey:["Tipo_asignacions",{limit:e,page:i,query:a}],queryFn:()=>n({limit:isNaN(+e)?9:e,page:i,query:a}),staleTime:1e3*60*5})};export{u};

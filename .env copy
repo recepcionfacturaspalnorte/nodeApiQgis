@@ -1,0 +1,32 @@
+
+PORT=3000
+PUBLIC_PATH=public
+
+POSTGRES_URL=postgresql://postgres:Palnorte2020@@yamabiko.proxy.rlwy.net:5432/qgisdb
+POSTGRES_USER=postgres
+POSTGRES_DB=qgisdb
+POSTGRES_PORT=5432
+POSTGRES_PASSWORD=Palnorte2020@
+
+MYSQL_URL="mysql://root:1093300651@localhost:3306/mantenimiento_palnorte"
+JWT_SEED=ASDhkjasdhkjaSHDKJASHDKJ18923
+
+NODE_ENV=development
+
+MONGO_URL=NONE
+MONGO_DB_NAME=NONE
+MAILER_SERVICE=NONE
+MAILER_EMAIL=NONE
+MAILER_SECRET_KEY=NONE
+WEBSERVICE_URL=NONE
+
+
+
+SIESA_API=https://serviciosqa.siesacloud.com/api/siesa/v3.1/conectoresimportar?idCompania=7055&idSistema=2&idDocumento=219703&nombreDocumento=Entrada por compra Fruta
+CONNIKEY=73ee67f1b7cbb929689ff7d31e60229e
+CONNITOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImI2MzliNDI3LWQ4NzEtNDlmYy1hOWRjLTQ4YTUxMTA5YjkzYSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcHJpbWFyeXNpZCI6Ijk0ZjZlMWZmLTYyZGUtNGIzZC04MjhmLTMyNzYwY2NlMjk4MyJ9.OybuwQkq9VEflG5LkM8no5Qt5w1-GEEPWqUSdxrtOBs
+ID_COMPANIA: 7055
+ID_DOCUMENTO: 219703
+NOMBRE_DOCUMENTO: Entrada por compra Fruta
+ID_SISTEMA: 2
+PALNORTE_MARK_ID2=https://www.palnortesas.com/palnorte2/AdminLTE-2.3.6/palnorte/modReciboBascula/setMark.php

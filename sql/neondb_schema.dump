@@ -1,0 +1,2145 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.7 (178558d)
+-- Dumped by pg_dump version 17.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: Activo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Activo" (
+    id integer NOT NULL,
+    "COD_ACTIVO" text NOT NULL,
+    serial text,
+    nombre_activo text NOT NULL,
+    "tipo_activoId" integer,
+    marca character varying(50),
+    "tipo_equipoId" integer,
+    procesador text,
+    memoria_ram text,
+    sistema_operativo character varying(50),
+    almacenamiento character varying(50),
+    serial_almacenamiento character varying(50),
+    licencia character varying(50),
+    licencia_office character varying(50),
+    licencia_antivirus character varying(50),
+    email text,
+    password1 text,
+    password2 text,
+    password3 text,
+    password4 text,
+    password5 text,
+    disponibilidad integer,
+    integridad integer,
+    confidencialidad integer,
+    valor_cuantitativo integer,
+    valor_cualitativo integer,
+    "categoria_activoId" integer
+);
+
+
+ALTER TABLE public."Activo" OWNER TO neondb_owner;
+
+--
+-- Name: ActivoImage; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."ActivoImage" (
+    id integer NOT NULL,
+    url text NOT NULL,
+    "activoId" integer
+);
+
+
+ALTER TABLE public."ActivoImage" OWNER TO neondb_owner;
+
+--
+-- Name: ActivoImage_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."ActivoImage_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."ActivoImage_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: ActivoImage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."ActivoImage_id_seq" OWNED BY public."ActivoImage".id;
+
+
+--
+-- Name: Activo_asignacion; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Activo_asignacion" (
+    id integer NOT NULL,
+    fecha timestamp(3) without time zone,
+    "tipo_asignacionId" integer,
+    "responsableId" integer,
+    "ubicacionId" integer,
+    "sucursalId" integer,
+    "areaId" integer,
+    "activoId" integer,
+    fecha_entrega timestamp(3) without time zone,
+    estado text,
+    obser text
+);
+
+
+ALTER TABLE public."Activo_asignacion" OWNER TO neondb_owner;
+
+--
+-- Name: Activo_asignacion_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Activo_asignacion_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Activo_asignacion_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Activo_asignacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Activo_asignacion_id_seq" OWNED BY public."Activo_asignacion".id;
+
+
+--
+-- Name: Activo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Activo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Activo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Activo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Activo_id_seq" OWNED BY public."Activo".id;
+
+
+--
+-- Name: Area; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Area" (
+    id integer NOT NULL,
+    "COD_AREA" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Area" OWNER TO neondb_owner;
+
+--
+-- Name: Area_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Area_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Area_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Area_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Area_id_seq" OWNED BY public."Area".id;
+
+
+--
+-- Name: Cargo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Cargo" (
+    id integer NOT NULL,
+    "COD_CARGO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Cargo" OWNER TO neondb_owner;
+
+--
+-- Name: Cargo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Cargo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Cargo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Cargo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Cargo_id_seq" OWNED BY public."Cargo".id;
+
+
+--
+-- Name: Categoria_activo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Categoria_activo" (
+    id integer NOT NULL,
+    "COD_CATEGORIA_ACTIVO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Categoria_activo" OWNER TO neondb_owner;
+
+--
+-- Name: Categoria_activo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Categoria_activo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Categoria_activo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Categoria_activo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Categoria_activo_id_seq" OWNED BY public."Categoria_activo".id;
+
+
+--
+-- Name: Category; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Category" (
+    id text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Category" OWNER TO neondb_owner;
+
+--
+-- Name: EstadoTicket; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."EstadoTicket" (
+    id integer NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."EstadoTicket" OWNER TO neondb_owner;
+
+--
+-- Name: EstadoTicket_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."EstadoTicket_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."EstadoTicket_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: EstadoTicket_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."EstadoTicket_id_seq" OWNED BY public."EstadoTicket".id;
+
+
+--
+-- Name: Marca; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Marca" (
+    id integer NOT NULL,
+    "COD_MARCA" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Marca" OWNER TO neondb_owner;
+
+--
+-- Name: Marca_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Marca_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Marca_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Marca_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Marca_id_seq" OWNED BY public."Marca".id;
+
+
+--
+-- Name: Permission; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Permission" (
+    id text NOT NULL,
+    detalle text NOT NULL,
+    sistema text
+);
+
+
+ALTER TABLE public."Permission" OWNER TO neondb_owner;
+
+--
+-- Name: Plan_mantenimiento; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Plan_mantenimiento" (
+    id integer NOT NULL,
+    anio integer,
+    fecha timestamp(3) without time zone,
+    "ubicacionId" integer,
+    "sucursalId" integer,
+    "areaId" integer,
+    "activoId" integer,
+    "agenteId" integer,
+    fecha_planeacion timestamp(3) without time zone,
+    fecha_ejecucion timestamp(3) without time zone,
+    semana_planeacion integer,
+    mes_planeacion integer,
+    semana_ejecucion integer,
+    mes_ejecucion integer,
+    semana_pl_software_01 character varying(1),
+    semana_pl_software_02 character varying(1),
+    semana_pl_software_03 character varying(1),
+    semana_pl_software_04 character varying(1),
+    semana_pl_software_05 character varying(1),
+    semana_pl_software_06 character varying(1),
+    semana_pl_software_07 character varying(1),
+    semana_pl_software_08 character varying(1),
+    semana_pl_software_09 character varying(1),
+    semana_pl_software_10 character varying(1),
+    semana_pl_software_11 character varying(1),
+    semana_pl_software_12 character varying(1),
+    semana_pl_hardware_01 character varying(1),
+    semana_pl_hardware_02 character varying(1),
+    semana_pl_hardware_03 character varying(1),
+    semana_pl_hardware_04 character varying(1),
+    semana_pl_hardware_05 character varying(1),
+    semana_pl_hardware_06 character varying(1),
+    semana_pl_hardware_07 character varying(1),
+    semana_pl_hardware_08 character varying(1),
+    semana_pl_hardware_09 character varying(1),
+    semana_pl_hardware_10 character varying(1),
+    semana_pl_hardware_11 character varying(1),
+    semana_pl_hardware_12 character varying(1),
+    semana_pl_copia_01 character varying(1),
+    semana_pl_copia_02 character varying(1),
+    semana_pl_copia_03 character varying(1),
+    semana_pl_copia_04 character varying(1),
+    semana_pl_copia_05 character varying(1),
+    semana_pl_copia_06 character varying(1),
+    semana_pl_copia_07 character varying(1),
+    semana_pl_copia_08 character varying(1),
+    semana_pl_copia_09 character varying(1),
+    semana_pl_copia_10 character varying(1),
+    semana_pl_copia_11 character varying(1),
+    semana_pl_copia_12 character varying(1),
+    semana_pl_revision_01 character varying(1),
+    semana_pl_revision_02 character varying(1),
+    semana_pl_revision_03 character varying(1),
+    semana_pl_revision_04 character varying(1),
+    semana_pl_revision_05 character varying(1),
+    semana_pl_revision_06 character varying(1),
+    semana_pl_revision_07 character varying(1),
+    semana_pl_revision_08 character varying(1),
+    semana_pl_revision_09 character varying(1),
+    semana_pl_revision_10 character varying(1),
+    semana_pl_revision_11 character varying(1),
+    semana_pl_revision_12 character varying(1),
+    semana_ej_software_01 character varying(1),
+    semana_ej_software_02 character varying(1),
+    semana_ej_software_03 character varying(1),
+    semana_ej_software_04 character varying(1),
+    semana_ej_software_05 character varying(1),
+    semana_ej_software_06 character varying(1),
+    semana_ej_software_07 character varying(1),
+    semana_ej_software_08 character varying(1),
+    semana_ej_software_09 character varying(1),
+    semana_ej_software_10 character varying(1),
+    semana_ej_software_11 character varying(1),
+    semana_ej_software_12 character varying(1),
+    semana_ej_hardware_01 character varying(1),
+    semana_ej_hardware_02 character varying(1),
+    semana_ej_hardware_03 character varying(1),
+    semana_ej_hardware_04 character varying(1),
+    semana_ej_hardware_05 character varying(1),
+    semana_ej_hardware_06 character varying(1),
+    semana_ej_hardware_07 character varying(1),
+    semana_ej_hardware_08 character varying(1),
+    semana_ej_hardware_09 character varying(1),
+    semana_ej_hardware_10 character varying(1),
+    semana_ej_hardware_11 character varying(1),
+    semana_ej_hardware_12 character varying(1),
+    semana_ej_copia_01 character varying(1),
+    semana_ej_copia_02 character varying(1),
+    semana_ej_copia_03 character varying(1),
+    semana_ej_copia_04 character varying(1),
+    semana_ej_copia_05 character varying(1),
+    semana_ej_copia_06 character varying(1),
+    semana_ej_copia_07 character varying(1),
+    semana_ej_copia_08 character varying(1),
+    semana_ej_copia_09 character varying(1),
+    semana_ej_copia_10 character varying(1),
+    semana_ej_copia_11 character varying(1),
+    semana_ej_copia_12 character varying(1),
+    semana_ej_revision_01 character varying(1),
+    semana_ej_revision_02 character varying(1),
+    semana_ej_revision_03 character varying(1),
+    semana_ej_revision_04 character varying(1),
+    semana_ej_revision_05 character varying(1),
+    semana_ej_revision_06 character varying(1),
+    semana_ej_revision_07 character varying(1),
+    semana_ej_revision_08 character varying(1),
+    semana_ej_revision_09 character varying(1),
+    semana_ej_revision_10 character varying(1),
+    semana_ej_revision_11 character varying(1),
+    semana_ej_revision_12 character varying(1),
+    estado text,
+    obser text
+);
+
+
+ALTER TABLE public."Plan_mantenimiento" OWNER TO neondb_owner;
+
+--
+-- Name: Plan_mantenimiento_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Plan_mantenimiento_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Plan_mantenimiento_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Plan_mantenimiento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Plan_mantenimiento_id_seq" OWNED BY public."Plan_mantenimiento".id;
+
+
+--
+-- Name: Post; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Post" (
+    id integer NOT NULL,
+    title text NOT NULL,
+    content text,
+    "authorId" integer NOT NULL
+);
+
+
+ALTER TABLE public."Post" OWNER TO neondb_owner;
+
+--
+-- Name: Post_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Post_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Post_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Post_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Post_id_seq" OWNED BY public."Post".id;
+
+
+--
+-- Name: Prioridad; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Prioridad" (
+    id integer NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Prioridad" OWNER TO neondb_owner;
+
+--
+-- Name: Prioridad_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Prioridad_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Prioridad_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Prioridad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Prioridad_id_seq" OWNED BY public."Prioridad".id;
+
+
+--
+-- Name: ProductImage; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."ProductImage" (
+    id integer NOT NULL,
+    url text NOT NULL,
+    "productId" integer NOT NULL
+);
+
+
+ALTER TABLE public."ProductImage" OWNER TO neondb_owner;
+
+--
+-- Name: ProductImage_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."ProductImage_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."ProductImage_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: ProductImage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."ProductImage_id_seq" OWNED BY public."ProductImage".id;
+
+
+--
+-- Name: Programa; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Programa" (
+    id integer NOT NULL,
+    "COD_PROGRAMA" text NOT NULL,
+    detalle text NOT NULL,
+    serial text NOT NULL
+);
+
+
+ALTER TABLE public."Programa" OWNER TO neondb_owner;
+
+--
+-- Name: Programa_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Programa_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Programa_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Programa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Programa_id_seq" OWNED BY public."Programa".id;
+
+
+--
+-- Name: Role; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Role" (
+    role text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public."Role" OWNER TO neondb_owner;
+
+--
+-- Name: Sistema_operativo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Sistema_operativo" (
+    id integer NOT NULL,
+    "COD_SISTEMA_OPERATIVO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Sistema_operativo" OWNER TO neondb_owner;
+
+--
+-- Name: Sistema_operativo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Sistema_operativo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Sistema_operativo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Sistema_operativo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Sistema_operativo_id_seq" OWNED BY public."Sistema_operativo".id;
+
+
+--
+-- Name: Sucursal; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Sucursal" (
+    id integer NOT NULL,
+    "COD_SUCURSAL" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Sucursal" OWNER TO neondb_owner;
+
+--
+-- Name: Sucursal_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Sucursal_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Sucursal_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Sucursal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Sucursal_id_seq" OWNED BY public."Sucursal".id;
+
+
+--
+-- Name: Ticket; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Ticket" (
+    id integer NOT NULL,
+    fecha timestamp(3) without time zone,
+    fecha_fin timestamp(3) without time zone,
+    hora text,
+    titulo text,
+    "usuarioId" integer,
+    "activoId" integer,
+    "prioridadId" integer,
+    obser text,
+    resumen text,
+    "areaId" integer,
+    "sucursalId" integer,
+    "ubicacionId" integer,
+    "agenteId" integer,
+    "estadoTicketId" integer,
+    "ticket_tipoId" integer
+);
+
+
+ALTER TABLE public."Ticket" OWNER TO neondb_owner;
+
+--
+-- Name: TicketImage; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."TicketImage" (
+    id integer NOT NULL,
+    url text NOT NULL,
+    "ticketId" integer,
+    "mensajeTicketId" integer
+);
+
+
+ALTER TABLE public."TicketImage" OWNER TO neondb_owner;
+
+--
+-- Name: TicketImage_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."TicketImage_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."TicketImage_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: TicketImage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."TicketImage_id_seq" OWNED BY public."TicketImage".id;
+
+
+--
+-- Name: Ticket_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Ticket_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ticket_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Ticket_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Ticket_id_seq" OWNED BY public."Ticket".id;
+
+
+--
+-- Name: Ticket_mensaje; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Ticket_mensaje" (
+    id integer NOT NULL,
+    fecha timestamp(3) without time zone,
+    hora text,
+    mensaje text,
+    "userId" integer,
+    "ticketId" integer
+);
+
+
+ALTER TABLE public."Ticket_mensaje" OWNER TO neondb_owner;
+
+--
+-- Name: Ticket_mensaje_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Ticket_mensaje_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ticket_mensaje_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Ticket_mensaje_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Ticket_mensaje_id_seq" OWNED BY public."Ticket_mensaje".id;
+
+
+--
+-- Name: Ticket_tipo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Ticket_tipo" (
+    id integer NOT NULL,
+    "COD_TICKET_TIPO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Ticket_tipo" OWNER TO neondb_owner;
+
+--
+-- Name: Ticket_tipo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Ticket_tipo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ticket_tipo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Ticket_tipo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Ticket_tipo_id_seq" OWNED BY public."Ticket_tipo".id;
+
+
+--
+-- Name: Tipo_activo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Tipo_activo" (
+    id integer NOT NULL,
+    "COD_TIPO_ACTIVO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Tipo_activo" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_activo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Tipo_activo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Tipo_activo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_activo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Tipo_activo_id_seq" OWNED BY public."Tipo_activo".id;
+
+
+--
+-- Name: Tipo_asignacion; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Tipo_asignacion" (
+    id integer NOT NULL,
+    "COD_TIPO_ASIGNACION" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Tipo_asignacion" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_asignacion_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Tipo_asignacion_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Tipo_asignacion_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_asignacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Tipo_asignacion_id_seq" OWNED BY public."Tipo_asignacion".id;
+
+
+--
+-- Name: Tipo_equipo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Tipo_equipo" (
+    id integer NOT NULL,
+    "COD_TIPO_EQUIPO" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Tipo_equipo" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_equipo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Tipo_equipo_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Tipo_equipo_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Tipo_equipo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Tipo_equipo_id_seq" OWNED BY public."Tipo_equipo".id;
+
+
+--
+-- Name: Ubicacion; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."Ubicacion" (
+    id integer NOT NULL,
+    "COD_UBICACION" text NOT NULL,
+    detalle text NOT NULL
+);
+
+
+ALTER TABLE public."Ubicacion" OWNER TO neondb_owner;
+
+--
+-- Name: Ubicacion_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."Ubicacion_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ubicacion_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: Ubicacion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."Ubicacion_id_seq" OWNED BY public."Ubicacion".id;
+
+
+--
+-- Name: User; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."User" (
+    id integer NOT NULL,
+    email text,
+    name text NOT NULL,
+    lastname text,
+    "CODIGO" text,
+    password text,
+    "emailValidated" boolean,
+    "isActive" boolean,
+    "isAgente" boolean,
+    foto text,
+    role text,
+    "cargoId" integer
+);
+
+
+ALTER TABLE public."User" OWNER TO neondb_owner;
+
+--
+-- Name: User_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."User_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."User_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: User_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."User_id_seq" OWNED BY public."User".id;
+
+
+--
+-- Name: User_permission; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."User_permission" (
+    id integer NOT NULL,
+    "userId" integer NOT NULL,
+    fecha_permiso timestamp(3) without time zone NOT NULL,
+    "permissionId" text NOT NULL
+);
+
+
+ALTER TABLE public."User_permission" OWNER TO neondb_owner;
+
+--
+-- Name: User_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public."User_permission_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."User_permission_id_seq" OWNER TO neondb_owner;
+
+--
+-- Name: User_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public."User_permission_id_seq" OWNED BY public."User_permission".id;
+
+
+--
+-- Name: _ActivoToPrograma; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public."_ActivoToPrograma" (
+    "A" integer NOT NULL,
+    "B" integer NOT NULL
+);
+
+
+ALTER TABLE public."_ActivoToPrograma" OWNER TO neondb_owner;
+
+--
+-- Name: _prisma_migrations; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public._prisma_migrations (
+    id character varying(36) NOT NULL,
+    checksum character varying(64) NOT NULL,
+    finished_at timestamp with time zone,
+    migration_name character varying(255) NOT NULL,
+    logs text,
+    rolled_back_at timestamp with time zone,
+    started_at timestamp with time zone DEFAULT now() NOT NULL,
+    applied_steps_count integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public._prisma_migrations OWNER TO neondb_owner;
+
+--
+-- Name: product; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public.product (
+    id integer NOT NULL,
+    ref text NOT NULL,
+    title text NOT NULL,
+    price integer NOT NULL,
+    description character varying(250),
+    slug character varying(50),
+    available boolean NOT NULL,
+    stock integer NOT NULL,
+    sizes character varying(50),
+    gender character varying(50),
+    tags character varying(50),
+    image character varying(50),
+    "categoryId" text NOT NULL
+);
+
+
+ALTER TABLE public.product OWNER TO neondb_owner;
+
+--
+-- Name: product_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public.product_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.product_id_seq OWNER TO neondb_owner;
+
+--
+-- Name: product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public.product_id_seq OWNED BY public.product.id;
+
+
+--
+-- Name: reg_eventos; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public.reg_eventos (
+    id integer NOT NULL,
+    fecha_hora timestamp without time zone,
+    hora text NOT NULL,
+    usuario text NOT NULL,
+    detalle text NOT NULL,
+    comando text,
+    ip text,
+    modulo text,
+    tipo text
+);
+
+
+ALTER TABLE public.reg_eventos OWNER TO neondb_owner;
+
+--
+-- Name: reg_eventos_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public.reg_eventos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.reg_eventos_id_seq OWNER TO neondb_owner;
+
+--
+-- Name: reg_eventos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public.reg_eventos_id_seq OWNED BY public.reg_eventos.id;
+
+
+--
+-- Name: todo; Type: TABLE; Schema: public; Owner: neondb_owner
+--
+
+CREATE TABLE public.todo (
+    id integer NOT NULL,
+    text text NOT NULL,
+    "completedAt" timestamp without time zone
+);
+
+
+ALTER TABLE public.todo OWNER TO neondb_owner;
+
+--
+-- Name: todo_id_seq; Type: SEQUENCE; Schema: public; Owner: neondb_owner
+--
+
+CREATE SEQUENCE public.todo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.todo_id_seq OWNER TO neondb_owner;
+
+--
+-- Name: todo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neondb_owner
+--
+
+ALTER SEQUENCE public.todo_id_seq OWNED BY public.todo.id;
+
+
+--
+-- Name: Activo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo" ALTER COLUMN id SET DEFAULT nextval('public."Activo_id_seq"'::regclass);
+
+
+--
+-- Name: ActivoImage id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ActivoImage" ALTER COLUMN id SET DEFAULT nextval('public."ActivoImage_id_seq"'::regclass);
+
+
+--
+-- Name: Activo_asignacion id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion" ALTER COLUMN id SET DEFAULT nextval('public."Activo_asignacion_id_seq"'::regclass);
+
+
+--
+-- Name: Area id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Area" ALTER COLUMN id SET DEFAULT nextval('public."Area_id_seq"'::regclass);
+
+
+--
+-- Name: Cargo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Cargo" ALTER COLUMN id SET DEFAULT nextval('public."Cargo_id_seq"'::regclass);
+
+
+--
+-- Name: Categoria_activo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Categoria_activo" ALTER COLUMN id SET DEFAULT nextval('public."Categoria_activo_id_seq"'::regclass);
+
+
+--
+-- Name: EstadoTicket id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."EstadoTicket" ALTER COLUMN id SET DEFAULT nextval('public."EstadoTicket_id_seq"'::regclass);
+
+
+--
+-- Name: Marca id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Marca" ALTER COLUMN id SET DEFAULT nextval('public."Marca_id_seq"'::regclass);
+
+
+--
+-- Name: Plan_mantenimiento id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento" ALTER COLUMN id SET DEFAULT nextval('public."Plan_mantenimiento_id_seq"'::regclass);
+
+
+--
+-- Name: Post id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Post" ALTER COLUMN id SET DEFAULT nextval('public."Post_id_seq"'::regclass);
+
+
+--
+-- Name: Prioridad id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Prioridad" ALTER COLUMN id SET DEFAULT nextval('public."Prioridad_id_seq"'::regclass);
+
+
+--
+-- Name: ProductImage id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ProductImage" ALTER COLUMN id SET DEFAULT nextval('public."ProductImage_id_seq"'::regclass);
+
+
+--
+-- Name: Programa id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Programa" ALTER COLUMN id SET DEFAULT nextval('public."Programa_id_seq"'::regclass);
+
+
+--
+-- Name: Sistema_operativo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Sistema_operativo" ALTER COLUMN id SET DEFAULT nextval('public."Sistema_operativo_id_seq"'::regclass);
+
+
+--
+-- Name: Sucursal id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Sucursal" ALTER COLUMN id SET DEFAULT nextval('public."Sucursal_id_seq"'::regclass);
+
+
+--
+-- Name: Ticket id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket" ALTER COLUMN id SET DEFAULT nextval('public."Ticket_id_seq"'::regclass);
+
+
+--
+-- Name: TicketImage id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."TicketImage" ALTER COLUMN id SET DEFAULT nextval('public."TicketImage_id_seq"'::regclass);
+
+
+--
+-- Name: Ticket_mensaje id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_mensaje" ALTER COLUMN id SET DEFAULT nextval('public."Ticket_mensaje_id_seq"'::regclass);
+
+
+--
+-- Name: Ticket_tipo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_tipo" ALTER COLUMN id SET DEFAULT nextval('public."Ticket_tipo_id_seq"'::regclass);
+
+
+--
+-- Name: Tipo_activo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_activo" ALTER COLUMN id SET DEFAULT nextval('public."Tipo_activo_id_seq"'::regclass);
+
+
+--
+-- Name: Tipo_asignacion id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_asignacion" ALTER COLUMN id SET DEFAULT nextval('public."Tipo_asignacion_id_seq"'::regclass);
+
+
+--
+-- Name: Tipo_equipo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_equipo" ALTER COLUMN id SET DEFAULT nextval('public."Tipo_equipo_id_seq"'::regclass);
+
+
+--
+-- Name: Ubicacion id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ubicacion" ALTER COLUMN id SET DEFAULT nextval('public."Ubicacion_id_seq"'::regclass);
+
+
+--
+-- Name: User id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User" ALTER COLUMN id SET DEFAULT nextval('public."User_id_seq"'::regclass);
+
+
+--
+-- Name: User_permission id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User_permission" ALTER COLUMN id SET DEFAULT nextval('public."User_permission_id_seq"'::regclass);
+
+
+--
+-- Name: product id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.product_id_seq'::regclass);
+
+
+--
+-- Name: reg_eventos id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.reg_eventos ALTER COLUMN id SET DEFAULT nextval('public.reg_eventos_id_seq'::regclass);
+
+
+--
+-- Name: todo id; Type: DEFAULT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.todo ALTER COLUMN id SET DEFAULT nextval('public.todo_id_seq'::regclass);
+
+
+--
+-- Name: ActivoImage ActivoImage_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ActivoImage"
+    ADD CONSTRAINT "ActivoImage_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Activo Activo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo"
+    ADD CONSTRAINT "Activo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Area Area_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Area"
+    ADD CONSTRAINT "Area_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Cargo Cargo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Cargo"
+    ADD CONSTRAINT "Cargo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Categoria_activo Categoria_activo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Categoria_activo"
+    ADD CONSTRAINT "Categoria_activo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Category Category_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Category"
+    ADD CONSTRAINT "Category_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: EstadoTicket EstadoTicket_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."EstadoTicket"
+    ADD CONSTRAINT "EstadoTicket_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Marca Marca_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Marca"
+    ADD CONSTRAINT "Marca_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Permission Permission_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Permission"
+    ADD CONSTRAINT "Permission_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Post Post_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Post"
+    ADD CONSTRAINT "Post_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Prioridad Prioridad_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Prioridad"
+    ADD CONSTRAINT "Prioridad_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: ProductImage ProductImage_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ProductImage"
+    ADD CONSTRAINT "ProductImage_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Programa Programa_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Programa"
+    ADD CONSTRAINT "Programa_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Role Role_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Role"
+    ADD CONSTRAINT "Role_pkey" PRIMARY KEY (role);
+
+
+--
+-- Name: Sistema_operativo Sistema_operativo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Sistema_operativo"
+    ADD CONSTRAINT "Sistema_operativo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Sucursal Sucursal_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Sucursal"
+    ADD CONSTRAINT "Sucursal_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: TicketImage TicketImage_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."TicketImage"
+    ADD CONSTRAINT "TicketImage_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Ticket_mensaje Ticket_mensaje_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_mensaje"
+    ADD CONSTRAINT "Ticket_mensaje_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Ticket Ticket_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Ticket_tipo Ticket_tipo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_tipo"
+    ADD CONSTRAINT "Ticket_tipo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Tipo_activo Tipo_activo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_activo"
+    ADD CONSTRAINT "Tipo_activo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Tipo_asignacion Tipo_asignacion_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_asignacion"
+    ADD CONSTRAINT "Tipo_asignacion_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Tipo_equipo Tipo_equipo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Tipo_equipo"
+    ADD CONSTRAINT "Tipo_equipo_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Ubicacion Ubicacion_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ubicacion"
+    ADD CONSTRAINT "Ubicacion_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: User_permission User_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User_permission"
+    ADD CONSTRAINT "User_permission_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: User User_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User"
+    ADD CONSTRAINT "User_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: _prisma_migrations _prisma_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public._prisma_migrations
+    ADD CONSTRAINT _prisma_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product product_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.product
+    ADD CONSTRAINT product_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reg_eventos reg_eventos_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.reg_eventos
+    ADD CONSTRAINT reg_eventos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: todo todo_pkey; Type: CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.todo
+    ADD CONSTRAINT todo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: Activo_COD_ACTIVO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Activo_COD_ACTIVO_key" ON public."Activo" USING btree ("COD_ACTIVO");
+
+
+--
+-- Name: Area_COD_AREA_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Area_COD_AREA_key" ON public."Area" USING btree ("COD_AREA");
+
+
+--
+-- Name: Cargo_COD_CARGO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Cargo_COD_CARGO_key" ON public."Cargo" USING btree ("COD_CARGO");
+
+
+--
+-- Name: Categoria_activo_COD_CATEGORIA_ACTIVO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Categoria_activo_COD_CATEGORIA_ACTIVO_key" ON public."Categoria_activo" USING btree ("COD_CATEGORIA_ACTIVO");
+
+
+--
+-- Name: Marca_COD_MARCA_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Marca_COD_MARCA_key" ON public."Marca" USING btree ("COD_MARCA");
+
+
+--
+-- Name: ProductImage_productId_idx; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE INDEX "ProductImage_productId_idx" ON public."ProductImage" USING btree ("productId");
+
+
+--
+-- Name: Programa_COD_PROGRAMA_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Programa_COD_PROGRAMA_key" ON public."Programa" USING btree ("COD_PROGRAMA");
+
+
+--
+-- Name: Role_name_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Role_name_key" ON public."Role" USING btree (name);
+
+
+--
+-- Name: Sistema_operativo_COD_SISTEMA_OPERATIVO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Sistema_operativo_COD_SISTEMA_OPERATIVO_key" ON public."Sistema_operativo" USING btree ("COD_SISTEMA_OPERATIVO");
+
+
+--
+-- Name: Sucursal_COD_SUCURSAL_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Sucursal_COD_SUCURSAL_key" ON public."Sucursal" USING btree ("COD_SUCURSAL");
+
+
+--
+-- Name: Ticket_tipo_COD_TICKET_TIPO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Ticket_tipo_COD_TICKET_TIPO_key" ON public."Ticket_tipo" USING btree ("COD_TICKET_TIPO");
+
+
+--
+-- Name: Tipo_activo_COD_TIPO_ACTIVO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Tipo_activo_COD_TIPO_ACTIVO_key" ON public."Tipo_activo" USING btree ("COD_TIPO_ACTIVO");
+
+
+--
+-- Name: Tipo_asignacion_COD_TIPO_ASIGNACION_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Tipo_asignacion_COD_TIPO_ASIGNACION_key" ON public."Tipo_asignacion" USING btree ("COD_TIPO_ASIGNACION");
+
+
+--
+-- Name: Tipo_equipo_COD_TIPO_EQUIPO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Tipo_equipo_COD_TIPO_EQUIPO_key" ON public."Tipo_equipo" USING btree ("COD_TIPO_EQUIPO");
+
+
+--
+-- Name: Ubicacion_COD_UBICACION_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "Ubicacion_COD_UBICACION_key" ON public."Ubicacion" USING btree ("COD_UBICACION");
+
+
+--
+-- Name: User_CODIGO_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "User_CODIGO_key" ON public."User" USING btree ("CODIGO");
+
+
+--
+-- Name: _ActivoToPrograma_AB_unique; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX "_ActivoToPrograma_AB_unique" ON public."_ActivoToPrograma" USING btree ("A", "B");
+
+
+--
+-- Name: _ActivoToPrograma_B_index; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE INDEX "_ActivoToPrograma_B_index" ON public."_ActivoToPrograma" USING btree ("B");
+
+
+--
+-- Name: product_ref_key; Type: INDEX; Schema: public; Owner: neondb_owner
+--
+
+CREATE UNIQUE INDEX product_ref_key ON public.product USING btree (ref);
+
+
+--
+-- Name: ActivoImage ActivoImage_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ActivoImage"
+    ADD CONSTRAINT "ActivoImage_activoId_fkey" FOREIGN KEY ("activoId") REFERENCES public."Activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_activoId_fkey" FOREIGN KEY ("activoId") REFERENCES public."Activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_areaId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_areaId_fkey" FOREIGN KEY ("areaId") REFERENCES public."Area"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_responsableId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_responsableId_fkey" FOREIGN KEY ("responsableId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_sucursalId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_sucursalId_fkey" FOREIGN KEY ("sucursalId") REFERENCES public."Sucursal"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_tipo_asignacionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_tipo_asignacionId_fkey" FOREIGN KEY ("tipo_asignacionId") REFERENCES public."Tipo_asignacion"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo_asignacion Activo_asignacion_ubicacionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo_asignacion"
+    ADD CONSTRAINT "Activo_asignacion_ubicacionId_fkey" FOREIGN KEY ("ubicacionId") REFERENCES public."Ubicacion"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo Activo_categoria_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo"
+    ADD CONSTRAINT "Activo_categoria_activoId_fkey" FOREIGN KEY ("categoria_activoId") REFERENCES public."Categoria_activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo Activo_tipo_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo"
+    ADD CONSTRAINT "Activo_tipo_activoId_fkey" FOREIGN KEY ("tipo_activoId") REFERENCES public."Tipo_activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Activo Activo_tipo_equipoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Activo"
+    ADD CONSTRAINT "Activo_tipo_equipoId_fkey" FOREIGN KEY ("tipo_equipoId") REFERENCES public."Tipo_equipo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_activoId_fkey" FOREIGN KEY ("activoId") REFERENCES public."Activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_agenteId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_agenteId_fkey" FOREIGN KEY ("agenteId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_areaId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_areaId_fkey" FOREIGN KEY ("areaId") REFERENCES public."Area"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_sucursalId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_sucursalId_fkey" FOREIGN KEY ("sucursalId") REFERENCES public."Sucursal"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Plan_mantenimiento Plan_mantenimiento_ubicacionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Plan_mantenimiento"
+    ADD CONSTRAINT "Plan_mantenimiento_ubicacionId_fkey" FOREIGN KEY ("ubicacionId") REFERENCES public."Ubicacion"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Post Post_authorId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Post"
+    ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: ProductImage ProductImage_productId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."ProductImage"
+    ADD CONSTRAINT "ProductImage_productId_fkey" FOREIGN KEY ("productId") REFERENCES public.product(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: TicketImage TicketImage_mensajeTicketId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."TicketImage"
+    ADD CONSTRAINT "TicketImage_mensajeTicketId_fkey" FOREIGN KEY ("mensajeTicketId") REFERENCES public."Ticket_mensaje"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: TicketImage TicketImage_ticketId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."TicketImage"
+    ADD CONSTRAINT "TicketImage_ticketId_fkey" FOREIGN KEY ("ticketId") REFERENCES public."Ticket"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_activoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_activoId_fkey" FOREIGN KEY ("activoId") REFERENCES public."Activo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_agenteId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_agenteId_fkey" FOREIGN KEY ("agenteId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_areaId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_areaId_fkey" FOREIGN KEY ("areaId") REFERENCES public."Area"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_estadoTicketId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_estadoTicketId_fkey" FOREIGN KEY ("estadoTicketId") REFERENCES public."EstadoTicket"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket_mensaje Ticket_mensaje_ticketId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_mensaje"
+    ADD CONSTRAINT "Ticket_mensaje_ticketId_fkey" FOREIGN KEY ("ticketId") REFERENCES public."Ticket"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket_mensaje Ticket_mensaje_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket_mensaje"
+    ADD CONSTRAINT "Ticket_mensaje_userId_fkey" FOREIGN KEY ("userId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_prioridadId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_prioridadId_fkey" FOREIGN KEY ("prioridadId") REFERENCES public."Prioridad"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_sucursalId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_sucursalId_fkey" FOREIGN KEY ("sucursalId") REFERENCES public."Sucursal"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_ticket_tipoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_ticket_tipoId_fkey" FOREIGN KEY ("ticket_tipoId") REFERENCES public."Ticket_tipo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_ubicacionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_ubicacionId_fkey" FOREIGN KEY ("ubicacionId") REFERENCES public."Ubicacion"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Ticket Ticket_usuarioId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."Ticket"
+    ADD CONSTRAINT "Ticket_usuarioId_fkey" FOREIGN KEY ("usuarioId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: User User_cargoId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User"
+    ADD CONSTRAINT "User_cargoId_fkey" FOREIGN KEY ("cargoId") REFERENCES public."Cargo"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: User_permission User_permission_permissionId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User_permission"
+    ADD CONSTRAINT "User_permission_permissionId_fkey" FOREIGN KEY ("permissionId") REFERENCES public."Permission"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: User_permission User_permission_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."User_permission"
+    ADD CONSTRAINT "User_permission_userId_fkey" FOREIGN KEY ("userId") REFERENCES public."User"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: _ActivoToPrograma _ActivoToPrograma_A_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."_ActivoToPrograma"
+    ADD CONSTRAINT "_ActivoToPrograma_A_fkey" FOREIGN KEY ("A") REFERENCES public."Activo"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: _ActivoToPrograma _ActivoToPrograma_B_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public."_ActivoToPrograma"
+    ADD CONSTRAINT "_ActivoToPrograma_B_fkey" FOREIGN KEY ("B") REFERENCES public."Programa"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: product product_categoryId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: neondb_owner
+--
+
+ALTER TABLE ONLY public.product
+    ADD CONSTRAINT "product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES public."Category"(id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: public; Owner: cloud_admin
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE cloud_admin IN SCHEMA public GRANT ALL ON SEQUENCES TO neon_superuser WITH GRANT OPTION;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: cloud_admin
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE cloud_admin IN SCHEMA public GRANT ALL ON TABLES TO neon_superuser WITH GRANT OPTION;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

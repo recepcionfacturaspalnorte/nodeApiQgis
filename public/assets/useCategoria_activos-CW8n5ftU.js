@@ -1,0 +1,1 @@
+import{w as r,c as o,l as i}from"./index-Cvrl6C6l.js";import{a as c}from"./get-categoria_activo.action-CJTIk-Sa.js";const n=()=>{const{gender:m}=r(),[e]=o(),t=e.get("query")||void 0,a=e.get("limit")||9,s=e.get("page")||1;return i({queryKey:["Categoria_activos",{limit:a,page:s,query:t}],queryFn:()=>c({limit:isNaN(+a)?9:a,page:s,query:t}),staleTime:1e3*60*5})};export{n as u};

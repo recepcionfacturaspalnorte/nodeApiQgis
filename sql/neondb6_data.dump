@@ -1,0 +1,1129 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.7 (178558d)
+-- Dumped by pg_dump version 17.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: Categoria_activo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Categoria_activo" (id, "COD_CATEGORIA_ACTIVO", detalle) FROM stdin;
+1	01	PROPIEDAD, PLANTA Y EQUIPO
+\.
+
+
+--
+-- Data for Name: Tipo_activo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Tipo_activo" (id, "COD_TIPO_ACTIVO", detalle) FROM stdin;
+1	00	- No Aplica -
+2	01	HARDWARE
+3	02	SOFTWARE
+\.
+
+
+--
+-- Data for Name: Tipo_equipo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Tipo_equipo" (id, "COD_TIPO_EQUIPO", detalle) FROM stdin;
+1	00	- NO APLICA -
+2	01	PORTATIL
+3	02	PC DE MESA
+4	03	TODO EN UNO
+5	04	IMPRESORA
+6	05	VIDEO BEAM
+7	06	TELEFONO CELULAR
+8	07	RASPBERRY PI
+9	08	IMPRESORA BLUETOOTH
+10	09	ROUTER
+\.
+
+
+--
+-- Data for Name: Activo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Activo" (id, "COD_ACTIVO", serial, nombre_activo, "tipo_activoId", marca, "tipo_equipoId", procesador, memoria_ram, sistema_operativo, almacenamiento, serial_almacenamiento, licencia, licencia_office, licencia_antivirus, email, password1, password2, password3, password4, password5, disponibilidad, integridad, confidencialidad, valor_cuantitativo, valor_cualitativo, "categoria_activoId") FROM stdin;
+8	BL-01	SR54321	IMPRESORA BLUETOOTH	2	JOOPRINT	9									\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1
+9	EP-001	SR93343	IMPRESORA EPSON ECO-TANK	2	EPSON	5									\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2	0458	0458	PORTATIL	2	HP	2	RYZEN 7	16	WIN 11	256	5	SI	office 365	norton	soporte@palnortesas.com	#Palnorte2024@					\N	\N	\N	\N	\N	1
+3	000000	1000202390	IMPRESORA DESKJET 2300	2	HP	5			\N		\N		\N	\N	e3@e.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1
+7	03	SR0001	CELULAR	\N	IPHONE	\N									\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: ActivoImage; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."ActivoImage" (id, url, "activoId") FROM stdin;
+2	420b8f9b-b872-47cb-9601-b423496f783b.png	2
+4	082576b4-83ec-4e63-b199-04b2709157ac.jpeg	3
+5	b1c20bec-0d84-4e5b-ae07-855cb86205e7.jpeg	7
+6	28d04cfa-c8c9-4681-bf27-718b57d0f0f4.png	7
+\.
+
+
+--
+-- Data for Name: Area; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Area" (id, "COD_AREA", detalle) FROM stdin;
+1	01	ADMINISTRATIVO
+\.
+
+
+--
+-- Data for Name: Cargo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Cargo" (id, "COD_CARGO", detalle) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Sucursal; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Sucursal" (id, "COD_SUCURSAL", detalle) FROM stdin;
+1	01	PLANTA PALNORTE CAMPO DOS
+2	02	VILLA MALL V-ROSARIO
+\.
+
+
+--
+-- Data for Name: Tipo_asignacion; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Tipo_asignacion" (id, "COD_TIPO_ASIGNACION", detalle) FROM stdin;
+1	01	ENTREGA DE EQUIPOS
+2	02	DEVOLUCION DE EQUIPOS
+3	03	BAJA DE EQUIPOS
+\.
+
+
+--
+-- Data for Name: Ubicacion; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Ubicacion" (id, "COD_UBICACION", detalle) FROM stdin;
+1	01	OFICINA TICS
+\.
+
+
+--
+-- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."User" (id, email, name, lastname, "CODIGO", password, "emailValidated", "isActive", "isAgente", foto, role, "cargoId") FROM stdin;
+3	talentohumano@palnortesas.com	ELVIS JOHAN	SUAREZ CARRILLO	88267637	$2a$10$7Oj6Rxp0NRdaBoNV8TQwgObKwlUcmD7SjFnjlgXpBBYYQYUEfvR6G	t	t	f	\N	user	\N
+4	nomina@palnortesas.com	BELKIS JANETH	VILLAMIZAR PEREZ	27894852	$2a$10$OCBsdbRCbhWKHwOBgjsfjuAx32OPnx8uIEbOWoo4Lcbgi5UyTdrTW	t	t	f	\N	user	\N
+5	ardilaavilaalberto@gmail.com	ALBERTO	ARDILA AVILA	1098613525	$2a$10$Rfd3bLj4oFZgm0/suqYYjOGfgfAlQaHOu77qSjmL8IcesoF8/9nSa	t	t	f	\N	user	\N
+6	sostenibilidad@palnortesas.com	CARLOS DE JESUS	RODRIGUEZ SUAREZ	73131976	$2a$10$I7s1VfQ30alF00q8D6Azou47mwNaSqNpR/MRBPoYJOpnJ3fEH.1Iy	t	t	f	\N	user	\N
+7	soporte@palnortesas.com	LUIS ENRIQUE	HERNANDEZ SILVA	88265525	$2a$10$XdOW1OK0Zi/0TBNIqimUj.leWcjGGCdXLSTe1e3i51JKs8gGlxySG	t	t	f	\N	user	\N
+8	coordinadorproduccion@palnortesas.com	LUIS ALFREDO	ALBARRACIN ARAQUE	1093908099	$2a$10$xbj1g4t1X/tWgHRXMSdKYOVEE/TnWAbkMz1VrnTld5w7U8cZxsDtG	t	t	f	\N	user	\N
+9	directorplanta@palnortesas.com	JUAN ERNESTO	RAMIREZ GUILLEN	13870222	$2a$10$qRgASA2SncFk5dDdRw97F.s7BncmGx2ZrVtBI7osut83naQ4q1i.a	t	t	f	\N	user	\N
+10	jendrygrateron@gmail.com	JENDRY LISBETH	GRATERON ALBARRACIN	1093918520	$2a$10$dLi74UjNKaYJUE4gbp0dCuYQ8pFwADDHtihxNrlL4l1e8kDU/e3US	t	t	f	\N	user	\N
+11	despachos@palnortesas.com	MARI YURIEL	LEON GARZA	1090404679	$2a$10$Tw9zWmxVVtHtaFXmMCDtjO0NYEKVWTNJn7WIIe3PRsQTkk86XOzxq	t	t	f	\N	user	\N
+12	servicioalproveedor@palnortesas.com	FANY	RINCON URBINA	60437542	$2a$10$dw/dp0mdc9AUZLLgRQbbf.4d0wrX3QzlKone0XFj52grSH4Osi5bS	t	t	f	\N	user	\N
+13	willian2150@hotmail.com	WILLINGTON	RODRÍGUEZ AYALA	1093908663	$2a$10$m7DaJnabxHVot8CFCmmhFelyc0V2gF43.4FF5rFmGdI/cXAupg3WG	t	t	f	\N	user	\N
+14	yabsiba_25@hotmail.com	YABSIBA	MONSALVE BLANCO	1093915495	$2a$10$TkZPmtmTfo7gvt5J/aw6Pul8cO4BiCaAl6Ls/mmnrEkFxEnwRIbT2	t	t	f	\N	user	\N
+15	jai_melano@hotmail.com	JAISON ENRIQUE	VIDES MELANO	1093748600	$2a$10$0u1gZvfellFL8ZZ4uANA2.oGUy4wJuCzCmpcoc3yc3TgME7qb2cJK	t	t	f	\N	user	\N
+16	angie_30quintero@outlook.com	ANGIE KATHERINE	QUINTERO CONTRERAS	1090492305	$2a$10$mW3IZ0mMaZeHePh9EENPveNJL5TOhK0Ix/DkjKv.GCA8igpGsL8yO	t	t	f	\N	user	\N
+17	laboratorioplanta@palnortesas.com	OSBY CAROLINE	RAMIREZ MEDINA	1090425278	$2a$10$.IkICnFxFgcD9nslJmCPiuhcAb9aS9NVyWuS/leObA0eqn7rUzAiW	t	t	f	\N	user	\N
+18	arc_1386@hotmail.com	OMAR ALBERTO	MORA ESCALANTE	1090409655	$2a$10$DGe0YT91xd33TOTccujMMOpbpQnTIFRcoDGODlfkLZV9xRuaHtUaG	t	t	f	\N	user	\N
+19	financiero@palnortesas.com	ANDRES FELIPE	CORSO SALAMANCA	91493638	$2a$10$3dV3yt3QYP67EVHcJDFJq.1PonIOraocTzC5fjApYjdz3euvCtp02	t	t	f	\N	user	\N
+20	maria_9519@hotmail.com	MARIA BELEN	BARRERA MANTILLA	1090485811	$2a$10$gC8DkhFwEj0C4VRu2CqOduo0EqkyXVcB66YxsZ2gcp1I9e0Jg0LoK	t	t	f	\N	user	\N
+21	administrativa@palnortesas.com	YOMAIRA	GUTIERREZ MORA	37277961	$2a$10$3Sry0bSkvqkk64JHcReHPu5T2yMPWMVt5rFmqlJ.T44cgLeQB0mN.	t	t	f	\N	user	\N
+22	contador@palnortesas.com	SERGIO AUGUSTO	ESPINOSA GARCIA	88199146	$2a$10$6Fzq8ajSbTPVssPkoWX7tu8N92FddL14XSRF2fOyOrDEl.91NB8/W	t	t	f	\N	user	\N
+23	tesoreria@palnortesas.com	JESSICA PAOLA	RINCON DIAZ	1090379584	$2a$10$eJULdizUHPJVQwWYMQ/EUOLg/8oeXbxLUAjDwyld1Nvm.n4FS77CW	t	t	f	\N	user	\N
+24	cartera@palnortesas.com	DAYANA KATHERINE	RUIZ BARRERA	1090452504	$2a$10$HKlAl4jG.RQf2.Q55xXU9.fI3Y9Zx11MYLfoVVDU2IQFVZvaDfqqW	t	t	f	\N	user	\N
+25	facturacion@palnortesas.com	ARLADYZ	RODRIGUEZ CONTRERAS	1093736483	$2a$10$xhbNUAr6qDurC979El11JukX1HT6gBcjJ/uD5JQ0inYelszFz6Coq	t	t	f	\N	user	\N
+26	edwardpm90@hotmail.com	EDWARD	PADILLA MENDEZ	1090418372	$2a$10$CTVNKNljk6Za2XbiiUj2uO5JhrOA5PgwGcdylL4/hHcRgAVuGAs0.	t	t	f	\N	user	\N
+27	gerencia@palnortesas.com	MAURICIO MARIO	VARGAS GIRALDO	73133565	$2a$10$nKQhzAyZChYDgoPLVZVuHeW6cB53OmD78M1T4jqgfTOX6CVdrQRYa	t	t	f	\N	user	\N
+28	yakotv0309@gmail.com	JAIRO ORLANDO	OJEDA BUITRAGO	13279092	$2a$10$NljJa1tQlr5snwb0p9y5be/JYqAtFnMzjhfZYFz7RtI3OiOOvjW8K	t	t	f	\N	user	\N
+29	johannitajaimes@hotmail.com	DEISY JOHANNA	JAIMES RINCON	1090414265	$2a$10$7SOTP3RS/U5chmbkOWrhku1UHDHzx1AAQJTMVCKv6nRS/XNm2KW1K	t	t	f	\N	user	\N
+30	virgelin250@gmail.com	VIRGELINA	PEREZ DURAN	1062904385	$2a$10$o9f0tS1.5q1LIW4qRQi0vOZcx2Vg2TEqJjACnDx0jqRcfOOsyie4e	t	t	f	\N	user	\N
+31	jefeoperaciones@palnortesas.com	ADRIAN ENRIQUE	OROZCO ROZO	88235679	$2a$10$ZgC7HyE1uB8skQ2mMlOR8Otr8/GF0emEPEe6i1Fv/ZmIETA3b7vMC	t	t	f	\N	user	\N
+32	paezdaniel2024@gmail.com	JOSE DANIEL	PAEZ PEREZ	13278299	$2a$10$TNiRBnIP1w8gl9iT62QmAejxZyPEKR2K8k/ZGSorZToQdFtMtRoKG	t	t	f	\N	user	\N
+33	luiseusebiocastillo22@gmail.com	LUIS EUSEBIO	CASTILLO SANCHEZ	88131033	$2a$10$JywBJX7eGP/G9DP6KskhI.4ise/Bi2Oy2edo0f4N.6DV.j3kUdCv6	t	t	f	\N	user	\N
+34	pedrozasantiagowilson@gmail.com	WILSON	PEDROZA SANTIAGO	88026519	$2a$10$oRz3HONxyI1/Zw32pV4wZeMmXxOS7kHCT1oZs8Hciu.LeFstk.q.y	t	t	f	\N	user	\N
+35	marlly1378@gmail.com	JHON LEIDER	SANDOVAL	1104124519	$2a$10$9dRZUd9idH/RSRZ6uCELz.eyQ388rH6.YyNs1xYIH3NTM7j0N.jQ.	t	t	f	\N	user	\N
+36	jssr24@outlook.es	JHONATAN STIVEN	SANCHEZ RIOBO	1090390831	$2a$10$/ueB3R.PdHCMgRiaAJF7tOvr4sfuqxSR2.OVyQXeF4E.czURHSFV2	t	t	f	\N	user	\N
+37	quinterofernando67@gmail.com	ALFREDO FERNANDO	QUINTERO RAMIREZ	1093922636	$2a$10$gjF9ISjRf2uP9f.pIzPze.cIdnb6Df6dLCds0d.NCF2jvo6ExDKw6	t	t	f	\N	user	\N
+38	rodrfjulianalberto488@gmail.com	JULIAN ALBERTO	RODRIGUEZ ORTIZ	1090387322	$2a$10$ZTZ0hsxp6UTHfE/hpdA8c.FPfss0XmQ53tQOYLG2TLSNFHfxklp4u	t	t	f	\N	user	\N
+39	alexisquintero.3@gmail.com	SANTIAGO ALEXIS	QUINTERO RAMIREZ	1090464108	$2a$10$rWFn0BlTC3TGhe/Ua1pjQO24OQeGamqATpXCdVjdSfky.2lGQKfiK	t	t	f	\N	user	\N
+40	oscarcarrillocontreras@gmail.com	OSCAR EDUARDO	CARILLO CONTRERAS	1007329230	$2a$10$dDSWEVDgMIq3Z2b8FtmSwe9Qm.0RIy3hxj6nV6cz0UeeIhlr7bp0a	t	t	f	\N	user	\N
+41	amorantes364@gmail.com	ANGEL MARIA	MORANTES MORENO	1093914281	$2a$10$cTIefE8/4wNLLO4tN9Y1ZOHecmQBsEQZdgwH1wZ9sPZNCgup8R8bi	t	t	f	\N	user	\N
+42	yonathanpizza51@hotmail.com	YONATHAN ALEXANDER	PIZZA CASTRO	1090397053	$2a$10$f5P53NEmobUHGFil.YMNz.QYYPOHg2XEhssqVnn06KvJAcaOIH6R.	t	t	f	\N	user	\N
+43	wiljor1020@gmail.com	WILBERT JOSE	ORTIZ MORA	1094369689	$2a$10$QC/UGcJe9nUsG8I58VyX.uMPpMT81jl.aa.2atRz/rTfDJ/t0w5Xu	t	t	f	\N	user	\N
+44	diofanelgalvanbayona@gmail.com	DIOFANEL	GALVAN BAYONA	1093910027	$2a$10$vwdAc.kEtxkRUpjLj2nvKeKr4ftUcOTMrvNUOsAgNitzHdIgusio.	t	t	f	\N	user	\N
+45	jesussalvadormedina72@gmail.com	JESUS SALVADOR	MEDINA MANOSALVA	19615070	$2a$10$4hmJl9pBNB2LIHou83Fj3OzB7My8UnzpVsMnobiqVIifTtvw8FBzC	t	t	f	\N	user	\N
+2	j.noviembre@hotmail.com	JEFFERSON ERNEY	DE LA CRUZ DELGADO	1093770609	$2a$10$nlTHRFDGhuFqY2FD9LF1w.zIPobYD8OFiiz53v8hmMD4MCulApb96	t	t	f	\N	user	\N
+46	alexanderleongarza@gmail.com	ALEXANDER	LEON GARZA	1090443207	$2a$10$WhznjHAMoy1l182czbIBy.CeF2lpkaogdnXntoVGBJnVv109wWjyq	t	t	f	\N	user	\N
+47	coordinadorplanta@palnortesas.com	EMILED	TRIGOS CELON	1100838156	$2a$10$qYPM2DdShaMLWDpxKHfo6Odzn4asQlrYFAHl8ZNIAUieMnFCwI5aG	t	t	f	\N	user	\N
+1	e@e1.com	admin1	webmaster1	88	$2a$10$oA/dGctaWmgF8qWsd/HfAOPJ8UHbwazBWFon4LZ.uWTQFCtCLP462	t	t	t	\N	admin	\N
+48	alexgarciajacome@gmail.com	ALEXI	GARCIA JACOME	1066085355	$2a$10$SnBrgf1yurZCHpipqI9Ec.9Uy8/Dhqj1wjHs.bH50Q6pislStbssi	t	t	f	\N	user	\N
+49	salealsilcu@gmail.com	SAMIR LEANDRO	SILVA CUADROS	1090471780	$2a$10$boMkGDdGHc8z/.mRSWCoDuBV95llubwJJCUB2jgzQHc.XJNRHjqdC	t	t	f	\N	user	\N
+50	diegoflorez2109@hotmail.com	DIEGO ANDRES	FLOREZ VILLAMIZAR	1090375776	$2a$10$MY7rQDt1XxM49jITFC.zz.bB45gAO2sEm1CKpd66S4nOuFr0OtLZu	t	t	f	\N	user	\N
+51	eignyj.15@gmail.com	EIGNY JHOANA	GARZA MANCIPE	1093788537	$2a$10$V1fbLSqoxxMlH7uvJW0khOUU0TftfK2dkSedAxNWIv9IT5YmeBNHK	t	t	f	\N	user	\N
+52	alexandergutierrez2408@gmail.com	ALEXANDER	GUTIERREZ ORTEGA	5502102	$2a$10$q2gnJTxNfcZFSmqI336DM.6Pp7xl2V33KGNe9ixPWfUOxCSqwz0Ie	t	t	f	\N	user	\N
+53	elisetvar@hotmail.com	ROSA ELISET	VARGAS PEDROZA	1093910683	$2a$10$AwgP.Whm3jAaMr0DymM3Y.qgxApr7XXlB7nCxRsp2628XGdoU0CP6	t	t	f	\N	user	\N
+54	vegajaimesgonzalo57@gmail.com	GONZALO	VEGA JAIMES	1093920942	$2a$10$jhT1zroozwH5qSEpGCwAqOykmAA2H6be.Rqg70h5LQmps/xfXsDke	t	t	f	\N	user	\N
+55	alexanderlopez030@gmail.com	ERINSON ALEXANDER	LOPEZ SALAZAR	1094832098	$2a$10$J02aiqgb6e3Ovgv5upcWbeei.UaQ3Dqb9wWKNDybBzqzkqs1ConN.	t	t	f	\N	user	\N
+56	jcontrerascadena95@gmail.com	JOSE GIOVANY	CONTRERAS CADENA	1093917848	$2a$10$Nc.JHrzCE24ZcZtwcOFs.e2z7YzfJ8v31xJBI78VBENhLKiHWfSUS	t	t	f	\N	user	\N
+57	josserht.03@gmail.com	JOSSERHT OMAR	FLOREZ RAMIREZ	1090509265	$2a$10$MUifp/dp7sjt.BsmURm7b.OrfAWt/PIucdrDnawjL2dRwwAirAasu	t	t	f	\N	user	\N
+58	carloshernandezamaya627@gmail.com	CARLOS ALBERTO	AMAYA HERNANDEZ	88251092	$2a$10$buvOpyFKMfnaU6DWHQInnu/r4nG1weG.5RbMeKjod8GJ9ik8O5JvO	t	t	f	\N	user	\N
+59	villamizar122@gmail.com	EDWIN ELIAS	VILLAMIZAR CANO	1093735924	$2a$10$TWrtVWyspxjGNALK9L6mw.oe0q7cPj2fw6IC5tk3N/zQafUiJ4dvG	t	t	f	\N	user	\N
+60	esneber_55@hotmail.com	JAN ESNEBER	OSPINO POLO	1084728053	$2a$10$YZFBlJEW7phA6ZByTl4mPOe3RaNA4abL1Pl9pmXWrFKPeFxy2I1u6	t	t	f	\N	user	\N
+61	lagsven@gmail.com	LUIS ANDREY	GALVIS SILVA	1127340408	$2a$10$BREHb9SkD3wJqsUQz7HnlOuqNZFYHi7Q044LfBlGQCqQiMWsCQbPS	t	t	f	\N	user	\N
+62	carlosivanbuitrago750@gmail.com	CARLOS IVAN	BUITRAGO ARIAS	1093412482	$2a$10$dFvKMwEHBpk52XoJc3dgEe7tPcEhKtGcZZ3wQmeXu9dAkPqbUFvFa	t	t	f	\N	user	\N
+63	0821219.yeison@gmail.com	YEISON JOSE	QUINTERO PEINADO	1093919690	$2a$10$pK7V12BNkdrzbERvCuEEHeFoMmz7IVmkmKOtUydTEdZN09.IH2sn.	t	t	f	\N	user	\N
+64	sergicaiflo@hotmail.com	SERGIO DAVID	CAICEDO FLOREZ	13390116	$2a$10$ypXR8QXurX9026XOAoxuNuZWL9ZD3g4STTqD7yHlsz6BxwD1op6ci	t	t	f	\N	user	\N
+65	alvaro_9101@hotmail.com	ALVARO ENRIQUE	MANTILLA BRICEÑO	1090432397	$2a$10$.Kj2xeWiwB/tcW2HQnckpeBNmndKWQP9/wgIQ3oIlq83BQN6qUKQ6	t	t	f	\N	user	\N
+66	jorgequintero1408@gmail.com	JORGE ELIECER	QUINTERO PARDO	1093912320	$2a$10$ye6dC14/bwfK/MbASEGYi.7AwtPTPEu7UvpEYPktgsU7PLPs.gQfC	t	t	f	\N	user	\N
+67	juanguerrero01mp@gmail.com	JUAN CARLOS	GUERRERO ANDRADE	1091806620	$2a$10$rZuuvPK9cmaLLEQJ.73TCO93USutT2dk3RrcyejgCqS4ajJyYYolG	t	t	f	\N	user	\N
+68	gloinero@hotmail.com	CARLOS ALIRIO	ROA CARDENAS	13862341	$2a$10$5vSrP5AdAR34jc1P9RO8A.9GPeflITgW9XfuA9U/KTvNOxvB11js6	t	t	f	\N	user	\N
+69	jesusinhis.ag@hotmail.com	JESUS EDUARDO	VARGAS PARADA	1090408582	$2a$10$M0miYtteNJMGJEB6G40t1.M1THaYXQZysWlXE5Gl5Kg8NZUAqvJ4G	t	t	f	\N	user	\N
+70	paguerra06@live.com	POLO ANDRES	GUERRA GUILLEN	1098702196	$2a$10$4Lk.aNCzF5QQEfZnUhF6PO3lr.xmiQ7/2n7x6RNW.OQhpv1wgZtoC	t	t	f	\N	user	\N
+71	oriebla_99@hotmail.com	JAIR ALBEIRO	MEGAREJO MELGAREJO	1065883979	$2a$10$DNDYryLF7Wui59zNR6AOh.np8pCJFU43udwTMsWpBcVIQJLfsrn0C	t	t	f	\N	user	\N
+72	angaritaramon68@gmail.com	RAMON ANTONIO	ANGARITA	674304	$2a$10$2Yf15JbW3eBRAwz/WKIZROHj729u4.Glg7f.6S4QsCHoYUPyXeq52	t	t	f	\N	user	\N
+73	programador@palnortesas.com	FRANKLIN	PEÑA PRIETO	1090413084	$2a$10$nBGTlhkARetz/QKLjAUuFOCW9EeRx0rRo.8fd/uusWA359yE8Xz6q	t	t	f	\N	user	\N
+74	vargasyimer57@gmail.com	YIMER	VARGAS ALBARRACIN	1093913772	$2a$10$kfHtEJr1X1K0PTgalmA.ceMP7QXtt.J2hLfynHmZDEUGXFUVkYG3W	t	t	f	\N	user	\N
+75	j.eulogioespinelb123@gmail.com	JOSE EULOGIO	ESPINEL BRICEÑO	88175002	$2a$10$xuJvdXK0iAvyRYjAdc9jB.D/1nkzFTBRH6Q1MVr5pT/KUodato1fO	t	t	f	\N	user	\N
+76	jenrryh537@gmail.com	JENRRY	HERNANDEZ GAMBOA	1005047592	$2a$10$s67.T3Zu81Ee.RrKcVINOO8XAOK52pnNGCQYNJ9IrBc5.J0fWWuKG	t	t	f	\N	user	\N
+77	josemibuitrago@gmail.com	JOSE MIGUEL	BUITRAGO MORA	1094167053	$2a$10$82.Qw2a/dNT4yh9p4RgqW.EEFV5e5/2LAmikS6bjmozvzahd/KiL6	t	t	f	\N	user	\N
+78	davidleal1217@gmail.com	DAVID	LEAL HERNANDEZ	1093908906	$2a$10$.TUW5ay4N/wNO7HdDmeCZeoglm7UpwmhLBRAKjynlED.HFs.5gaPS	t	t	f	\N	user	\N
+79	andersondavidcaicedo13@gmail.com	ANDERSON DAVID	CAICEDO LEAL	1093919752	$2a$10$TUA.3MjBW/LNoRsQwzd.CuYm4aWOuiVKQKjY5oBoIP09yeF6lZrvW	t	t	f	\N	user	\N
+80	gestionambiental@palnortesas.com	LORENA LILIANA	PUPIALES FERNANDEZ	53106358	$2a$10$qPVYcAgAM4XwswanYaXeFOdZSgKJE.MN1bMU3k6Vg3nMBhvcIYANu	t	t	f	\N	user	\N
+81	helicabarico0729@gmail.com	HELI	CABARICO OVALLOS	88206836	$2a$10$OGOsnpl8SVwOjBtDPxiM.eXh38RmgIBiq9wXvwTXGP3fM4DU4ixee	t	t	f	\N	user	\N
+82	mantenimiento@palnortesas.com	JOSE NEREO	AVILA GUERRERO	1090447653	$2a$10$.bVJaofkkjfWT6Pail50Gu3y1qgG88yEfGhehT2XTdDpWU42wTpGm	t	t	f	\N	user	\N
+83	cipagautajoseluis@gmail.com	JOSE LUIS	CIPAGAUTA SANTIAGO	1093760045	$2a$10$soG5ZNTgYSYTRjPeCyBLA.OzZ29s0JZFKJaG1m1shFz/rhe44K7g.	t	t	f	\N	user	\N
+84	carlosrolonvillamizar87@yahoo.com	CARLOS SAID	ROLON VILLAMIZAR	1093907285	$2a$10$mgAMeUEKAtgLm1NDi9lxSuA49X89r/01oU4NW/xoLua1Jx4LIByry	t	t	f	\N	user	\N
+85	coordinadorplanta@palnortesas.com	WILSON OMAR	CRUZ PAEZ	1093913974	$2a$10$a22Kpg70CBFRqu93vk2ahOdlHZ6P5cM8aj3puXCiAm3YCNqgeGRcC	t	t	f	\N	user	\N
+86	villamizarernan@gmail.com	HERNANDO	VILLAMIZAR SANCHEZ	88028266	$2a$10$Q8/nMIe1LxDQn88b79S7B.WfxmrhRtIgWTzTHxpRtriWQ6u68vtSC	t	t	f	\N	user	\N
+87	andersonortiz16@gmail.com	ANDERSON ALEXIS	ORTIZ VILLAMIZAR	1093917962	$2a$10$Q23sxxHEQFvjZpOteqBgvuhKpd274KeyA1tl1fFjavs2STYJStRGC	t	t	f	\N	user	\N
+88	rigobertozapata1093@gmail.com	RIGOBERTO	ZAPATA ARBOLEDA	1093907269	$2a$10$cCREqs6szo/CiQW731D1pepbEyR3.vI0YZL8QWfEM1C1ajn/t5Yiy	t	t	f	\N	user	\N
+89	jerezedison4@gmail.com	EDINSON REYNALDO	JEREZ ARAQUE	1090461415	$2a$10$uxxanSWRw/CvSj2SfP3One5r3ewkLIzVu0Bl8sL5u7FfitOwlYptq	t	t	f	\N	user	\N
+90	castrobohorquezs@gmail.com	SERGIO EMILIO	CASTRO BOHORQUEZ	1093920854	$2a$10$qlKNl2/gEgDRhuES42OrUu/OnjtYU/XiP5S8JW4ML0Ubdufm2fBtu	t	t	f	\N	user	\N
+91	ivanmg_14@hotmail.com	IVAN DARIO	MORA GONZALEZ	1102831946	$2a$10$ZhrZhjBczxbTB68LAbORN.Ne6YZjTpjXu0w5xyAIRKtzGexF4Y67G	t	t	f	\N	user	\N
+92	andrestorradoortiz@gmail.com	ANDRES	TORRADO ORTIZ	1005044417	$2a$10$NeXHyPPKnx6wfz6.PVylz.aXfc3rDmxK1uJCJmOjmBaMEWVAs057.	t	t	f	\N	user	\N
+93	alex.maykol24@gmail.com	ALEXANDER	DIAZ MALDONADO	1093915935	$2a$10$c4GHbAzvix5VdDYMflFr6eGWp1MSIm3xp5n3wf3Uxj6qDNkUG0Z/C	t	t	f	\N	user	\N
+94	josegregorioguitierrez952@gmail.com	JOSE GREGORIO	GUTIERREZ RIBON	85165640	$2a$10$5XRlufjvjH/XDm5eSMDhEeUDBxkupCVtjHo7iOjlv5KHP2xY02QaW	t	t	f	\N	user	\N
+95	galvandeimer123@gmail.com	DEIMER	GALVAN VILLAMIZAR	1093925220	$2a$10$/T.BE4KFqQJzsis7vH4OnuNnRPcQL3SgNewHAOCBZak02ZyZB9zxe	t	t	f	\N	user	\N
+96	alianzas@palnortesas.com	LAUDYD	GARCIA GUERRERO	1090378064	$2a$10$NbpOeCB8annsgRFUGjZVH.A8yEHmGoNlaPqBxgsNuNBVE.nInMku.	t	t	f	\N	user	\N
+97	bienestarsocial@palnortesas.com	YESSY VIVIANA	MENDOZA FIGUEROA	60449720	$2a$10$bpYaXBQGTtGhVJJLonPl9O.MqH2wxhUxPQMDkOoRgXor5363qatrK	t	t	f	\N	user	\N
+98	maralta1115@hotmail.com	ALFONSO ELIAS	ALTAMAR CASTRO	12567554	$2a$10$trELs15bZFlqXGMUJ6DSfeRbA7imHdNGhVQHBivCypWYGLBN4KKVm	t	t	f	\N	user	\N
+99	electrocar87@outlook.com	CARLOS ARTURO	SOTO RAMIREZ	1090385895	$2a$10$TDWk3me/dtJ1f3erJ5nnAuHXB4feniwAzQTBqtKXVypcDNQfurz6K	t	t	f	\N	user	\N
+100	alejacruzfonseca109@gmail.com	EDINSON DAMIAN	NIÑO VILLAMIZAR	1090453858	$2a$10$KQBRUkC45SVZVXpV6y9EcO15J7GPhfM2Cuo9EQ8XydYhxfpejk8Yq	t	t	f	\N	user	\N
+101	marco1090422436@gmail.com	MARCOS ALEXANDER	DAVILA DURAN	1090422436	$2a$10$xi74o4REewJ2CiOQQLUtveupNRbW46KtvFHiZ59tOXf0KC8ffGPIK	t	t	f	\N	user	\N
+102	jimyflorez@outlook.com	JIMY ALEXANDER	FLOREZ ORTIZ	1093919448	$2a$10$qEcmTgRq0oxUXxoX6mU76em6oCggJ3IZeQ0Z83YEqFVJtB.eoYcX.	t	t	f	\N	user	\N
+103	yilvermartinez04@gmail.com	YILVER ALEXANDER	MARTINEZ HERNANDEZ	1093920314	$2a$10$d4shb/o75n7BGZyVlaE47uzC1ro9dBJp0glwsnRkBNsxUHyiQORzG	t	t	f	\N	user	\N
+104	tutladrialo@hotmail.com	JORGE	RODRIGUEZ FUENTES	1093921134	$2a$10$TYEd0k88UD8M7Juh8jStjeZbCnbCLjN59wJ6hgDzqvB1N1KNQdR6i	t	t	f	\N	user	\N
+105	yjoc97@hotmail.com	YEISON JOSE	ORTEGA CUADROS	1013639571	$2a$10$brhiCXJjCKtvq5bKke5VOuCc8JDgk/uQsMXfQPcJHrHrVoFypqpyW	t	t	f	\N	user	\N
+106	edwindd956@gmail.com	EDWUIN DANIEL	DUARTE DURAN	1098766471	$2a$10$IT5Tv6DdzcV5l30.IgNmLOro5SPcBR3YGaysxP3/5OJRft/d6x5jq	t	t	f	\N	user	\N
+107	orlandosoriobayona@gmail.com	ORLANDO	OSORIO BAYONA	6664416	$2a$10$8aLJ/sLq2LMplc7HFu5OUe8ltEq/i/8S6E.1Dvq/OD1Uqi16Efc6G	t	t	f	\N	user	\N
+108	quirozospino21@gmail.com	DIEGO ARMANDO	QUIROZ OSPINO	1043605990	$2a$10$vy.u5HDbPMQqdz8eyefo.OV0iZ1u5XafOuOV52OzEaWS6.ufOAcKy	t	t	f	\N	user	\N
+109	eduardoruiz19@hotmail.com	LUIS EDUARDO	ruiz Martínez	88247015	$2a$10$FVouzMfKclNMbEqMFpk0H.X/zmVHxGQ3lVHpEPr70Gm4bXZhamnka	t	t	f	\N	user	\N
+110	dazaorozcocarolina@gmail.com	AURA CAROLINA	DAZA OROZCO	1094276989	$2a$10$/Sn5k1q.Ul1WR/.VaB4sWueUx3w9BUGzcNQGbwaGBcJKvxp.bXG.a	t	t	f	\N	user	\N
+111	compras@palnortesas.com	CARMEN YERLANI	CARDENAS ORJUELA	1090397452	$2a$10$hwacsLHNiNxgeXCARiRs3O7djbh/H34i6XH1D9Y14um24a0k0uOVO	t	t	f	\N	user	\N
+112	er9240623@gmail.com	EFRAIN 	RODRIGUEZ GOMEZ	88026588	$2a$10$JHBnXpFG7aLu.rpyrS5Bee4.jF286BO5thRc4BY65RUklhbt7.iVu	t	t	f	\N	user	\N
+113	wilmerdelacruz1831@gmail.com	WILMER ALBEIRO	DE LA CRUZ DELGADO	1005046396	$2a$10$NUZbTzO28ojMTT9YtsR4TOBd43kJLF3evedJQzB1H3juneoxdLPZq	t	t	f	\N	user	\N
+114	joseandresbalaguerabayona@gmail.com	JOSE ANDRES	BALAGUERA BAYONA	88025313	$2a$10$qcQE3dVBrP7wpJOxMkU6Wu./KuwOYKefP/iYPN.hmet00wYAO1pqK	t	t	f	\N	user	\N
+115	karenyuliana1303@hotmail.com	ZENAIDA	RODRIGUEZ ALBARRACIN	1092340816	$2a$10$dFC.hm8flGoAKZ2qTU8jZOTu1S/wtnPZrZT8o06mZaZcBWCayTpti	t	t	f	\N	user	\N
+116	gelvezalbeiro2@gmail.com	ALBEIRO	GELVEZ SERRANO	1090394724	$2a$10$11swlbmPfYOOcMnOjT91qexutOJkE1Vbgb1On3SxA2zFO2Y4ZwhN2	t	t	f	\N	user	\N
+117	coordinadorproduccion@palnortesas.com	JAIRO DE JESUS	URIBE BARRERA	91428990	$2a$10$RmkdbEQKGJgGjGVa/RsOO.Jvke.2S3O4Y.jOjbL.ONcryc9wonlhW	t	t	f	\N	user	\N
+118	jefetecnico@palnortesas.com	DIEGO FRANCISCO	CARDENAS SORACA	1092334953	$2a$10$hzzHPqMkIJhrMREimOk7VObPb9lA/j9koqWk66BnWEyAqhCbWL9BS	t	t	f	\N	user	\N
+119	mmbar88@hotmail.com	MAGDY DEL CARMEN	GELVEZ BARAJAS	1090396554	$2a$10$9Ody43PpaYB1QsYRrUjFCuVE9Sfu1wVYVGUaehTIeZ5apdEuJfl4C	t	t	f	\N	user	\N
+120	eliany.or@gmail.com	DEILY ELIANY	ORTEGA RAMIREZ	1093914341	$2a$10$CnVtiDcGtyWJlD1vmFVpi.m1bLw3Z9dT.UVKckexEaAlBhkHpg1ke	t	t	f	\N	user	\N
+121	jalverto52@gmail.com	JESUS ALBERTO	LOPEZ ALVAREZ	1093912241	$2a$10$6dV9hIy/bqOZ6akxm/hZAuk5AUcn.vkqjxu2LdCCq7Uc9RGIAE.E2	t	t	f	\N	user	\N
+122	luisuribetavera@gmail.com	LUIS MIGUEL	URIBE TAVERA	1104130254	$2a$10$U4LPGUjwMybbHO6ZWwqSaOhCNbNi7JW1vv7pnS1T2gmExVHUpYT4C	t	t	f	\N	user	\N
+123	josealfredosjej828@gmail.com	JOSE ALFREDO	RODRIGUEZ GALVIZ	1005046081	$2a$10$Cs.7XRLF/6SeaxzGOKZJQu.zPfrBdt/eVl3K9hjVi/RUHoEzu/1Oi	t	t	f	\N	user	\N
+124	coordinadorcontable@palnortesas.com	JOSE EUSEBIO	RODRIGUEZ MORA	13489105	$2a$10$P9IDtEXDoL0lMbm1f2JMCuWhJgKPG2cHFLXaYswOxjzQ0PYrfeQxq	t	t	f	\N	user	\N
+125	contabilidad@palnortesas.com	CHRISTIAN JAVIER	NOGUERA VELASCO	1090495262	$2a$10$7sm3w1oWOC7JJrVwYOehAO9tlpny.6uhKpacFLnPflE4t0mDq1J6e	t	t	f	\N	user	\N
+126	contabilidad2@palnortesas.com	MARIANA	HURTADO SALCEDO	1092344120	$2a$10$aLgBZBW9gb3OW20HJ8SmOe8HwH45/mW6gBK4LmBVJyalyADkeNjDy	t	t	f	\N	user	\N
+127	logistica@palnortesas.com	KAREN ADELINA	NIÑO ORJUELA	1090372148	$2a$10$YrUA0BuJ/mRwW5kS6XkhYO017l8pjfoEsxaTqrzAYuLUNp5qUAgue	t	t	f	\N	user	\N
+128	ropero6@misena.edu.co	FRANKLIN	ROPERO SUAREZ	88027106	$2a$10$1zVCBPJZ4iuZf5BJE8u7EOJyLAcvoLQ07yi4Wlw8H8VK456stsh3u	t	t	f	\N	user	\N
+129	jorgeovallos06@gmail.com	JORGE ELIECER	OVALLOS SALAZAR	1093924501	$2a$10$PGQkfyHWKSY/sZbjy5SFSO715CLJpLdTFmxGhidahSNG4wpCs7uxu	t	t	f	\N	user	\N
+130	yandrirodriguezvejar1997@gmail.com	YANDRY PATRICIA	RODRIGUEZ VEJAR	1005047773	$2a$10$G94N.OEw9EmzYtIpaXX0gul4iueL7.j824QqUIAx0veP9pnMvZpIS	t	t	f	\N	user	\N
+131	alejoandrade01@hotmail.com	 LUIS ALEJANDRO	ANDRADE	1093925654	$2a$10$Yu60tbal9qUNoOjtgsvgHuU9xzInfVv/6IdiYSH1IXgPop3XMBh2C	t	t	f	\N	user	\N
+132	mariele_gallardo@hotmail.com	MARIA ELENA	GALLARDO SÁNCHEZ	10937832864	$2a$10$wyHlsPjbCmrLW2FhEMcwdODF5i8QaBNirNQA2ckY9SQoUa.WAQz4m	t	t	f	\N	user	\N
+133	jefetecnico@palnortesas.com	YEISI CAROLINA	RUIZ GELVEZ	1005043664	$2a$10$rFf.cyP6WjEhZQfPw2ZInuL8xpK4FBcT3K.XcmtfeHEN6odkznBVS	t	t	f	\N	user	\N
+134	castrillonortizgerardo@gmail.com	GERARDO	CASTRILLON ORTIZ	1094166541	$2a$10$suSzYyZgJKZnPZsGVGQFieah6n2P2TNKnhcminEMZRbSAfSfn2y4O	t	t	f	\N	user	\N
+135	organicos@palnortesas.com	DIANA CAROLINA	QUINTERO PEINADO	1090475282	$2a$10$.2S6QqcBNa5vcGj04p1L2OGXCyyftmiUi9CrA2w.X05KtXmxq/H.a	t	t	f	\N	user	\N
+136	cebaron_2672@yahoo.es	CARLOS EDUARDO	BARON BASTO	1094247026	$2a$10$LLRcBOLMmhFjrHxO4jwFKeZQPQTKowyotmk.qoJL7TYGArSMjWPH6	t	t	f	\N	user	\N
+137	recursosnaturales@palnortesas.com	CARLOS ERNESTO	MANCHEGO CHAVEZ	919830	$2a$10$6rV4MLVCyuO8OAz3.lksDu.cJbqeUEuXjwqVDLtYwN90V9pWLxdpy	t	t	f	\N	user	\N
+138	43493.ipk@gmail.com	PAOLA ANDREA	JAIMES RINCON	1093918794	$2a$10$UG53DTBDb7lo8pc27qKfzO8vPHjmabTLQJXPYapLvo7IlcBV7YdwK	t	t	f	\N	user	\N
+139	oscar1093917562@gmail.com	OSCAR ARLEY	GARCÍA GARCÍA	1093917562	$2a$10$qSOMpTAuOOT5xk3.ZZUBfeyRx3KH9yjP9uwyzp6UzdfMZD02JnB3S	t	t	f	\N	user	\N
+140	ednaguirre-89@hotmail.com	EDNA DAYANITH	AGUIRRE LOPEZ	1116040971	$2a$10$0tnE1CKBrnqDHmfLlygmouCW1/cGwRt6w2MCauxg8c8KiMo3PZHqi	t	t	f	\N	user	\N
+141	abasocara@gmail.com	ALDAIR	BASOCARA ABOSKALLINA	1093917292	$2a$10$VJ7GlQlnV6HOMKF2db3yuOpxYFSHnDi0xK42mxtIS6B4X6GVu5Fj2	t	t	f	\N	user	\N
+142	sneiderrojas27@hotmail.com	LUILLIN SNEIDER	ROJAS RODRIGUEZ	1093917154	$2a$10$qRRbeibd1ebBQrkirxG2/eds0KmeEf0AV7VFzU/bav.59yvHcS.JK	t	t	f	\N	user	\N
+143	victortapias32@gmail.com	VICTOR ALFONSO 	TAPIAS SALCEDO	1093909741	$2a$10$PikxJUH.KCBrICaUlSy4u.fsM7urnWt8EJcHfJyZuyoOTilt.KWO.	t	t	f	\N	user	\N
+144	lizkega09@gmail.com	LIZBETH TATIANA	CARVAJAL ORJUELA	1005047683	$2a$10$SiyoeGVNmvkGK7DlK7hwXeQYW40q.m9LJumb5R/HwNTQ6Z/B41yZO	t	t	f	\N	user	\N
+145	acualecram01@gmail.com	JOHANNA MARCELA	MEJIA FERNANDEZ	37397636	$2a$10$sodfLXC0iiIiWbgAIJJo3eOFVoxBNmSxRcttcfezbvD0J/o8rynai	t	t	f	\N	user	\N
+146	frayangaritha@hotmail.com	FRAY EDUARDO	ANGARITA	1007329492	$2a$10$RXanjf20U5YImpx1mJXyUuvSwimZeQbrPSaA0iKQTWEyRIYlaqG8u	t	t	f	\N	user	\N
+147	morenoberbesi_2012@hotmail.com	GONZALO	MORENO BERBESI	88245158	$2a$10$vupzdnMAEwAR76Wflu.7WO43hZZbTv1FiAVANBrYvolWf8/VAORzS	t	t	f	\N	user	\N
+148	robinsontorresmen@gmail.com	ROBINSON	TORRES MENDOZA	1090365119	$2a$10$OvIR9I7oyK4x3K0mDKguTu6AX7fJbtYeV9Cpb2hrSYbj0PZzY1YGq	t	t	f	\N	user	\N
+149	fugito1@gmail.com	TOMAS AQUINO	PEREZ VILLAMIZAR	1093907655	$2a$10$PMfnjEn9DRis5uCDaFop4eV8Jlwqv1Z3GD5y9fqBSex/6NPltp.wq	t	t	f	\N	user	\N
+150	elmanort@hotmail.com	ELMER ANDREY	ORTEGA CUADROS	1093916590	$2a$10$R/By.I4oLtm/n7IpkEkuYuzWw6TabDtSIvhhmp34yRxclsy8I3/4a	t	t	f	\N	user	\N
+151	angelcaballero2016@hotmail.com	ANGEL MARIA	CABALLERO LOZADA	1094163269	$2a$10$Ts0xxfpCPbCOJBfc25nN/uU8/LoAziNXuVdW5fGTNnqfzANzuh7xm	t	t	f	\N	user	\N
+152	PRADOISAIAS.83@GMAIL.COM	ISAIAS	PRADO MARTINEZ	5398416	$2a$10$bjFyMa84Eg3ZqkbBNji0aO0/vnTZ1iNBRwozdqmT.N4fNPGQ3yeN.	t	t	f	\N	user	\N
+153	oscakarfl.0417@gmail.com	OSCAR FABIAN 	BECERRA LOPEZ 	1090395398	$2a$10$ENNAlYp7UMzcEE5B4hNJZeB2EBbiyciSMqwrzLGitMOIr5zGiwMy2	t	t	f	\N	user	\N
+154	pabondiego555@gmail.com	DIEGO ALONSO	PABON CONTRERAS	1005043412	$2a$10$HSb7Nv.wYUkVDfSjbBMSCuPKOHsCnqfxr9NZatReOvdDS74Hfte2a	t	t	f	\N	user	\N
+155	yatrivino9@misena.edu.co	YUNISBEL ANTONIA 	TRIVIÑO	37294939 	$2a$10$PBJPW94q2FH51okUApHzQeIwAcv2rGJssVLm1fNavraMEVZxUF/f2	t	t	f	\N	user	\N
+156	lidercontable@palnortesas.com	YURLEY TATIANA	BAYONA SUAREZ	1090438056	$2a$10$l5idjESO4XxLNjZ8oSM7k.z05IPOxc92Ieo0c/HGp4CEaBfBiYBTu	t	t	f	\N	user	\N
+157	ivan.andres5751996@gmail.com	IVAN ANDRES	CASTILLO ALARCON	1093919166	$2a$10$EWIetTKUFHiohuJ18PklSukXJbX7iQ6Lcy86kLoskqKhQAkb.Qrum	t	t	f	\N	user	\N
+158	jaiderjaimescardenas9@gmail.com	JAIDER ANTONIO	JAIMES CARDENAS	1092673013	$2a$10$wuxas16HJQ9MsprCtJhMiOfC9asZgH1XP5NiH8fLLB4eyjBZYgMka	t	t	f	\N	user	\N
+159	ramirezrodriguezarturo1990@gmail.com	ARTURO	RAMIREZ RODRIGUEZ	1091805565	$2a$10$MW14NTVpPwxAEE8M9AfiquiamTkG/PIWbCcSUMRNEmWPZr4Rq2Kji	t	t	f	\N	user	\N
+160	pedropablo122019@gmail.com	PEDRO PABLO	CASTRO BARBOSA	1093913924	$2a$10$ce7mEBShGDweMS5W6huBwOzADKhNTXRzcOrbbqcTUAnRfvkU5l4am	t	t	f	\N	user	\N
+161	bladimircarrilloortega@gmail.com	BLADIMIR	CARRILLO ORTEGA	1090435744	$2a$10$HHs/SWWOO2NKfOSkEDJl1.B/Bbi1AL8wOV6TM5tRGaLRyDI/V0YUy	t	t	f	\N	user	\N
+162	JHONALEX2466@HOTMAIL.COM	JHON ALEXANDER	LAZARO CASTILLA	1093918175	$2a$10$9xHBypHu9uj9oJF68avO9.ktvUo3uwzG8S16cBpMTT.QEJqTiwk1i	t	t	f	\N	user	\N
+163	wilmerdaza.91@gmail.com	WILMER URIEL	DAZA GUERRERO	1093912392	$2a$10$NKk38K73Ls9JNyaRbXn5ueXcPKOUcvbD336JAvWomCfd0rGt9QFuq	t	t	f	\N	user	\N
+164	omarivanmoncadaibarra@gmail.com	OMAR IVAN	MONCADA IBARRA	1093917803	$2a$10$d11w4DHRmhxJmK8SWGWaReB3gdRXhljGR/w5SU1Qm5wBFTmPe25T.	t	t	f	\N	user	\N
+165	arroyo23cristian@gmail.com	ARROYO DURAN 	CRISTIAN 	1090494283	$2a$10$9jONWVDH5aJ/udGQtw6qhuADWUdc9gMVgPWiwgGSI7Z20fngrTeRG	t	t	f	\N	user	\N
+166	coordinadorcontable@palnortesas.com	EDINSON ANDRES 	LOPEZ ROZO 	1093755809	$2a$10$zqEux5ipe4NmYmOOvbFhyO695AnsWd3vKqayWIXtrD1KOm4Aua7ma	t	t	f	\N	user	\N
+167	facturacion@palnortesas.com	JOHAN CAMILO 	QUINTANA 	1090486582	$2a$10$mW17Q1iwlyiDmyUtnTXzDOxVH3wPCl.9NAHiKDFwvdw.0GaLBvDOi	t	t	f	\N	user	\N
+168	controlinterno@palnortesas.com	YESSICA LISETH	NIÑO CAMACHO 	1092356336	$2a$10$7VlBID3PnhlYQn/1oMcvwOTT8fwATnC9unls67V8gG1YOUtSfjjkO	t	t	f	\N	user	\N
+169	angelaramirezlascarro@gmail.com	ANGELA DEL CARMEN 	LASCARRO RAMIREZ	1085180599	$2a$10$GSAniuqBZsWbkOWiBvaw8OOvG0JSFgWdQ8XfR1AiVWNidky2t9pve	t	t	f	\N	user	\N
+170	lidermantenimiento@palnortesas.com	MATEO FELIPE	BUSTOS CASTILLO 	13270451	$2a$10$rpJSpQYqVLeqgk.PUIsiZuFUXrovLuozdJiyRInhG7DGiku71JNsy	t	t	f	\N	user	\N
+171	Anyisalinas257@gmail.com	ANYI KATERINE	SALINAS LOMBO 	1093919507	$2a$10$dX1qLg1n5mjfz37ItWLHVuTLdGWFJcubX2i4c1R/tDZ3.Fk3/hj..	t	t	f	\N	user	\N
+172	daniosdu.20@gmail.com	EMILY DANIELA 	OSORIO DUARTE 	1092360274	$2a$10$uwYdLqBf5ZTa1JsAzl8OYe3IpqtrW8lQ3sPxdggBa4rw4KWv/.FHy	t	t	f	\N	user	\N
+173	nelsonpabonfuentes2020@gmail.com	NELSON ENRIQUE	PABON FUENTES	1004878105	$2a$10$nFZjl8zSB5bukY0cknvB6erk5zb9BkNcYPOg8a2eb6tmBxdLVj6jC	t	t	f	\N	user	\N
+174	hlombo@hotmail.com	JORGE ELIECER	SALINAS LOMBO	1117519240	$2a$10$mxwVRAeI8c9o7M.TOHjWFeW25C44v82ioJdHwKMk2mex8NdorJE4e	t	t	f	\N	user	\N
+175	frankiemiliogomezhernandez63@gmail.com	FRANKLIN EMILIO	GOMEZ HERNANDEZ	1007329289	$2a$10$cyz30HKTTSi0KOVvAcx.6eCcqtr3rbMlLqy0PdgSOUFmYFlEJWV3G	t	t	f	\N	user	\N
+176	belkis_1998@hotmail.com	BELKIS BRILLID	ARIAS CASTELLANOS	1094282895	$2a$10$4esCaiIuck7q7aLTaNiSN.CZFb5ls82Wz5BH1nGEzhECUl3xB2Gii	t	t	f	\N	user	\N
+177	angel-gonzalez-2011@hotmail.com	ARGELIS DE JESUZ	GONZALEZ RODRIGUEZ	17601622	$2a$10$avTTlaMbVwEpBKIcyI5SSORDNOryEdjzJRj50Q0I.Sa/Fe7V/tYiW	t	t	f	\N	user	\N
+178	samir1997barra@gmail.com	ADRIAN SAMIR 	BARRAGAN GARCIA 	1093922511	$2a$10$zn.lgrcb.cb92cVUwzZdX./EZ9o1EeR9BkoKIde9yU/HJy9o9PYOK	t	t	f	\N	user	\N
+179	hr9249226@gmail.com	HEIDER ESTIBEN 	RODRIGUEZ ROJAS 	1234789464	$2a$10$yW.nE3G9OG4Hro/SWB0W3.XR1k6BJPwiLddK4b9GVHFQLMo5TgI1a	t	t	f	\N	user	\N
+180	jjimenes535@gmail.com	JOSE LUIS	JIMENEZ SANCHEZ	1093915246	$2a$10$eZVkSqRjEOhw3JYE8laqN.PuDOkBjtujy64XsTHcDHXLeNMU1rXOy	t	t	f	\N	user	\N
+181	ar5571149@gmail.com	ANDERSON DANIEL 	RODRIGUEZ CHAPARRO 	1091812476	$2a$10$vBgcJMDxC6jreC6g.dl8xu3CnsXZXRqLteddOMZ4jQzze97QF/4za	t	t	f	\N	user	\N
+182	diomedesss722@gmail.com	DIOMEDES	SOTO MEZA	1093919022	$2a$10$ET4Kq1aD/SLFB7126nUs/erR8KgLNMREnsjej.IeYefSQAdSwwW/.	t	t	f	\N	user	\N
+183	yc28633@gmail.com	CARLOS JAVIER 	ILLERA PEREZ	1090416859	$2a$10$IxUzXcZmElVwQVPCRE7oFu8ojdevyrfvkyjSd61SPOZsVMeJnV.Sy	t	t	f	\N	user	\N
+184	ytorre198430@gmail.com	YOFFRE YORDANY	TORRES AVENDAÑO 	1094354450	$2a$10$F/GH6DXuc9ZxedW7yvFCrOGj9fWYgV/TbCnp4hYvmwj/nK0yqr/JC	t	t	f	\N	user	\N
+185	nlizcanooli@uniminuto.edu.co	NIDIA	LIZCANO OLIVEROS	60396789	$2a$10$LsV6a7Z/LglI8ts8jRJoL.glcaduq5ODlaC4uyuKzpUsh4H9Dhami	t	t	f	\N	user	\N
+186	ttraviss_182@hotmail.com	JHON JAIRO	DUARTE CONTRERAS 	148957814	$2a$10$yd5I3myBbTWIBFyJAsoS/.vy0/OLFK.HetqXbEvkJDdbJnCEiSLLe	t	t	f	\N	user	\N
+187	jaiber89c@hotmail.com	JAIBER JOHEL 	COMBARIZA DIAZ	1094532502	$2a$10$6WlJRn9PaT2oSpw79hXvtOmq3U.c7tFMmN4dI6Mj9uIlORttz5fPC	t	t	f	\N	user	\N
+188	leonardo.paez@hotmail.com	LEONARDO	PAEZ RINCON	1093920708	$2a$10$w6/VweQGCQxzFcHahi9MBuOCSU87LmyNxlJ3wB6Mhot38LDIAdheS	t	t	f	\N	user	\N
+189	celisluis295@gmail.com	LUIS ALEJANDRINO	CELIS BURGOS	1093920528	$2a$10$ia02yz62CRLyoY98HyDuhe/xZzzvkCDwVrdy1FceH3Kv5V.YD5OhG	t	t	f	\N	user	\N
+190	dulestja@gmail.com	LEIDY JAKELINE	JAIMES CONTRERAS	1093781658	$2a$10$wnRlMi70WJDtNIJBz8L2QOALvIwKZuhzgIqyij72UbfPmADmdzqtS	t	t	f	\N	user	\N
+191	ingvladimirrodriguezmora@gmail.com	VLADIMIR	RODRIGUEZ MORA	1094350542	$2a$10$GAspSV..P7Unve2nX4WbS.7xeEMxliEKFjliYj3Sxk5rB2fUz46.a	t	t	f	\N	user	\N
+192	ildaalvaradoparada@gmail.com	HILDA ROSA	ALVARADO PARADA	37175149	$2a$10$yPxwSirklNC5BkLqkVetH.1F.O7YCzp7uW8c6e0kJLvLMBAXfjpoe	t	t	f	\N	user	\N
+193	yennymontoya1991@gmail.com	YENNY PAOLA	MONTOYA	1090434751	$2a$10$lTS1dUzy5gh6roFFMFUzJeTjh.8qrLfAeug9YsB7BYERxsBU96mxy	t	t	f	\N	user	\N
+194	jeffersontorres643@gmail.com	JEFFERSON ALEXANDER	TORRES DIAZ	1090477905	$2a$10$4eGbXCD5wEgzwezTX8Z2xOkrPiuwuY7OfCzqSmi4fDU1QdGDKEruS	t	t	f	\N	user	\N
+195	DANIAB.220@HOTMAIL.COM	DANIELA 	ANDERSON BRICEÑO	1143979278	$2a$10$fin0Z41ENkdR6YXF8I4vY.imJJt5BZ2ahTqiDoqrmudGtOgkTKPZq	t	t	f	\N	user	\N
+196	SIERRAVIDESELIZA@GMAIL.COM	ELIZABETH 	SIERRA VIDES	1002101973	$2a$10$tuNd6yGWJxLcxQfNF.mKjuEdKiN94nMFnGDg/aLmphYo0lomrUl/y	t	t	f	\N	user	\N
+197	HERNEYANDRESQB@UFPS.EDU.CO	HERNEY ANDRES	QUINTERO BONILLA	1193387910	$2a$10$hhgrZ4KegOaxzBRZGB9WXeIqnHkBpKsQMIvy8o9e9knGB1NwnxIwu	t	t	f	\N	user	\N
+198	pachecoignacio555@gmail.com	IGNACIO	PACHECO OVIEDO	1093915088	$2a$10$W7mr/BQzSyVnyzQxaBqguePneix76VOvkv4NDcfiFKqXmyqxOYnxm	t	t	f	\N	user	\N
+199	luiscal@hotmail.com	LUIS ELIECER	CALDERON ORTEGA 	1093915437	$2a$10$BijhiTPjojapWp3P.G/jke3D4KwvAJmckwCOz9zI83HFA7V1gyLZO	t	t	f	\N	user	\N
+200	HAROLD_97@hotmail.es	JHON HAROLD	BARRIENTOS FUENTES	1090510766	$2a$10$wQcSDea9pwoMwe0DzJzpY.65FFP.Cv7lKJYsynEATxLNFyPbcCRCq	t	t	f	\N	user	\N
+201	rolon2030@gmail.com	FRANK KELLY	ROLON RIVERA	1093917635	$2a$10$mfejyTGHZWavR615nw8rmO7dFhmEDW93wDZ2cMXcwjrQo/q22ziMi	t	t	f	\N	user	\N
+202	djluisgarcia95@gmail.com	LUIS EDUARDO	GARCIA LOPEZ	1093917297	$2a$10$yCX6.9TqCgz.TS9Y3rj7SOnWYl2E1qhQsOOqGkldomAK.QyKUgAU.	t	t	f	\N	user	\N
+203	deicyfonseca05@gmail.com	DEICY	FONSECA PEREZ	1093920597	$2a$10$OgR62vqusDWF.OhKBmLXL.zOQW4kaTFgYQ0vGiiZvAeridwbMpBn6	t	t	f	\N	user	\N
+204	jefersonsandoval31@gmail.com	YEFERSON ANDRES	SANDOVAL CRUZ	1093924504	$2a$10$W2Be5Y1jdtIRZ6.M1GsGmeJtYau6qIU725EcHtxgrmocw8y0gPife	t	t	f	\N	user	\N
+205	sierravidesivan@gmail.com	IVAN ANDRES	SIERRA VIDES	1002101974	$2a$10$mDOKPp4jaZHyNfOpq.H8LuaWdPQKZaayYPXgFD43nZQRJCtowX4B2	t	t	f	\N	user	\N
+206	yamir9819@gmail.com	YAMIR	MARTINEZ CARRASCAL	1093922676	$2a$10$6uE9rnev6kOOD.M2d5cogecjQwHfcmf/IddHQcbiMd9/2x/DqWIDG	t	t	f	\N	user	\N
+207	Jjsilvat05@gmail.com	JORGE JESUS	SILVA TORRES	1032460505	$2a$10$B7hf6SrufOKJb6IyYJ79Vum6M2IMFpOyVlc1EalX3pQEHMzXlLyue	t	t	f	\N	user	\N
+208	ramirovillamisar@gmail.com	JOSE RAMIRO	VILLAMIZAR BELTRAN	5759373	$2a$10$DJp5KMxkuhlemRHBIId55ekcFfvs5uXMCa6t4UVKZZvVmOL2YyQVu	t	t	f	\N	user	\N
+209	reyever551@gmail.com	EVER ANTONIO	PINZON REY	1093769634	$2a$10$tMTlJKJISH9ODCO/4PxF6O2bB1qIo1hGb8zcpqmzBKq4qy/9PnhoC	t	t	f	\N	user	\N
+210	euliderbalmaceda@gmail.com	EULIDER	BALMACEDA SUAREZ	1090438716	$2a$10$YuiVS1AC.G6jkaTugxcSO.lztRHKvGLthrsEaTFMm1mFuWig5lL0W	t	t	f	\N	user	\N
+211	cristhoferprado7@gmail.com	CRISTOMBER	PRADO SUAREZ 	1093917465	$2a$10$GA3M6fEDe9.bW64pGo8CHe.5c5VAuz.4D.98NdmmoP75fRrxgpsiq	t	t	f	\N	user	\N
+212	faibersalamanca@gmail.com	FAIBER ISAI	SALAMANCA MARTINEZ	1093917855	$2a$10$ItJvEH8KalFxmngJQg9QtuuRUEwHynHq/qvnqwG3P8JOin9gq7WuG	t	t	f	\N	user	\N
+213	armandoespinel1196@gmail.com	ARMANDO JOSE	ESPINEL FIGUEROA	1093921394	$2a$10$39MwVVeDPwb4PikVuf9lKu.WyOpw/Z7pcXiwqIJukH5LhyQ9yM95C	t	t	f	\N	user	\N
+214	jorgeyasergomel@gmail.com	JORGE IVAN	PALOMINO ZAMBRANO	1093928518	$2a$10$opkMNQe0JUgP8YthQDUw5.GrAvncU67kGU.zwDJh1gkhUPK5OmsxO	t	t	f	\N	user	\N
+215	andersondr.25@gmail.com	ANDERSON	DIAZ RODRIGUEZ	1093916596	$2a$10$w3sRas8U50BINsrr/KZ/DuaHJ9X4OyPlkWX.dDnLD3Bztx4.Smi9u	t	t	f	\N	user	\N
+216	ermilemo1989@gmail.com	ERIKA MILENA 	LEAL MOGOLLON	1012354644	$2a$10$DR/lmkyWmwFi9FDfTI1rkevuopOr0ycSgLGtq3F4pmf9FUWW22752	t	t	f	\N	user	\N
+217	guillelozada23@hotmail.com	GUILLERMO	LOZADA CASTILLO 	1094160429	$2a$10$fwAnvUQLKVvVEvQo1VvC1eDxgswaYEQwAme2GAVVf3hbaxISnUqZO	t	t	f	\N	user	\N
+218	ariasduvan1109@gmail.com	DUVAN ANDRES	ARIAS SAJAUD 	1193145687	$2a$10$TniYrHhvwFGoBgZa612Equfam8WoHfiq6OPuH3T6EB8VT/GHIlXn.	t	t	f	\N	user	\N
+219	dvides64@gmail.com	DARWIN ERASMO	VIDES MELANO	1093784141	$2a$10$3QMRQv8dDNtrGETmTLQDXuVvjdk9uhe5r.uIMWK.n3BISrTFmqhU2	t	t	f	\N	user	\N
+220	gestionambiental@palnortesas.com	NEYLA BRILLITH	DURAN CONTRERAS	1093917463	$2a$10$gtvxvZn.Qw5nHES2F07jEeZuIeQooMvOkUL8f9eUYoY9QY/IkEu/u	t	t	f	\N	user	\N
+221	diegoandresc123@gmail.com	DIEGO ANDRES	CATAÑO LOAIZA 	1093922772	$2a$10$h95PZU4zHIvGzcOMO09e6eVn7rUANvs15szn.NfUD6cV0gpkaMNyi	t	t	f	\N	user	\N
+222	edinsonalexanderbd@ufps.edu.co	EDINSON ALEXANDER 	BOTELLO DELGADO	1010072962	$2a$10$9yYBCWPkCLYLyD2UdDNDMeR.GuQSFyCP5GP6A.Zyy/GMdfJSUv7b2	t	t	f	\N	user	\N
+223	franaleja17@gmail.com	GENESIS ALEJANDRA 	HERNANDEZ JAIMES 	1127341384	$2a$10$0i.dIulVeO35uVIvLb53QOWdL1moM2Q3w5KHVhSvmTM9kAHlvaQKi	t	t	f	\N	user	\N
+224	leyesmeraljaimes@hotmail.com	LEIDY ESMERALDA	JAIMES RAMIREZ	1094280157	$2a$10$eRrHXbmWknItxAzgeQqeMusn5.2IwrZqZW0//ZW4pBmM/HKgVgolq	t	t	f	\N	user	\N
+225	yeimerand@gmail.com	YEIMER ANDRIAN	PAEZ PABON 	1093918485	$2a$10$x0zZl9PkyLZzFBAyhAfyfemK7HVeuXK33Oz2rVHbC8NLq.XvO.KjW	t	t	f	\N	user	\N
+226	sandromar75@outlook.com	SANDRO ALDEMAR	MARQUEZ MEDINA	88244447	$2a$10$by0WGBRIZTUv/d4pY4mXzulac3ece.MFeDDx9lqsoC9yS5EEHhnZi	t	t	f	\N	user	\N
+227	oswalcace@gmail.com	OSWALDO	CACERES DUARTE	1093917450	$2a$10$5GSnPP3tQbwiY5ioIGkI6ex6Corm4j1UrU/4q1C6n4HS4dTdsDLam	t	t	f	\N	user	\N
+228	brendaccastro28@gmail.com	BRENDA BIBIANA	CASTRO MUÑOZ	1090492726	$2a$10$oIirU90UqwWvFYtP6OjUzONLIyKEdkDkusP15YxWq2I0R8MmIpWq6	t	t	f	\N	user	\N
+229	duvanmora63@gmail.com	DUVAN STEBAN	SANCHEZ MORA	1093790228	$2a$10$T1G77Lha.F2u9tHinsQGhu7K0b3RtsoVJNqKI/CGdGtDkF2Hoy3ni	t	t	f	\N	user	\N
+230	stivendavidfuentesrodriguez7@gmail.com	ESTIVEN DAVID	FUENTES RODRIGUEZ 	1004810507	$2a$10$uSxgNF7iFp//big6r32hNupP1c8ut7Kwjk/9NFEdqbxAjnNFjdWZ.	t	t	f	\N	user	\N
+231	castrillonadrian1@gmail.com	ADRIAN	CASTRILLON ORTIZ	1232399073	$2a$10$VJAgUBi8AhHAOQO4lKHvSui6NI7OEGzn5yvV476LiwLU8j61hVEKS	t	t	f	\N	user	\N
+232	jonathanjaviervargas96@gmail.com	JONATHAN JAVIER	VARGAS VARGAS	1010060356	$2a$10$plTEOXirgX1I8CRb8V5p9usuHB9FJHxnIxNILIb7OelxCQQOi4Xai	t	t	f	\N	user	\N
+233	andreatatiana093@gmail.com	ANDREA TATIANA	GARCIA IGLESIAS	1005248101	$2a$10$tCx.kNK/hglzCybAIkQq8.6w2IQA7aBqCCLbvcTh67RFqEKee3R76	t	t	f	\N	user	\N
+234	edwaralarcon69@gmail.com	EDUAR ALFREDO	ALARCON GUTIERREZ	1094163631	$2a$10$jGgIkZxMnoSh616NCtMbIe/W9Z4Uz4k1yvv/fCKkZz2kpsZB0rmie	t	t	f	\N	user	\N
+235	pinzonmiguel.1520@gmail.com	MIGUEL ARCANGEL	PINZON ANAYA	88028102	$2a$10$ijVCTEi2IbehEg44Ncu6WOm1p1mq3P5X9.fsO81IMsn0A1930H1mS	t	t	f	\N	user	\N
+236	joedesle08@gmail.com	JOSE EDUARDO	ESTEBAN LEAL 	1005044493	$2a$10$wSeaMVGu7vyXANA21C1SlO8MX./lsF5onRwDy5o4EcyP02o0JBZh2	t	t	f	\N	user	\N
+237	gerson2913@gmail.com	GERSON SNEIDER	CESPEDES OVALLOS 	1090529056	$2a$10$knUJ.t/goy3CeKjhhgOj1O.vfiBrc7dHBtiTpwPNQtpJctKqcaI12	t	t	f	\N	user	\N
+238	brayanflorez800@gmail.com	BRAYAN STWEN	FLORES OVALLOS 	1094166982	$2a$10$LEnM20cKn20XQgf/FS64uOyX9MVaOTCszjkXufi1KXpwKYi3ROzOy	t	t	f	\N	user	\N
+239	borreroquinterod@gmail.com	DEISON ENRIQUE	BORRERO QUINTERO 	1005044103	$2a$10$IjO2TwBZVWroURizPEMe3Oajvrj4hNeuW2CdgKVO2qnHpAT63DawS	t	t	f	\N	user	\N
+240	barneryecidnieto2001@gmail.com	BARNER YECID	NIETO MARQUEZ	1004802218	$2a$10$5SwkNAXtTX2NjWkaoznd/eB/ShMRfEdcMjVsMpp0.AsnJuAbUcnEi	t	t	f	\N	user	\N
+241	arnoldpnts.p2000@gmail.com	ARNOLD MAURICIO	PUENTES RODRIGUEZ	1004841588	$2a$10$XP5k8uMzZ.1Jl4lk5/etz.hmwOvEQ.3fUmtrh60RwTitN0V3Q7kMu	t	t	f	\N	user	\N
+242	samueltorreosad17@gmail.com	SAMUEL ALFONSO	TORRES TORRES 	1007880117	$2a$10$lwxJ6jD8K3p7tbk7jYb5W.6nm7QylpDGyKciBx5/9Fr7YSe6IiAje	t	t	f	\N	user	\N
+243	jamesmai_02@hotmail.com	HEIDY CARINA	MONOGA BARRIENTOS	1090373367	$2a$10$xJVIjRtFAJmWghv9pY6O..Uph.7Ggn6xWDr/sIgX84woEpIU5ajvO	t	t	f	\N	user	\N
+244	ernesdjes@hotmail.com	ERNESTO DE JESUS	ACEVEDO PICON 	1093920532	$2a$10$vywku52V2EFvMl3HvYErueBwR3Ckc2JGXvW/Kq/dajoiwwtzNUorO	t	t	f	\N	user	\N
+245	rubendarioortega2003@gmail.com	RUBEN DARIO	ORTEGA GELVEZ	1004811054	$2a$10$BNvG.nNjPWf/gGSCGGCy2uSr396et1Sn0TumUzKbcuSMX.wYRQbVG	t	t	f	\N	user	\N
+246	ingridbohorquez95@hotmail.com	INGRID MARYERLY 	ROJAS BOHORQUEZ	1094274930	$2a$10$F1smPP/BBZEI7RM/erfLsemAFFQGmJVzS6i1mwfsGlQ2JUjjOUnAK	t	t	f	\N	user	\N
+247	maria.josecaraballo@hotmail.com	MARIA JOSEFINA	CABALLO DUQUE 	1051663035	$2a$10$Ah6elf9jKYE0d2RsaaP3yeM7GyBAzV8/YMBDfS.lonaoAfGZEgNna	t	t	f	\N	user	\N
+248	isidroaraque14@gmail.com	ISIDRO	ARAQUE MARQUEZ	1093739846	$2a$10$/rozaO4NOGfiEsvpAsaSwOJpUGTfVQX611kEL6nSLsxZ88MKwD11i	t	t	f	\N	user	\N
+249	rodriguezgomesjose2005@gmail.com	JOSE	RODRIGUEZ GOMEZ	1005043975	$2a$10$xbn497MrmJwaPJeDJrJYnuTzYIzmGqqeS/2VI1ik78MwG8B05v2A2	t	t	f	\N	user	\N
+250	wilderarturosanchez@gmail.com	WILDER ARTURO	SANCHEZ BARBOSA	1093920044	$2a$10$iK/4ajjurDylLwaf2V0tKexpO586JjmW7AIgmck/FVMzeHoSBQqMG	t	t	f	\N	user	\N
+251	lizethfernandaserranocasas@gmail.com	LIZETH FERNANDA	SERRANO CASAS	1005038290	$2a$10$LM.2RkCIEkkmCqkU7DbRb.5pxfoXPS0N4DrykXKJ6qsCOCrUBkd6a	t	t	f	\N	user	\N
+252	joseangelsarmiento3@gmail.com	ERIKA VIVIANA	LEMUS SANCHEZ	1004997859	$2a$10$nbwtewVCYbUS2vGHA2Yt/esJlcuNBDxTPlwu1UsGiiW7sShJB0Ki.	t	t	f	\N	user	\N
+253	rbndrgalvan@gmail.com	RUBEN DARIO	GALVAN NAVARRO	1005043492	$2a$10$./sEn7QHqmlQxdq/3wSu6.zUrCZVTaypl0pYF9V2E5pL0ZcPTSB2O	t	t	f	\N	user	\N
+254	gynnalo02@hotmail.com	GINA JULIEH	LOPEZ LARIOS	1094222276	$2a$10$EvYkgR49G7WthakPmTEIPODOdJTJaQysIwXFKF1ptPRY/KwR6E2eC	t	t	f	\N	user	\N
+255	joseangelsarmiento3@gmail.com	JOSE ANGEL	SARMIENTO RIVERA 	1093920208	$2a$10$fpP8dl8ZtYIVHI4B5s3czuKo7kAn1qCsGOJXgMMWdDuHaJGrg92ua	t	t	f	\N	user	\N
+256	helyjulian@gmail.com	HELY JULIAN	GRANADOS CRUZ	1093917310	$2a$10$IVcbhb.WsK3NHjoRH64ZZ.RnUoLg/junUXPvyLHsiwPdQ498/kNnu	t	t	f	\N	user	\N
+257	morasantiagoedinsonjavier@gmail.com	EDINSON JAVIER	MORA SANTIAGO	1093919082	$2a$10$qqCIKtpp7u0NbX9l/n6tGeipGTPoFtpIGV9VtE7m96ztZaxlzncV6	t	t	f	\N	user	\N
+258	frecarlyp@gmail.com	JOSE FRECARLY	PEÑA RUBIO	1093804891	$2a$10$o2TvkzJmB5ikw5OM5AE8V.slpsVKpmxSdVo/DNN.ohsruqva0uuw6	t	t	f	\N	user	\N
+259	edwinyordanobalagueramontejo@gmail.com	EDWIN YORDANO	BALAGUERA MONTEJO	1005045100	$2a$10$a8xivpVXYjwgBPx7PMc5fedT2YiERvZ49dwrSwi/TCa0aXDwfaGlm	t	t	f	\N	user	\N
+260	coordinadoradministrativo@palnortesas.com	VIVIANA ANDREA	DIAZ RODRIGUEZ	1090473929	$2a$10$oC/fVNDArXyPML1ptzxU3.iA3DxAYNYnW3f8bFxfA4eAJeh9fC8D.	t	t	f	\N	user	\N
+261	eduardoluisesterlin@gmail.com	EDUARDO LUIS 	ESTERLIN BRAVO	1127653994	$2a$10$h56jRwyreOrqKtAS0GtdbeJysNRBGcBwzzhUJXfQXZlFn0FPceGKC	t	t	f	\N	user	\N
+262	adlidesu@gmail.com	ADRIANA LUCIA	DELGADO SUAREZ	1004845473	$2a$10$8a3zuPJ4c7k7I/ymT3.0ru3Btx334fRqkQalqKKp7/cxYM4.v3rOW	t	t	f	\N	user	\N
+263	yoger2001@gmail.com	YOGER ANDRES	RIVAS CARRILLO	1127653316	$2a$10$bKRl0PZV0DZ./Q2eiulaTeTQ5dAU3hhyrbDZyeK23Sx5vCDHhBDZW	t	t	f	\N	user	\N
+264	luzdarita2009@hotmail.com	LUIS FERNEY	FIERRO SANCHEZ	1109002366	$2a$10$BKgeS.agEZ2LrTGN7ouireb8yiqP5Mr0.dqA1nrEENJfEs5DfNxL.	t	t	f	\N	user	\N
+265	jluispaz556@gmail.com	JORGE LUIS	PAZ GODOY	6259628	$2a$10$xILCzmWNHLv2Ci5DP25s6eZ7hgTG0/bAGHKfItYl2kWhFrVXkDkUm	t	t	f	\N	user	\N
+266	ferneyrolonperez@gmail.com	CRISTHIAN FERNEY	ROLON PEREZ	1005044543	$2a$10$bYzBhlBjm.zr7N6r0Aafiu/3APRXBCdkyu54Z5iZ24nDcDnlU6y5a	t	t	f	\N	user	\N
+267	kelvinguerrero748@gmail.com	KELVIN JHOANDRY	REYES GUERRERO	1094836155	$2a$10$XqaK91rV1fjK3Ppc8IHDkuvWp8N1qCSM1wwrJ.WkskPgxXXFrXBoG	t	t	f	\N	user	\N
+268	jr2056389@gmail.com	JOSE RICARDO	MONCADA GARCIA	1093925421	$2a$10$Jlz70aWCmVHbBo1fB8bFv.uwj.TgmF1D0.S6IgIWYYXYfT6ih/p8K	t	t	f	\N	user	\N
+269	grimaldorincongrimaldo@gmail.com	MELQUISIDED	GRIMALDO RINCON	1090503248	$2a$10$YHRcf1osejlP0Q.RHupNyOUV4.KjRwkNokjHScZqscJgzKGUfHXDK	t	t	f	\N	user	\N
+270	dm7084040@gmail.com	DIEGO ALEXANDER	MOLINA SOTO	1093921298	$2a$10$VvNCIr7JXZ4ZX2V29OYL7O7SV1RDiwyvjeOl16So.phJEuToJqaNm	t	t	f	\N	user	\N
+271	jhonrennyrojas19@gmail.com	RENNY	ROJAS PARADA	1127621198	$2a$10$kbLDcUQlAZzxuTvlnn4mT.9CceLp2FnXrn.rVEGIZEmk3qO57D4u6	t	t	f	\N	user	\N
+272	luzgelvez05@gmail.com	LUZ MARINA	GELVEZ OLARTE	1093916807	$2a$10$X/7zoNDBfndwvAVP6hHDxe2XSUsXlq3a/E986Ytxs0dhpbNQQNnda	t	t	f	\N	user	\N
+273	amistadrojaslopez1998@gmail.com	BRAYAN ALEJANDRO	ROJAS LOPEZ	1093923333	$2a$10$nYE1Z9ESGuq6M7cllJ0mE./3VM7zt36V4dClilDT4ALezxgxvpo2S	t	t	f	\N	user	\N
+274	ramirezfonsecaselestino@gmail.com	SELESTINO	RAMIREZ FONSECA	1004805506	$2a$10$hhCVfSYSFxYkdAHy1TxCEu7Q3Zi9xGU1wMOJYv1s3HDvmqyIu5uf.	t	t	f	\N	user	\N
+275	bienestarsocial@palnortesas.com	ANGELICA ISABEL	TAMAYO GELVES	1093921649	$2a$10$B7pjJR0gWCV/mupNuyCJWeyMp.teek2cqhrYSdxbP/WRcm7qmALqS	t	t	f	\N	user	\N
+276	leidersalas07@gmail.com	LEYDER	SALAS CONTRERAS	1064715430	$2a$10$cdy5IupEhff5LeSWEFehl.OSurXkiXk.9GKZdNmYdSqDwVXJs36/O	t	t	f	\N	user	\N
+277	nelidapuerto204@gmail.com	NELIDA ROSA	PUERTO ALVARADO	1090463683	$2a$10$sNA46ed6ELPwea0strLi0.pUcI7cuMvzmLJ4RmjzGiyoDKXCz5zAi	t	t	f	\N	user	\N
+278	gutierrezgalviscarlosandres0@gmail.com	CARLOS ANDRES	GUTIERREZ GALVIZ	1093925025	$2a$10$g6oazd9HMjJAHskujVPcreIX92/WdnKopf2.b6kwftq0fDvIFNfnO	t	t	f	\N	user	\N
+279	amparogamez1234@gmail.com	AMPARO YANIRETH	GAMEZ PINTO	1065831677	$2a$10$2gJVU8v2vrXY1h0aSq2RWuWIBrHCE.wEZXmuwLcaeqe8KGQO/QkRG	t	t	f	\N	user	\N
+280	lopezcarolin291@gmail.com	PEDRO RAMON	LAGUADO RANGEL	1005043964	$2a$10$31d3kghNGQ3Bb2GpKlqmT.olagHQNXxNE9dvFi8bkTrl7/ZFFTV6O	t	t	f	\N	user	\N
+281	mildreth3115@gmail.com	MILDRETH PAOLA 	DURAN PEREZ	1004943316	$2a$10$3G.pfJQ55bLzeh0suMpXQeFN9Mf9KszDglsav2Xp3KSgPVJIrj1KS	t	t	f	\N	user	\N
+282	gelvesorteganuvia@gmail.com	NUVIA AMPARO	GELVES ORTEGA	27674437	$2a$10$SNrK/7BT0npY04mgRZs3ke2QHEyjdHsW0iVjaoj74lZn6JQR6Iabe	t	t	f	\N	user	\N
+283	rosagilv19@gmail.com	EDILIA ROSA	GIL VEGA	37390956	$2a$10$rBtfwKVBnGU72dqoYIt2teSkgjzTfG9POPbj1RcVoVgrIe5Ghx2Ju	t	t	f	\N	user	\N
+284	olaveoscar02@gmail.com	OSCAR DARIO	OLAVE ROA	1095906557	$2a$10$F1VNQZ06ypBUkys1BBYGdeOJMPsz4H5hSdGX5IgcEl6TRKTMaFbC2	t	t	f	\N	user	\N
+285	dayanatorressierra19@gmail.com	DAYANA ALEJANDRA	TORRES SIERRA	1005025010	$2a$10$1WesVG.z9Nhg.golO1USdu4jLP58cIFOGb7QMWsAG8RosjE3O8/Ba	t	t	f	\N	user	\N
+286	jpnayaaf@hotmail.com	JHON GERSON	PEDRAZA INFANTE	88028278	$2a$10$QMLZgRnoW3I5UKwrpL1dPeeYn1olV8BXIxbfDUOiXhujzWipt7HBq	t	t	f	\N	user	\N
+287	elvinandresperez@gmail.com	ELVIN ANDRES	PEREZ RUIZ	1097302749	$2a$10$/wJsq/ZBiFcoLAa7zRqt1uq0DuXw/g4iG9XimJTuEMwhQdoYx0Yvi	t	t	f	\N	user	\N
+288	johanriveros598@gmail.com	JOHAN SEBASTIAN	SANCHEZ RIVEROS	1093925473	$2a$10$pF4ERFdSUKKkzOIUBPvrLOc2dwdtXYYYnOjodsB3aclgiGG8VzLTq	t	t	f	\N	user	\N
+289	programador@palnortesas.com	JOSE LEONARDO	LOPEZ LOPEZ	91351648	$2a$10$W.IJ2Yvm5OEO6.hEhigOeu7E4MYCupYRqmUP1keIXQQ1UTXuSbwj6	t	t	f	\N	user	\N
+290	luis-alexander0911@hotmail.com	LUIS ALEXANDER	TAMAYO BUITRAGO	1005025744	$2a$10$EeFBOt5OnR0kIyPdGJfuFeN/8s19Sib2Xer.5Wjs9fLRN6uChju72	t	t	f	\N	user	\N
+291	heandaza@hotmail.com	HECTOR ANDRES	DAZA OROZCO	1093914098	$2a$10$yBO.o.9DQ5wKaFnQfxEmE.6vB2iI4DqlWWki/7g0Swzunu8ctGbsW	t	t	f	\N	user	\N
+292	andreygallardo13@gmail.com	YHEISON ANDREY	GALLARDO SANCHEZ	1090511023	$2a$10$uTns/MXFYMlzn3YuskMuwuQ1z5wDta34stvS7pczsUjBR1stLvAoK	t	t	f	\N	user	\N
+293	anyicarvajal0613@gmail.com	ANYI YULIETH	CARVAJAL DIAZ	1093906162	$2a$10$lIdv2McjUp28JFoNA3oAJO8Ab6y9GyMFGkKSFSWEhPRATTWtQrH0K	t	t	f	\N	user	\N
+294	carojorgeluisturizo@gmail.com	JORGE LUIS	CARO TURIZO	1093928656	$2a$10$Osd/6C4dG8.BeoCNnfvV1.O.DcUbTSSKqkBkV.TasBIVxbdwDILMW	t	t	f	\N	user	\N
+295	sinferal321@gmail.com	SIMON ENRIQUE	FERNANDEZ ALBARRACIN	1148218709	$2a$10$nOw3x2yGTJFV6UP1Vvk.1eIczVd2ZrwqA7wOV4S6zY.7/CdZm2GNK	t	t	f	\N	user	\N
+296	pameladuarte_h@hotmail.com	PAMELA	DUARTE HERNANDEZ	1090466253	$2a$10$QDMYWBWb7OFyeXbiO6pPnexPFo3DCXwETpNvBdYmVx.Zh9w9PuAZa	t	t	f	\N	user	\N
+297	rodriguezaldana0920@gmail.com	MONICA	RODRIGUEZ ALDANA	1093919491	$2a$10$xbYMkGfFXE/sxZmUUvLYy.yvTtUN9Ax0COa/phm/N4cXgg4X.WCcq	t	t	f	\N	user	\N
+298	sergiojs122@gmail.com	SERGIO	JAUREGUI SANCHEZ	1093778468	$2a$10$IIN3vTi68D2osp5fRrhk4OWk08GSoW/TFNr296utSv9c3E6QjpOjC	t	t	f	\N	user	\N
+299	almacenplanta@palnortesas.com	JAIME	PABON DELGADO	1090456039	$2a$10$glEKlpJ.iio5wDWSqgQNZ.Bf9mRWAeDOC21pA.TmaHP4hrAtcaB6G	t	t	f	\N	user	\N
+300	rodriguezchaparroluis05@gmail.com	LUIS ADOLFO	RODRIGUEZ CHAPARRO	1091812397	$2a$10$/47cvo49reacARjiatVfgOWoispW2y4eTKSE/NrxnSFT/qUPq238K	t	t	f	\N	user	\N
+301	claudia8529@hotmail.com	CLAUDIA MILENA	TOLOZA PEÑARANDA	60449559	$2a$10$7Ebnge74tNxVc8KCozUrQu53tvKjydmyYjv3IgvwkmprODAUte.K.	t	t	f	\N	user	\N
+302	antelizedgar58@gmail.com	EDGAR HUMBERTO	ANTELIZ  ALBARRACIN	1007958330	$2a$10$jQ8bxBcerRb/57YP0ccCmuLmg4NEsNTK06HWXanTRZU.CfLdWra7O	t	t	f	\N	user	\N
+303	nandomcz4@gmail.com	HERNANDO YECID	MUÑOZ CONTRERAS	1090484342	$2a$10$2wvocsU80FOnqqgTve./Uuy2B4LvDE/0nMAoK5.mQjDHbYiEUcwm.	t	t	f	\N	user	\N
+304	frankamilo1799@gmail.com	FRANK CAMILO	ANGARITA VARGAS	1007329494	$2a$10$GVJvuYwt4rOEimfuPaZOy.0p62WSks9e3lVH1z/qaAXkmBCFexWz2	t	t	f	\N	user	\N
+305	ronaldoriosesquibel@gmail.com	RONALDO	RIOS ESQUIVEL	1192743865	$2a$10$x6xdYtWvO2GbaWB68o7Ta.997UT8e6ftvEsJ2j1YSWonAdT/ekEca	t	t	f	\N	user	\N
+306	yeffriguerreromiranda@gmail.com	YEFFRI GIOVANNY	GUERRERO MIRANDA	1005054430	$2a$10$cBHvRORTVIfiLY2tvWJFOuQPrExg1nshlVvTiIW.rmHMqhXCu2.YC	t	t	f	\N	user	\N
+307	xiomaragrateron1234@gmail.com	XIOMARA DORELIS	GRATERON ALBARRACIN	1093916542	$2a$10$bcgNQKoUgiLSV84zyyoPPez8gf1sXI4ae29nLMIoDqY1hEeDYNyYi	t	t	f	\N	user	\N
+308	jr5239417@gmail.com	JUAN CARLOS	RODRIGUEZ BALLESTEROS	1090459730	$2a$10$o5x4bKx2legPjeXSziNpjO81ufRnmxBAyRviKT/Hn4FT1ee87.pbu	t	t	f	\N	user	\N
+309	jhonfrriman90@gmail.com	JHON FREIMAN	LUNA GELVES	1093919672	$2a$10$HwRlaxC8mBHe2O2SDnvhbuXss4KW8D9CZ/HUMMoFcMtNN/LoeDTDa	t	t	f	\N	user	\N
+310	ingridyurleyj@gmail.com	INGRID YURLEY	JAIME VARGAS	1093751481	$2a$10$oO4Xw1KMUQz0U1m1r9Pby.JK/LrLen5zyosj0eH9QAMlpriOGhmYW	t	t	f	\N	user	\N
+311	miguelrojasmiguel11@hotmail.com	GERMAN MIGUEL	ROJAS MARTINEZ	1093784974	$2a$10$b7wIuBr6.HOG5RtpVrNCnulNNZgALAmgQs6bz/NC6bXfQ.I9WRWVa	t	t	f	\N	user	\N
+312	directorplantafisica@palnortesas.com	MIGUEL ALBERTO	BLANCO VILLAMIZAR	13487373	$2a$10$yt3d2hyx8nM7mEWpja1ZbeikmQvJhFcMuR8HMhysxO2/nj4uKL3ua	t	t	f	\N	user	\N
+313	sotoorojas02@gmail.com	ADRIAN ALEXANDER	SOTO ROJAS	1005046898	$2a$10$lEhTx9M85i627aYTcLspveBxB.iKdPv4GaUP1ulO96TMHpCD3IxY6	t	t	f	\N	user	\N
+314	steylon3016@gmail.com	JAILER STEYLON	ORTIZ QUINTERO	1093924920	$2a$10$GgS54j9a8d7yESpdVQYTZ.0XwwWMFQBoXi.n/txzo5y/k5rPz05SW	t	t	f	\N	user	\N
+315	victormanosalva@gmail.com	VICTOR ALFREDO	MANOSALVA CARVAJAL	1093918899	$2a$10$9fJUTiyv6Dt/d.ZxwnhqbesCUWRxLJJeEpitx/bgHshQBYyCLXBYi	t	t	f	\N	user	\N
+316	calidad@palnortesas.com	CRISTIAN DANILO	CARRILLO AVENDAÑO	19620942	$2a$10$9Jr7fIBnKuxtd4jPjD13i.7leEHxDCqV1RWEBkH.7RRmjy0YB9GmO	t	t	f	\N	user	\N
+317	milenarobles2001@gmail.com	SOFIA MILENA	GUTIERREZ ROBLES	1007953564	$2a$10$cVx1zX3UougnAQTxBtIQx.efMURvsUwYU3E7Z3zRJ1.UuKP2cyQB.	t	t	f	\N	user	\N
+318	alejandraangulo343@gmail.com	CESAR MAURICIO	CONTRERAS MORALES	1093916883	$2a$10$o9.21XEOyuKCIHeXcwSCIeLVr13ZxqnjtsJRoeqQ2ei9S4b98VWO6	t	t	f	\N	user	\N
+319	juandiaz18_21@hotmail.com	JUAN MANUEL	DIAZ MOSQUERA	13276728	$2a$10$C3oytyT/AuAUJCKxYyctIOgwUSVmlvzH2Amt3WZGMGLT5W14dzVRC	t	t	f	\N	user	\N
+320	deybisruizsuarez@gmail.com	DEYBIS	RUIZ SUAREZ	1005043375	$2a$10$DXeCD6HsHPCXX3Q3.oUJEum2hlUfliBiJFq7iz6D2Hpeyt01cQoUa	t	t	f	\N	user	\N
+321	elvismar2000@gmail.com	ELVIS ALBERTO	MARTINEZ PARRA	5749548	$2a$10$g74CUBuYokhcce9MXxs0SOAwyeqcGDwYXbjapiLDa4H4.g.sVLLGC	t	t	f	\N	user	\N
+322	comarandres34@gmail.com	OMAR ANDRES	CONTRERAS CONTRERAS	1093786513	$2a$10$TdZsO6uKYKXB6wLeZU4uzeSCEnsIKTNsiovo9arQ/YSE0NpKnhNz.	t	t	f	\N	user	\N
+323	fabianandrey226@gmail.com	FABIAN ANDREY	ROJAS PEREZ	1005047521	$2a$10$8.8XTSnFFTHre.4q1Ub1telr5CRnLundIdiuqTE6lO8N9rNowQzNy	t	t	f	\N	user	\N
+324	malena2112@outlook.es	YARI MALENA	GAMEZ PINTO	1143464862	$2a$10$7VvJEahBLlEK5d.LvLDlJ.N02nguZNLM4XFIHMWC/tBDCWhMwVY7e	t	t	f	\N	user	\N
+325	alianzas@palnortesas.com	EDISABETH 	GELVES GARCIA	1093781116	$2a$10$vcXEETJu9TfpOlb/vh6K5.pcjzzPsdNzeeGc4WxlOhSkJnSj5W8b.	t	t	f	\N	user	\N
+326	elisaudavid@gmail.com	ELISAUL DAVID	GALINDO ROSALES	6802372	$2a$10$Fw0WwI38mcUmapjWf5rBUOlF.0w1uZABj0JMNiowA55oAiSZAQMwW	t	t	f	\N	user	\N
+327	luistael1987@gmail.com	LUIS TAEL	TELLEZ CASTILLA	1090380726	$2a$10$s8W7BwOSGvMOyetoQ/2SBuIE8jh/lti0qIaXqwMU1Fu2uDl64rzUe	t	t	f	\N	user	\N
+328	alfonsorolon478@gmail.com	JOSE ALFONSO	ROLON BARRERA	1151204690	$2a$10$i92P9UCt8QOqRDnVW8j1aOppeF/7CNBcZ9n6tVxo2OpXzsT4VZziu	t	t	f	\N	user	\N
+329	angesgc@gmail.com	ANGEL ESLEY 	GARCIA CACERES	1094283910	$2a$10$xSV6eXY307cCuQnO2CGiOujcYPxtP6bJlJ9Xp9dP4uGQSntpceP0e	t	t	f	\N	user	\N
+330	coordinadorcalidad@palnortesas.com	YULY ANDREA 	ARANDIA AVILA	1093912812	$2a$10$J5Po6dQ3H9OttBx.xpsUruXA.t7AwMlGV8oWzy2TisUyzEfxxpaBi	t	t	f	\N	user	\N
+331	kissice89@gmail.com	LISSETH YAMILE	VARGAS TORRES	1093750779	$2a$10$k/nBCYvCBkbX2XEtJIU/uOtZOxGoGIXUCdbRQVnB.jeY9vc6WMCs2	t	t	f	\N	user	\N
+332	vhortega1989@gmail.com	VICTOR HERNAN	ORTEGA SANDOVAL	1090175039	$2a$10$21VRS52mojGXXbr9GqAmy.Ib6Vvkacu4kL6NnbW2J6IWyUMkaskQO	t	t	f	\N	user	\N
+333	juan.acosta.an0975@gmail.com	JUAN CARLOS	ACOSTA ANGARITA	88217183	$2a$10$wmas1itGFgq3ZtNwwVjqiOyP90mGm14TJtMLSzoXUEHJUMWKx8unW	t	t	f	\N	user	\N
+334	rodriguezjhon045@gmail.com	JOHN ALEXANDER	RODRIGUEZ ROPERO	1010076999	$2a$10$kOVYOLKajSWTXOH.DkJ7KevLlXKCHxzxU9COyVYZEhOfw2xJ3fr4C	t	t	f	\N	user	\N
+335	bruno102499@gmail.com	BRUNO	PEÑA CABALLERO	1090533570	$2a$10$G/9yFI0Inn9qFbK/dAdZquzw6Fg428So/gIEo4sOeGiUqBOi3zV4m	t	t	f	\N	user	\N
+336	saikieiv@hotmail.com	DINA MARIA 	MEZA JAIMES	1098620139	$2a$10$9gS36ec6BbYCbtz3oA9T0uBtFNQE2aA52qKzkjBgvK8F5cksFFPl2	t	t	f	\N	user	\N
+337	yuliethcarolinabc@gmail.com	YULIETH CAROLINA	BUITRAGO CARRASCAL	1090494595	$2a$10$ZzW1nEagDy9wbGF/bT7pHuV4j/8qxnz78tLNuoixuB2CvO1Ah9Kua	t	t	f	\N	user	\N
+338	johanajauregui520@gmail.com	EDITH JOHANA	RIOS JAUREGUI	1093915906	$2a$10$SOw/.BpcNiSR7l4c5MtGh.pO3xjHAVp.Ly7d37YooV6K6toQwONBS	t	t	f	\N	user	\N
+339	juanmorenoriveros@gmail.com	JUAN RAMON	MORENO RIVEROS	1093915296	$2a$10$l4rjIVbd8KqazG2lvj4HxuRhh37DlcR9hrk6aggAP2hlDH4T/mv/.	t	t	f	\N	user	\N
+340	victorhchacono@gmail.com	VICTOR HUGO	CHACON ORTIZ	1010188547	$2a$10$j.dmfsGS5PORuH5jBbZ/RucmoaHP7dMnLAG5MJXH/5/0OjsJn6t4.	t	t	f	\N	user	\N
+341	noritzaalbarracin42@gmail.com	NORITZA ALBA	ALBARRACIN	1005044519	$2a$10$iYDwoQGHBnuef/pHc.6MjuYquvI0KiX2LZRvr.pCjWPVFPOlaisty	t	t	f	\N	user	\N
+342	erikajohanaomar@gmail.com	ERIKA JOHANNA	BOTELLO CABRALES	1093924162	$2a$10$j4WgttmnbxUizjX6ldCpNuq2A.FKo1gs2QcRseBqa1aUs5b4.dBbO	t	t	f	\N	user	\N
+343	yajairasanchez1979@hotmail.com	MAIRA YAJAIRA	SANCHEZ DIAZ	60436050	$2a$10$CBPsqmpSM9MAFskL/dIC1.12jP.w/lBNoKQOgKz70DMP91sayn1Zi	t	t	f	\N	user	\N
+344	antoniobryan532@gmail.com	BRAYAN ANTONIO	ORTIZ MACHADO	1193438599	$2a$10$B/0c.zBpmby/3kE2.1lQ/uyFyJ33GwYMzf.YCfvHPFvPNesmhMNWe	t	t	f	\N	user	\N
+345	ssttrabajoseguro@gmail.com	arled	camargo perez	37160208	$2a$10$EWRHHsiQBFVBMMvUGrlGf.Z1/9GpOcC56egracKNV.M8jcC7QdWOG	t	t	f	\N	user	\N
+346	revisorfiscal@palnortesas.com	lucela maria	torrado florez	60314421	$2a$10$XTif4OUYw7t1u77bO1O5H.fXK.E.Mw8sonrbpg2fpoyBz59gzi50q	t	t	f	\N	user	\N
+347	nandosg459@gmail.com	FERNANDO	SANABRIA GARCIA	1093923230	$2a$10$VOa020oFDEwXlgSjFGrLaO4K5YX8pCK2R9.jdY08wIsJ.X3SfyGxy	t	t	f	\N	user	\N
+348	adelsongomez@hotmail.com	Adelson 	Gomes melgarejo	1093907774	$2a$10$LZE2mp1d9p1COCTHA14oBepPIGX/fhC9bnQciQPt2J54BhmC66arG	t	t	f	\N	user	\N
+349	jlcasadiego1994@gmail.com	JAIR LEANDRO	CASADIEGO RODRIGUEZ	1093916589	$2a$10$0rJ2Ae3nctpXul/dwNkmH.aukTrrXW4FI70Q6PdXCJoWTpc8SAlPO	t	t	f	\N	user	\N
+350	eduardoruiz19@hotmail.com	LUIS EDUARDO	ruiz Martínez1	882470151	$2a$10$hEJ7omUU8LCvQxYVB84Z9uOlMgPZlDSNFn5skCCe4wL4rGFUvAZwa	t	t	f	\N	user	\N
+351	jp_313240sk@hotmail.com	jorge Enrique 	parada pabon	1093763370	$2a$10$DJXo5h9wKc6FFk4Yq0N8EeUn97p6CO0DyckxqXBWje8jNCHJGyc0a	t	t	f	\N	user	\N
+352	mauhernandezsuarez@gmail.com	MAURICIO	HERNANDEZ SUAREZ	1093918697	$2a$10$3yPbDCogdHR/0WArMstyQOdqGJIpYpseHzXcAmrJtvORzF0HCjmb.	t	t	f	\N	user	\N
+353	jr1126228@gmail.com	JAVIER ALEXANDER	REYES PEREZ	1003042341	$2a$10$gypnVxlQSjlStx70x9Z9oOlMhrWqlIWjX0KTGUk6hrORN2XeXX8aq	t	t	f	\N	user	\N
+354	yosmandiro@hotmail.com	YOSMAN	DIAZ RODRIGUEZ	1093913906	$2a$10$udAKeaUHhECksuMJq6L8Med9uKCz1GSsynnXMxnUxmIS0sy3k62V2	t	t	f	\N	user	\N
+355	masterred.007.lfgh@gmail.com	LUIS FERNANDO	GALVIS HERNANDEZ	1093923214	$2a$10$IyOQzhZ0bckkBvCmjDSoOOBY/F8pDzZPbPQ0GsZFLS7QDKN4w9Wti	t	t	f	\N	user	\N
+356	alizandro02hernandez@gmail.com	ALI ZANDRO	HERNANDEZ CASTILLEJO	1093926942	$2a$10$G4reC3DjE1TPLU9cfgjAyuigDlxyhUK7zaJwDhbGSuLJTM3JlkeTq	t	t	f	\N	user	\N
+357	barraganleider5@gmail.com	LEIDER	BARRAGAN GARCIA	1005044305	$2a$10$ge584tlVz8mTUQry30wjY.asOx01fDmrwwptbakwQYqXYW2ILOr0y	t	t	f	\N	user	\N
+358	PAZGREGORIO362@GMAIL.COM	JOSE GREGORIO	PAZ CARDENAS	1124058109	$2a$10$2e5.iLX4gxbVlzXEO7woN.B0am0YvYsljaPOnWQ7IwqwgegH5imJ2	t	t	f	\N	user	\N
+359	JUANALBERTOSARMIERTORIVERA@GMAIL.COM	JUAN ALBERTO	SARMIENTO RIVERA	1005001234	$2a$10$pPo6QoWYjFDnRRUpqYqG1OdPsuzx44GSOw6JkmKcUq2wwA4Qonqle	t	t	f	\N	user	\N
+360	erodriguez_0878@hotmail.com	EDWIN	RODRIGUEZ CASTILLO	13542145	$2a$10$vQWr7eQmWxLj4WuvKaJKbOJUhclS/eobyk2VkV9puTG0AIOCry0k6	t	t	f	\N	user	\N
+361	diocemeljaimes@gmail.com	DIOSEMEL	JAIMES CARRASCAL	1090990508	$2a$10$DlHuwva8r8jKLRKwkSpZ6.grOHvZvB7wmJbRmpuZxQEfXgIwQ.Fje	t	t	f	\N	user	\N
+362	pbreynerjhondrey@gmail.com	BREYNER JHONDREY	PEDROZA RINCON	1093292505	$2a$10$Kxi/n2cH1mGAy8xh8iHcdeJJB0QzjDZOSVF.B7GzAIxA5wakBSySC	t	t	f	\N	user	\N
+363	galvancami0512@hotmail.com	ALIRIO ANTONIO	GALVAN PEÑA	1102368647	$2a$10$mCdUDBaB2FOFOzVdC5wAFO7oGIeimy8ZE/EaQj9tW232oj40Rui/i	t	t	f	\N	user	\N
+364	alarzaa@gmail.com	ALEJANDRO ALBERTO	ALARZA GARCIA	1126251794	$2a$10$7Muksram1VsmuQNRpmYBduiygzUuhzKi9csVW9An0TsgN06BCygXS	t	t	f	\N	user	\N
+365	martinezacevedo1990@hotmail.com	DIEGO FERNANDO	MARTINEZ ACEVEDO	1093911283	$2a$10$Y68jhQeRNPYVq0nx9jGiuOU92qmyehAVdD7aXhLRv3phiqcESn3E.	t	t	f	\N	user	\N
+366	vjeison607@gmail.com	JEISON ALIRIO	BURGOS VILLAMIZAR	1007329314	$2a$10$gQnl4bzzyFgw7drEtxjfqOjlrhme3sqORug60u4OEUYyb8SsK1pye	t	t	f	\N	user	\N
+367	rosmarnotaportillo@gmail.com	ROSMAR ELIU	PORTILLO MARTINEZ	1093788972	$2a$10$CALXaUaH1sHCPvDcLHgLVO.aEZLALWhI60biILYBZBToTXw1BjMUS	t	t	f	\N	user	\N
+368	jeamsmartinez@gmail.com	JEAN CARLOS 	MARTINEZ	5259021	$2a$10$6v4DYiA8zA2OXK2XG/hYoegcz0Aov/9o/I/SS4NFHyXkrx0kd/Z6C	t	t	f	\N	user	\N
+369	concretascarlosyecid@gmail.com	CARLOS YECID	CONTRERAS CARRILLO	1092334049	$2a$10$GVk5WbV8Tm35Wkofs5UYM.tVbU9gZvjuT/CESa2OvnyWV4ohj1dT2	t	t	f	\N	user	\N
+370	alberth.f10@yahoo.com	ALBERT MIGUEL	FLOREZ MEGIA	1063564301	$2a$10$fH8GZpW.EUm4/arTYt8ZMeDbML0uG7wHtqhxcoJtrJ3OE6FAEqteO	t	t	f	\N	user	\N
+371	OJESU9@GMAIL.COM	JESUS ENRIQUE	DURAN QUINTERO	6393042	$2a$10$pD/lJVNacKL1SG.3JlKszudsa1YkWB/dUZBPOf06rCY.IqDKcsHHu	t	t	f	\N	user	\N
+372	ANDINAGOMEZ10@GMAIL.COM	WILFREDO	LOPEZ PEREZ	13554909	$2a$10$v6cJueTPT3dQ3F8t.yYCeeT/RTEXGwEJuY6y8IBfMBZP2NDjOWV5q	t	t	f	\N	user	\N
+373	rafael_eduardo2605@outlook.com	RAFAEL EDUARDO	CONTRERAS PATIÑO	1090405229	$2a$10$FfgBlWthv1zsru/8KJPkAuz8c1F.7aDlQy9NCuU8hAoRazxBgOQHC	t	t	f	\N	user	\N
+374	steyesg29@gmail.com	GILBERTO	PEÑA TORRES	1127388265	$2a$10$wLrK.8fv6sQayU3uI970ueWyiIKJ8jvGKJ69s/E28vAAhroTQUjqO	t	t	f	\N	user	\N
+375	nayethsofi18@gmail.com	NAYETH SOFIA	FERRO RODRIGUEZ	1193215096	$2a$10$1ZWwXBYtAAhcseUVDCgEJ.hcYcnQSuAF8TqonZBb100uYqkibXWAC	t	t	f	\N	user	\N
+376	bolivarever7@gmail.com	EVER RAMON	BOLIVAR	4917643	$2a$10$D6QLhB6moEt2LUnMIMfRg.BKDbg02BC/x0643/uje3dS1dEHsZ0WO	t	t	f	\N	user	\N
+377	leon868003@gmail.com	PABLO EDUARDO	LEON VARGAS	1096198787	$2a$10$2XbfwiRZsyB2Twca94uQVOnXaWHi/Mpmui.R8iueFVQ6yXASfPBkm	t	t	f	\N	user	\N
+378	andresquintero2828@hotmail.com	RAFAEL ANDRES	QUINTERO RUIDIAZ	91326690	$2a$10$ccYMgOsUA0Qt7InPsuTezu0QF5gT7ie/LbPN0UGOZcqkMAp8ji09.	t	t	f	\N	user	\N
+379	jhonfredyortega@gmail.com	JHON FREDY	ORTEGA GIL	1004274537	$2a$10$dNLQXqMA2gj9TzlfRNvDFeVWnDuJDCETxxtEfO12TfaHBxL0QcYWO	t	t	f	\N	user	\N
+380	bermontandres678@gmail.com	GEOVANNY ANDRES	BERMONT RIOBO	1005000748	$2a$10$6ykocnKX1GqXu8uSg6vv5.L3IjbQWmw46aXgVh5sq1pgvQnFT1usq	t	t	f	\N	user	\N
+381	diomefranco4@gmail.com	DIOMEDES DE JESUS	FRANCO PEREZ	1091073882	$2a$10$OE0bD/Qb3mQh/V9LVddIrOpfBkNaVs7uh14DtIkioUQi6SRxPf3wS	t	t	f	\N	user	\N
+382	JCHINCHILLA0320@GMAIL.COM	JHONATAN	CHINCHILLA PAREDES	1127918180	$2a$10$OWdojEB54XuImaBx2AqNo.KYakQ70JO3IITpZ0wib8YXTIsB3oYrK	t	t	f	\N	user	\N
+383	yamivilla2605@gmail.com	MARIA YAMILE	VILLAMIZAR	1090369324	$2a$10$JQLuyQAxvIZfbW.Ze1hcMeWyq8IG/6lzxlXJhvmOhRToDMdGoAHNy	t	t	f	\N	user	\N
+384	elgaromar_11@hotmail.com	ELGAR OMAR	HERNANDEZ RINCON	1093916512	$2a$10$eP0lRtJYa1jhmdyd3MKgPO.ISDdmCHFQm2qOFxDbqGMOtP1FdQN.6	t	t	f	\N	user	\N
+385	damiansining@gmail.com	ALEXANDER 	SINING MARTINEZ	1003166923	$2a$10$fQ/jrITqRYbPPSgWI9ioHO5Ut8MObWZ8Vpyw.gvWVSCXLXXzgfHva	t	t	f	\N	user	\N
+386	reychicah1989@gmail.com	HECTOR	CHICA REY	1095917368	$2a$10$MfiEytAvRWDoYoKh8eyLAO848SzMhrusyJoyQZuYGywLfXQVs6Peq	t	t	f	\N	user	\N
+387	ap9058624@gmail.com	ANDRES FELIPE	PADILLA CONTRERAS	1065570550	$2a$10$2plXtbzmS32SLUi8sXk.n.pKf3U9K7FtcuNVVa9Dh8wqUe.5U6/HO	t	t	f	\N	user	\N
+388	dagobertoarmesto@gmail.com	DAGOBERTO	ARMESTO MEJIA	1052571038	$2a$10$MqMou5Zgoj8fCeOrdlqhouDwgR5qJ.KOVwCyiOJZbx8jBoH/GgzU.	t	t	f	\N	user	\N
+389	arleysebastian0514@gmail.com	ARLEY MIGUEL	BELEÑO HERNANDEZ	1093920782	$2a$10$YQRdOIwuVzkZOw.4472PB.lFqPFBM2o7/rheaiYYTGm6BOApp5Rm6	t	t	f	\N	user	\N
+390	natyangel1045@gmail.com	LUIS GERARDO	ANGULO ORTIZ	1091373559	$2a$10$nqf3UwZpHA6wsHciQD1v0e1qZcgkfzcd3RKj7HzdSj21pP5z2Z/OO	t	t	f	\N	user	\N
+391	denisjesusrodriguez@gmail.com	DENIS JESUS	RODRIGUEZ CHAPARRO 	1091812398	$2a$10$YfmUAdRFLUIgElj0sXJdV.E5LmjtBY2Yp9pYcPRYQd/W8xD9t6/6m	t	t	f	\N	user	\N
+392	ricardocontrerasbuendia@gmail.com	RICARDO JOSE	CONTRERAS BUENDIA	88222763	$2a$10$LzqgOagmPQw9dJYeviVrquy60fxCma3zErN9zBsdWTj30Oh0Fod6C	t	t	f	\N	user	\N
+393	mercy.martinez@asesorsura.com	mercy paola	martinez villada	37507600	$2a$10$yANApGVHV2lnIu10ZMUOFOskfyXuCmnLQLYEJby7DazGhk0pH32ey	t	t	f	\N	user	\N
+394	jefeoperacionabc@gmail.com	Paola karime	mancilla echeverry	37396847	$2a$10$b7vLX4aaPWqTnC7WSOZnQO/bS4Iw53hArccRHJGXxV1w.zkdXxQEu	t	t	f	\N	user	\N
+395	angelicapabon2512@gmail.com	ANGELICA	SIERRA PABON	1094169338	$2a$10$aChuaEwjqQvp.c4eC1p3fe/iI7e6noRQpfEmxvKXBqjIh/7p6ljpC	t	t	f	\N	user	\N
+396	redondoburgosc@gmail.com	CRISTIAN CAMILO	REDONDO BURGOS	1093800924	$2a$10$LRQp8IXAD2bceLVZhQHwdeqSUTrTChe/9f5gIfpwAzpw5ZJa4b1IS	t	t	f	\N	user	\N
+397	mandon041130@gmail.com	HERMINZON ENRIQUE 	MANDON CALDERON	1093921310	$2a$10$LDWMlH/ZDc8x9m.C/mYnFOO0FLeGUAHoNMpHmRn1duoQz2wGAoNz.	t	t	f	\N	user	\N
+398	maye_jd11@hotmail.com	ANGELLY ESTEFFANY	BAYONA MURCIA	1093915681	$2a$10$/vJIlFaZSe9LthMqu9wtmOnYtoVj91zFiVKGYjtuFWAvjKZFYy3SC	t	t	f	\N	user	\N
+399	edwinalbeirogutierrez@gmail.com	EDWIN ALBEIRO	GUTIERREZ CONTRERAS	1093909489	$2a$10$AmukACIoBduQAcazaUqrXe6EC271g4JFiNgUans/CSR5AGjwYltCC	t	t	f	\N	user	\N
+400	sc210608@gmail.com	ANLLIRI YOBANA	ORTEGA PARADA	1093912386	$2a$10$jXxNch1oPBJ5IQJDW7HwROnf522r19grRh2DpDxjVYKUOQ8Y1NTMi	t	t	f	\N	user	\N
+401	miguel.83alarcon@gmail.com	MIGUEL ANGEL	ALVAREZ ALARCON	88265481	$2a$10$VJmLo5hscwh39151FBs73uBFNGzzFxN1YTwZwix.qkD.QPUovVAxu	t	t	f	\N	user	\N
+402	carlos.andres.moncada.2001@gmail.com	CARLOS ANDRES	MONCADA RODRIGUEZ	1093905421	$2a$10$Lf8ev.NGZ65gQBRgXwZt2.TUmzFT2sqw2bJUBs9fXO/mk5J2FWFBu	t	t	f	\N	user	\N
+403	bridaorcu98@gmail.com	BRIYITH DAYANA	ORTEGA CUADROS	1093922770	$2a$10$mBMGb8ZSxIdwzVjSl6.kme7tzKKlv34lqGBhOtPmgNWxFlr4aUkd.	t	t	f	\N	user	\N
+404	coordinadorsst@palnortesas.com	NAYELY YAJAIRA	ORTIZ SANCHEZ	1005043497	$2a$10$S5WvTD9nTvSh/Th7eT3.MuWWlPEF/l1V.uQmeMTKzTCPQ6j2MVFsy	t	t	f	\N	user	\N
+405	yeinicuevasq@gmail.com	YEINI	CUEVAS QUINTERO	1094168553	$2a$10$D4fN3AUAPPqzySi/w84Jn.eurP5/0fnDrUJIZjagqIhk6JClvesxK	t	t	f	\N	user	\N
+406	suarezcontrerasjesusalberto@gmail.com	JESUS ALBERTO	SUAREZ CONTRERAS	1090437150	$2a$10$dhcD9KLgegZ/ZwDJBy0sXuy4kqiai8oI01IjlCBoNXBhVqakK4M86	t	t	f	\N	user	\N
+407	cs275439@gmail.com	JHOSEP DAVID	PATIÑO SANABRIA	1001347090	$2a$10$45glHeKgzuImqRepixH7neCep8ug9toWARYLcL91/Gku3p57eMbGu	t	t	f	\N	user	\N
+408	riodeorohenry@gmail.com	HENRY 	PEREZ CALDERON	88212412	$2a$10$Qv/yznEEQeKzDqQSd0RpBubXV5A7XncVWZJ3QjBKMCvW3qA5y.Gq2	t	t	f	\N	user	\N
+409	yurgen-9815@hotmaill.com	YURGEN VIADNNEY	CARRILLO MEDINA	1090520695	$2a$10$QFJWDdsmzEaXsVjUNp8FFOQZA9rvSn4YdgxsSiwsgUx4xVk0GzYHi	t	t	f	\N	user	\N
+410	juridico@palnortesas.com	INGRID LORENA	LEON RODRIGUEZ	1090475814	$2a$10$LcgI79AUDauNRNcMsOtfKu92I3TZZ62sauIpJMeh1GJmPl/ORSfsS	t	t	f	\N	user	\N
+411	anthonyjosem11@gmail.com	HANTHONY JOSE	MACHADO ROMERO	1090460745	$2a$10$g1PArcFdT2EYPFJ4vIjc/uVJLSnnySpYNnMcLT2ygYeamD7TCDSYi	t	t	f	\N	user	\N
+412	alberonis555@hotmail.com	ALBERONI JOSE	PACHECO JULIO	1084729663	$2a$10$hXAxA/jzy8WnJNHijh2q5eKNLh4vEFwwfQktSPHzkHcBUrjkAoE0u	t	t	f	\N	user	\N
+413	dalexeduardo22@gmail.com	ALEXIS EDUARDO	ROLON RIVERA	1093923542	$2a$10$Jd10spL6czCQigp2j2EZi.xnp8Qa2iD8sG1uDH.idqbic7/kFcnyK	t	t	f	\N	user	\N
+414	yoinerdanil28@gmail.com	YOINER DANIEL	LOMBO ORTIZ	1117807328	$2a$10$6jpkbQkKQL/A76PPEpgFSOWISnQmZT.EPUTzihuMwwTL5vDHaIhhS	t	t	f	\N	user	\N
+415	maryiravelo401@gmail.com	MARYI ALEJANDRA	RAVELO QUINTERO	1005044789	$2a$10$jh.FtC9wq7Oap0aVmJWpGupbp3LLPxQktCv/0V74UjZw/9McZU7R2	t	t	f	\N	user	\N
+416	casasjhair3@gmail.com	ANGEL JHAIR	SERRANO CASAS	1092254585	$2a$10$ALrwCs/jRTnzP40vmviPS.aM/joWg0UGW/QVl5YZP3vUaLWna16le	t	t	f	\N	user	\N
+417	josealfredocontreras19@gmail.com	JOSE ALFREDO	CONTRERAS CARRERO	1093921060	$2a$10$sKyNkKz6gAWmXaf/YskEPug6MH1TDb/OnoE2B91fDFCYNd6lkX/Nm	t	t	f	\N	user	\N
+418	franserve1991@gmail.com	FRANYER	SERNA VEGA	1090444717	$2a$10$eDNnHefLiC1XVpYkm33WNuTnHrBCT6lLoXwKjlSaNqq2ar4qIAls6	t	t	f	\N	user	\N
+419	saninsotom05@gmail.com	SANIN	SOTO MENDOZA	1093923884	$2a$10$C2EJqCkKOY1TuJLdPyg.o..H0NCdXk8FoTrUliLpp4GNRWrAT3rKm	t	t	f	\N	user	\N
+420	alexiisruda27@gmail.com	EDWIN ALEXIS	CARRILLO RUDA	1093917700	$2a$10$uv.Jh9BUcFAS9DsCjh5tpeuD3bD7RbuSg7FvZJYCbl99dkJbMwOgu	t	t	f	\N	user	\N
+421	bsduran1599@gmail.com	BRAYAN SNEIDER	DURAN  BAUTISTA	1090531412	$2a$10$3GG.qLKF2.mPy6Gbed02Ie4/S5B.xNHvEg.hSrfCYoC7mrYSSgZ42	t	t	f	\N	user	\N
+422	jm3859830@gmail.com	JORGE ALIRIO	MONCADA GRIMALDOS	6800576	$2a$10$Ev0fJDfs1HIgF1Zd6c93u..GM3e5FSZAK65IAa4ixeQUXkpSVzI9G	t	t	f	\N	user	\N
+423	3123064499M@gmail.com	MICHAEL FERNANDO	LIZARAZO BONILLA	1005053180	$2a$10$f0irw6Ejc0pu6ADJn9r6ZOg/i0IAWTUOi1TxIpGlqZQZsYXdI6zGO	t	t	f	\N	user	\N
+424	paulasanz16@gmail.com	PAULA ANDREA	LOZANO SANCHEZ	1093921509	$2a$10$7Fthfl/44GFjVBmofrL/UOoP6nB.OokBYbKZw/dZYOw9zG0j4zRl2	t	t	f	\N	user	\N
+425	snaiderzc3lis@gmail.com	YEFERSON ESNEIDER	CELIS CASTILLA	1094168065	$2a$10$bLest6M4KGdo8JDDCMZKTu6vDymqcI/THlqMjyxTWsskYl3umLgMa	t	t	f	\N	user	\N
+426	cg391989@gmail.com	CRISTHIAN FELIPE	GELVES ORTEGA	1005061318	$2a$10$b40TIVNOuyp/TbdSrY5zVOSh4wObZ.StFguNy92MvlTweyVTwqiGS	t	t	f	\N	user	\N
+427	daniela30torrado@gmail.com	YULIETH DANIELA	TORRADO PEREZ	1093800488	$2a$10$p8.uB0AG0pNYy/nMZaO8eumEXjEm/JA.zvRrnllGg6NQqvU1jDQTy	t	t	f	\N	user	\N
+428	silvasteven37@gmail.com	CRISTIAN STEVEN	SILVA WILCHES	1193378476	$2a$10$OJODzLtN4EhaZuttL9B.E.U6wRXLhdzh9cIfdvXJuR4QawsqotCAG	t	t	f	\N	user	\N
+429	cadb_26@hotmail.com	ESTEBAN ALEXIS	DURAN BAUTISTA	1094350664	$2a$10$/aLm9V2El14S2DL.2KYQJeRxUIcqn/WqR7.HIC.uKTMTYriZbOzva	t	t	f	\N	user	\N
+430	leidybalaguera884@gmail.com	LEIDY YESENIA	BALAGUERA  MARIN	1010032367	$2a$10$GN3LDPY8CT6p3IKNtjmRBOACFXVu0mIAumzRwnRKVZTwIunXsHuHC	t	t	f	\N	user	\N
+431	yuneikergomeztrivino@gmail.com	YUNEIKER	GOMEZ TRIVIÑO	1004806599	$2a$10$0PQ.0kD0CbYttMtDoSceJeNqCDbhcxVY2U0hODMcNMShFdcBF5vpG	t	t	f	\N	user	\N
+432	alidraflorez@gmail.com	JOSE D  OMAR ALI	FLOREZ RAMIREZ	1148958358	$2a$10$cmXUG7NUbgJ5Cc6w23OE4.grKVZi3r.sLHqj1wK/5.mKzlcm9y9uq	t	t	f	\N	user	\N
+433	dbuitragovizcaino@gmail.com	DANIELA ALEJANDRA	BUITRAGO VIZCAINO	1007769607	$2a$10$pKk9F.K24UV3rcG373hJ/u40o8FWukFdNvUVisg.8uTXaHVfZDkfC	t	t	f	\N	user	\N
+434	yekavelazquez1990@gmail.com	YESIKA YERALDINE	VELAZQUEZ RAMIREZ	1093927056	$2a$10$WlomfOKykVotheqpYQZGeu9ONyW6nF02cKwaLB/OreXTf6ikQdSn.	t	t	f	\N	user	\N
+435	jhonerdavidsilvacuadros@gmail.com	JHONER DAVID	SILVA CUADROS	1005047482	$2a$10$aQTWgcto40yKmNPt/TMxuemYk6GL8.PbqhUVxS3JVhW4p71dzpZfu	t	t	f	\N	user	\N
+436	reneyusi9@hotmail.com	HEINNER RENE	ROMERO GARCIA	1066093137	$2a$10$7DTIkB.AiqrgpYsTrK2MXOhT4bOoJs1vPT9GxOEGoCUoKuq.0oWge	t	t	f	\N	user	\N
+437	jfbermudez09@gmail.com	JADER ANTONIO	FERNANDEZ BERMUDEZ	1004275905	$2a$10$B8H2OQF/yRsf2wBE5iO49OVvAli6fuI0lcUgrbmQSqNa/jTzWXIka	t	t	f	\N	user	\N
+438	gelvezcarlos500@gmail.com	CARLOS ANTONIO	GELVEZ MONSALVE	1010132693	$2a$10$kwQ0tnPRxR2f/kHDhLUTLuE6fd3.1p5hb3u3s1pVs6wwESUjMX0YK	t	t	f	\N	user	\N
+439	angielizethtorres000@gmail.com	ANGIE LIZETH	TORRES RODRIGUEZ	1010124176	$2a$10$eqW/OPvJ7vSSb7KktQEPveST8FyoivWNudLP7joVv5ToAlP14HReG	t	t	f	\N	user	\N
+440	deirabotello27@gmail.com	DEIRA ALEXANDRA	BOTELLO DELGADO	1005037078	$2a$10$hDKD/hpUIDWFwviaoAWwGey.VPTmix1DKS58/FrBcTLRJIVm6F/bO	t	t	f	\N	user	\N
+441	efgr1697@gmail.com	EDWIN FABIAN	RIVERA GOMEZ	1093920140	$2a$10$8vGB3.L/40L3c8bNft1Y0.03oUVjyuc7Xd0RN8wfbT9DV9Cu5qJPO	t	t	f	\N	user	\N
+442	bautistayonathan@gmail.com	YONATHAN ALIRIO	BAUTISTA GUERRERO	1090519693	$2a$10$Q4jojnI0BqwUOewGVaDbP.lExPvqEJxA64sWkykmApG7amL8V2kua	t	t	f	\N	user	\N
+443	yulianagaleano1997@gmail.com	KAROL YULIANA	MEJIA GALEANO	1030040725	$2a$10$jg.mrRpFmeZh8.6nOOjbeeMHJZZrqgvYSvaLMz45LgBP0YdwIh.X.	t	t	f	\N	user	\N
+444	yormanvesga@gmail.com	YORMAN LEONARDO	VESGA MORENO	1193108594	$2a$10$A7fSKPOeuH5U9chNspFbueG48vqE7QIrlNT/GUcVVK5PO7mS4a6uS	t	t	f	\N	user	\N
+445	yaurisuescun@gmail.com	YAURI ALEXANDRA	SUESCUN TARAZONA	1093905941	$2a$10$/YOMJuEsaxQmi7XRe8DPk.beiuaXUb3vQVla5ofSFbfa7NUeGp5fO	t	t	f	\N	user	\N
+446	guerrerowilker18@gmail.com	WILKER ARLEY	GUERRERO TRUJILLO	1093904028	$2a$10$o8HYJ2UE2aFItV9SMDTvKewHgqNpuNL4DYtbGyQTfxLc9jioPauwe	t	t	f	\N	user	\N
+447	marcosfidel02200@gmail.com	MARCO FIDEL	HERNANDEZ ORTEGA	1007733566	$2a$10$POxJod.f2dmsj0aR2I1NHuRrArVvrURDFt2daJXWTLhWrCKWF2F6G	t	t	f	\N	user	\N
+448	durangomezmariaangelica62@gmail.com	MARIA ANGELICA	DURAN GOMEZ	1004913336	$2a$10$hdgSMiYRfeqDxJczOv3ntOqhQL23SmeyPxrEbD38WPBoODOdllsWu	t	t	f	\N	user	\N
+449	shirleyneidaduran@gmail.com	FRANKIN STIVEN	RODRIGUEZ DURAN	1093904041	$2a$10$6AgMxj8jg7eRtPvjy5ZNReVAFjYNKA85XK0553MMeHX17stjo6vui	t	t	f	\N	user	\N
+450	penacamilo65@gmail.com	CAMILO ANDRES	PEÑA ESPINOZA  	1093925124	$2a$10$QiXGHorhFlYpwqKqisLi/uwlOeROJNiMWP13S4z76vCi3WuxOs59G	t	t	f	\N	user	\N
+451	ingambientalmaroly@gmail.com	MAROLY YULIETH	FERNANDEZ FERREIRA	1084744989	$2a$10$6c1tlKN86OAE.0SQBAPMD.JGLIP/X55IGUOIWTHd3gE8Sc6tocBZq	t	t	f	\N	user	\N
+452	milenapabonfuentes@gmail.com	CLAUDIA MILENA	PABON FUENTES	1091967052	$2a$10$XhUBEvs4DYsRiFnGa8CkWuSCwdoI.r2Id3/IJCWuD3U6cc5w/KAJq	t	t	f	\N	user	\N
+453	cs567736@gmail.com	CARLOS ALBERTO	SUAREZ LAGUADO	1091966009	$2a$10$mqtdt/yCkqWW/fjxw5Hf6OXRu6csEaAKVE48Pmu7HnMJp8BB9Wimu	t	t	f	\N	user	\N
+454	argelisgon.1982@gmail.com	ARGELIS DE JESUS 	GONZALEZ RODRIGUEZ	5237012	$2a$10$JrILWCrWgjthrrKgDUKVkeYjue0F71dekCct6rGJ9vky1nbxat5mW	t	t	f	\N	user	\N
+455	mariaferlizarazob@gmail.com	MARIA FERNANDA	LIZARAZO BONILLA	1090376970	$2a$10$xwIg1O35A3tvzRa4fjyvE.pdiiLy43My7GuzVjVfShAfRueu5bYIu	t	t	f	\N	user	\N
+456	carloos_guerreroo@hotmail.com	CARLOS ANDRES	LOPEZ GUERRERO	1093766183	$2a$10$RShacs8iO5U28ZRjW5wvieZkjo1jrwcvlVESjFkpPE2vvFqW.eHJ6	t	t	f	\N	user	\N
+457	jq324962@gmail.com	JUAN NABEL	QUINTERO MELO 	88244020	$2a$10$VmFLGxNrxaknRKMppyRnFeN.pz.uRSxG0NTjdQrNeT5urp2EyLj4C	t	t	f	\N	user	\N
+458	cartera@palnortesas.com	ALIX MARIA 	RIVERA RODRIGUEZ 	1090521836	$2a$10$TwKky24wl1YzVSTj.7FOOuHXAx/pxF6ir5MzoXOdotkIuYSI7N86W	t	t	f	\N	user	\N
+459	dirtsa0408@hotmail.com	ASTRID CAROLINA 	PRADO RODRIGUEZ 	1090423093	$2a$10$.VB7xPqP4yeTfg3EwRGy1.8rrA4aoO4ZLXXHhFljhr6dbtbTcwZla	t	t	f	\N	user	\N
+460	anitaparicio9@hotmail.com	ANA ISABEL 	HERNANDEZ APARICIO 	60440636	$2a$10$VUaIoRYtS6fogy8UgYNWu.yNHVSmUJ4oYY39w1ggRrExCIdi1bxxK	t	t	f	\N	user	\N
+461	coordinadorcontable2@palnortesas.com	ANGELICA MARIA 	BARIENTOS CAMARGO 	1093758407	$2a$10$3xOiCaZff5gYWvHTttmbGOj62bxVhodiOxbo2rbt77.g/LLQdsUtq	t	t	f	\N	user	\N
+462	daypaser@gmail.com	DAYNE ALEJANDRA 	PATIÑO SERNA 	1090532629	$2a$10$iN3u.svAZ80y2O85uQXGzOog7H/7vKjM611FilR0NHtFKAjedZRvu	t	t	f	\N	user	\N
+463	coordinadorerp@palnortesas.com	DENNYS TATIANA 	SANCHEZ CONTRERAS	1090412263	$2a$10$FooqFPMMoZ.bkhBB2MREfeVy32r.5XvAcVOgIlX.d8aF0Z.6EJQZy	t	t	f	\N	user	\N
+464	dianaconta20@gmail.com	DIANA CAROLINA 	VASQUEZ ORTIZ	1090406734	$2a$10$47Z.c.WhbcyQqB9aFIdQR.TMitbwOuYD8VBdv9UbQqR3UkEpg8Xky	t	t	f	\N	user	\N
+465	sanchezrodriguezdiana21@gmail.com	DIANA 	SANCHEZ RODRIGUEZ 	1090518619	$2a$10$MS4SRrkOYJ6HMxSIhqXYzuEbw2IpiH/2DLy6ZS/crLhhxOZ8vujbu	t	t	f	\N	user	\N
+466	dgomez741@misena.com	DIOSELINA 	GOMEZ RUBIO	1090497147	$2a$10$/KYISdt9WR0BwqxcfA5DuOOuOUBjblYr1h8Z7U./7aI69QYnXRSaW	t	t	f	\N	user	\N
+467	estebanmaldonado448@gmail.com	EDWIN ESTEBAN 	MALDONADO PASAJE 	1092524831	$2a$10$Mya5aM4JNOnGrab8yN9Cbe6ttG5Sp4LIJQOgdA9AO.SKPQ8LTGbFm	t	t	f	\N	user	\N
+468	Krodriguez08102001@gmail.com	LEIDA KARIME 	GIL RODRIGUEZ 	1005052074	$2a$10$RJnY/tG4K2i/8lOEDZMY/OJgpBTOtGSIQT6MjKMQeGZ9rnk0JO.ri	t	t	f	\N	user	\N
+469	marlygomez018@gmail.com	MARLY 	GOMEZ RODRIGUEZ 	1093791727	$2a$10$lcCqu.rAtYDAdrlLYtUdru3jdYaIkC4gb5/HTVljgCLYUb/zBqrke	t	t	f	\N	user	\N
+470	nagala34@yahoo.es	NAGILA DEL CARMEN 	GARRIDO TOVAR 	45578759	$2a$10$mrghWt841dB9KxSnA7SWgugrRtDYQuufgKEHcShoAzEOl1pkQF4dK	t	t	f	\N	user	\N
+471	yandrea0706@hotmail.com	YIRELY ANDREA 	VERGEL CELIS 	1093786946	$2a$10$MKBXCb0LDJqHXcIemacH6uLFa/EtLZ4tOnQetAScGI/jNl18gPFt2	t	t	f	\N	user	\N
+472	ejdb200224@gmail.com	ESTIVENSON JAVIER	DIAZ BAUTISTA	1005046551	$2a$10$bfoMtlVbX9MyGxAWkC3SOeJqUt/KhFtOt2hhT6USdnml4MGerfeHW	t	t	f	\N	user	\N
+473	carloscepeda400@gmail.com	CARLOS ADRIAN 	CEPEDA RODRIGUEZ 	1005046017	$2a$10$tlPrAXym.YQxT2C2cFMfIe2vzrCuKmlfwacByUgM2z2hEe2kvMUP.	t	t	f	\N	user	\N
+474	erikajaimes881@gmail.com	ERIKA LILIANA	JAIMES GELVEZ	1005043378	$2a$10$3jkXRxiIxAufRPHAIzwXLukaIKJppOJvKbsiO6kX02BUSl2Ieq/nS	t	t	f	\N	user	\N
+475	dayanahincapie17@icloud.com	DAYANA	HINCAPIE PEDRAZA	1134989326	$2a$10$f673i5.SikovV1Nml5s.p.Krwihst8tGmlJ8gO7NBrr8jQCom9dBK	t	t	f	\N	user	\N
+476	calethovallos@gmail.com	WILMER CALEB	CESPEDES OVALLOS	1004967475	$2a$10$yu9.f6isi3mZT05/g.8SYemAPMFLR/D4PGFwswnWWx.HqFhWn1pWG	t	t	f	\N	user	\N
+477	celismaria2405@gmail.com	MARIA DELFINA	CELIS BURGOS 	1090427464	$2a$10$24u9ngNjTmZalNfdUYAo3uNt.jI4GtqpEWYnAIxE7zQfWjApohQYa	t	t	f	\N	user	\N
+478	liuzherrera95@gmail.com	LIUZ	HERRERA GUERRERO	4089352	$2a$10$TE83ETKux0vEUmxltdsk1O1gCi7gBPfY3RII.dB3ZKb4XOQtK67tm	t	t	f	\N	user	\N
+479	brajaduhe@hot.com	BRAIAMM JAVIER	DUARTE HERNANDEZ	1093779643	$2a$10$edByT5oPI.BNQYetcdUecOGr3YYWepjEDZiI/W///rvnCEo469H42	t	t	f	\N	user	\N
+480	Rodriguezyerinson24@gmail.com	YERINSON ALBERTO	RODRIGUEZ GALVIS	1091802662	$2a$10$wVFFUVp14zOqFzDDeFlPceh9VdYGJFb6B/bEHevjMbh2Bqje9KcEG	t	t	f	\N	user	\N
+481	jg7070379@gmail.com	JORGE LUIS 	GARCIA PARRA 	1093924987	$2a$10$SZK3VyfQr22kMensnvV6Fe/6fi6boe4nEFhgrGAIQgGOblsfkQAAG	t	t	f	\N	user	\N
+482	danielruiztellez04@gmail.com	BREINER DANIEL	RUIZ TELLEZ	1094047781	$2a$10$vMgx/XpkwYxisEe0GQFUP.qKD0rucyi9xs5QlZW36VwSy0YH9yveW	t	t	f	\N	user	\N
+483	kevincoopar15@gmail.com	KEVIN	CONTRERAS CARVAJAL	1094160251	$2a$10$IrDmwggVS.alfoUkk87.UOOxbD9WQLlIl45qcTypHOuIONstdE03q	t	t	f	\N	user	\N
+484	celiss116@gmail.com	SAMUEL 	PINZON CELIS	1093923002	$2a$10$L.sw70wNLNTV2ZfjdzEud.7JgWR//h6npYYjlaUm/b2eReimHugGm	t	t	f	\N	user	\N
+485	ycardenasquitian@gmail.com	YONER	CARDENAS QUITIAN 	1005037975	$2a$10$UhQ/f.J3TFpo70M6nfr6zOkllGMjZ58yaOXRKxFSDJ4NROp9ujp7S	t	t	f	\N	user	\N
+486	ivanfer43@hotmail.com	IVAN FERNANDO	RABELO AYALA	88310035	$2a$10$.PFpn6r3JG46Oz8kad2PYONdhtIO9woPqyLpMY/wTvG1r3HAskiGG	t	t	f	\N	user	\N
+487	ortega.1999.angel@gmail.com	ANGEL ALEXANDER	ORTEGA BERMON	1093924517	$2a$10$arFHpJ5cFUEPdznGjZoMY.ST2GvKGI0EdaEsDVVnBXcJ5.pfSa2Im	t	t	f	\N	user	\N
+488	luisferbuenahora4@gmail.com	LUISFER ALEXANDER	BUENAHORA MELGAREJO	1065588595	$2a$10$Ws63Q5idg9joh96TAMpZuOf9GIGeKPSAS/u8lUwxk2KZIGhgQcMlm	t	t	f	\N	user	\N
+489	cristiansanchezrizo@gmail.com	CRISTIAN EDUARDO	SANCHEZ RIZO	1005047249	$2a$10$Mf6nMSnJ2UjisoZu0Q2WEeCUgak1wEmb4QAswBtpvPuADvfta6mBq	t	t	f	\N	user	\N
+490	marianomaldonadoparada126@gmail.com	MARIANO 	MALDONADO PARADA 	1007361518	$2a$10$IBexrOfKlg.76mBmkjtKc.kihOF/Yhh7XEgdPbfys8c/NIu3VUY1G	t	t	f	\N	user	\N
+491	jhon970714@gmail.com	JHON JAIRO	RODRIGUEZ HERNANDEZ	1093922455	$2a$10$V3pbjGwdiiEW6CbUlA60jePO5M7ZUxyf7m5IE.rXdE6QVPpyl6BrG	t	t	f	\N	user	\N
+492	brayanestibensonromeroruiz@gmail.com	BRAYAN STIVENZON	ROMERO RUIZ	1094346359	$2a$10$Y0/bwP2Ilkrwbhm9PANONurrxpG/GjJjnBpcI5dDWyxDajwNaGAGy	t	t	f	\N	user	\N
+493	denisstefanycarvajarorjuela@gmai.com	DENIS STEFANY	CARVAJAL ORJUELA	1005044843	$2a$10$1U7RGiNWto9pPqk/9quf9u6qZOLvzvfxST2FoOhPb/rUkqzMAJami	t	t	f	\N	user	\N
+494	xiomachimanaaveidora@gmail.com	XIOMARA 	CHIMANA AVEIDORA	1005045719	$2a$10$hU4mcpv185szUk0W813xV.vNePll5saHlZXGan3nygMal0PmAHhwm	t	t	f	\N	user	\N
+495	cflorezbetin@gamil.com	CESAR DE JESUS	FLOREZ BETIN	1104409933	$2a$10$ne542RQ8h0smmztuIBzV2ORtM8Qba6O8jYK1XPeTVAf/3.Myg4PvW	t	t	f	\N	user	\N
+496	leonjuancarlos24@gmail.com	JUAN CARLOS	LEON 	1093910740	$2a$10$tfwPqbpj3RDXX3vVvgMzsuRhlHxNnOqyJ8VdRhIJKnW0S4Y1NLgVS	t	t	f	\N	user	\N
+497	ajeison390@gmail.com	JEISON JOSE	ALVAREZ PABON	1093924116	$2a$10$fB/E1bmzMncP.prpeyA.7OyaZKmTHgK828Orq5RIBAooRkqdywLky	t	t	f	\N	user	\N
+498	diorfer21@hotmai.com	DIOSANA	ROZO HERNANDEZ	1093904786	$2a$10$Cqjug8RRXW.2AMkISElR/uhM2FgUgookl/TlCYelF6Cj0BYoVG3u.	t	t	f	\N	user	\N
+499	rojasvergelmilena@gmail.com	MILENA 	ROJAS VERGEL 	1005029548	$2a$10$Wt7dtF1va0i/AP6uK40deuVkvM3fHvUGpptsQ.T3fil0Bn16uAtOK	t	t	f	\N	user	\N
+500	gabrielacabarico19n@gmail.com	JASLEN GABRIELA 	CABARICO NARANJO	1005028850	$2a$10$YTt/1poj4oryXjYaaYFj5.K/A.uDaTnnVvuubnyHqn8crMpL6dVZa	t	t	f	\N	user	\N
+501	constaarapo@gmail.com	CONSTANTINO	ARCINIEGAS  APONTE	1093916598	$2a$10$9q3/5nBGqVoFNzbeTkjAtuZNSvqEYX9MDwAjoDyuUFlG8LGMaHhVC	t	t	f	\N	user	\N
+502	edinsonduarte58@gmail.com	EDINSON JAVIER	DUARTE DURAN	1094780947	$2a$10$k5ch8q0YoV5oagtJ2Fiq2ear/sD.Wo5zK9pIGUlpcfqLzIIZNrnOW	t	t	f	\N	user	\N
+503	snneidersuarez12@gmail.com	SNNEIDER SALVADOR	SUAREZ CLAVIJO	1005044391	$2a$10$g/U2q.YlV80OsUG2UCOpY.kBt74FzKtQDL4Uf4/Ds0gB2.Kx9Hf/i	t	t	f	\N	user	\N
+504	keljowii@gmail.com	KELLY JOHANA	ATUESTA SUAREZ	1094166238	$2a$10$mpvD7fBILaqnqcZ23B7DeeSGcFekDu0eJ1etWDHhNln6ddPHM7NRq	t	t	f	\N	user	\N
+505	florezdanilo386@gmail.com	DEIBER DANILO	FLOREZ SILVA	1090384500	$2a$10$gdBalPDBVMe4HIgz1DHo2.6AN/Y0bmVLqoydiijNSnkocDGCnQ5H6	t	t	f	\N	user	\N
+506	junior20013c@gmail.com	JUNIOR ANTONIO	RINCON CONTRERAS	1005044081	$2a$10$vTf6VeNaEyycoE1iLe5zqeQvSwwGANAzKVBC.SAOpOOG.IGfVNDFu	t	t	f	\N	user	\N
+507	daniejoses2019@gmail.com	DANIEL JOSE	SANTOS GARCIA	1007949685	$2a$10$H7DzWqOWsg/myuH39r0Ij.Y27HCZuQzEVlMThGweWsvW/B0qBDvpu	t	t	f	\N	user	\N
+508	moncadafuentesyeristatiana@gmail.com	YERIS TATIANA 	MONCADA FUENTES	1005047084	$2a$10$7mmy6TzMX.hyHpSkNu26BeR6MWUNjj8IcaueSfGaTrOZvT.kAUeo2	t	t	f	\N	user	\N
+509	josereinaldoortiz18@gmail.com	JOSE REINALDO	ORTIZ PARRA	1093916783	$2a$10$IVEcq83MBLlC24Slq7/bludBvzQowkef7JX2MLHsRFUjlDh1b7ZTy	t	t	f	\N	user	\N
+510	harorodriguez28@gmail.com	ZHARICK	HARO RODRIGUEZ 	1093905785	$2a$10$Kr0ydghWySErF5zCP0diyONgUSZkTj4peaoGy8w4uYCxeKkieb1/S	t	t	f	\N	user	\N
+511	mercadodiego873@gmail.com	DIEGO ALEXANDER	PALACIO MERCADO	1003082123	$2a$10$5y8Jcg01vQAL.XAhvIs/8OPc42C0.yB9b73lp9Pa1LU1dhtIfnyvG	t	t	f	\N	user	\N
+512	dayannapaolarodriguezrincon@gmail.com	DAYANNA PAOLA	RODRIGUEZ RINCON	1005051580	$2a$10$zYVu5z8mTpcf11hE8x4f5uzpbjxfT9mj4MT13YHXjm7rR2R6K/X/W	t	t	f	\N	user	\N
+513	albertopuente193@gmail.com	ALBERTO ENRIQUE	PUENTE SIMANCA	7105933	$2a$10$R.jWS4q2vngOzCf3pbiAuOiBLZq5BMX6OhVaZPyiHvsmppM2jZIxW	t	t	f	\N	user	\N
+514	cabaricojhon256@gmail.com	JHON JAIRO	CABARICO LEMUS	1030040064	$2a$10$IMwrtgJ5t7/EwqkZIH26.OTk9s5/6ELpS5lQH8izNy4hDOCWHkYFO	t	t	f	\N	user	\N
+515	roswerpaboncontreras@gmail.com	ROSWER JESUS	PABON CONTRERAS	1093905171	$2a$10$M5zL5lbqP61NzZr1Re55MuoYvr/kKOfawj4F4qvK7chv3.Hq7Z.VS	t	t	f	\N	user	\N
+516	sureazyeison847@gmail.com	YEISON MIGUEL	SUAREZ CARRASCAL	1093915339	$2a$10$g9JDcfzLKJ3ky6P1wwEUZuXBaC6iCm1atVfLfkAWAjqszADAcABzC	t	t	f	\N	user	\N
+517	wanllelcastro@gmail.com	WANLLEL DAVID	CASTRO VIDAL	1067809712	$2a$10$kVL3kS84QRU8In3j44yQIOfWUsfHAAnF9oCukYqX/ypZyyZvZmqGK	t	t	f	\N	user	\N
+518	villarinconluisangel@gmail.com	LUIS ANGEL	VILLAMIZAR RINCON	1093908375	$2a$10$sIC.pOwGLHagg2EQQfA86OU4aa8b7qvICrXxo/AHNNga/u0scOhju	t	t	f	\N	user	\N
+519	stivenramirez242004@gmail.com	ESTIVEN SAMUEL	RAMIREZ LAZARO 	1093592670	$2a$10$E25GguuLsiZEqtY4YETrMu8JIAXuR68gPNIjA6AG9amjT0UUWPfiO	t	t	f	\N	user	\N
+520	nestorurbinaa@gmail.com	NESTOR	URBINA ACEVEDO	1093922026	$2a$10$p/p3CxvRoZWT4X1QZJgy9epw.izFXIhZS/bLMbXjKabxURUeeEQ4G	t	t	f	\N	user	\N
+521	omarandres3808@gmail.com	OMAR ANDRES	VELASCO PARADA	1093588751	$2a$10$ZokmAklEhtqcoRCiGliYzOgG0XjNfmjitygWhPslGAMa.iP3E8sfW	t	t	f	\N	user	\N
+522	danielfelipezarate2022@gmail.com	DANIEL FELIPE	ZARATE MOGOLLON	1093904370	$2a$10$5SJUwms/Augn88bbxNW15.Uewu0TKVLHmgiOzfPcXq.CMyiUGHd6O	t	t	f	\N	user	\N
+523	zoraidamandon123@gmail.com	ZORAIDA	MANDON ROJAS 	1005047951	$2a$10$rsRGgdTKqQhvbKCz9WBaneIIbtNwiWEZ1e.DKebshjCWrSDijkJ5e	t	t	f	\N	user	\N
+524	hissensefclaro818@gmail.com	JORGE LUIS	GUTIRREZ MORA	1093913591	$2a$10$Q.rHWCCxmrF0z1tS87M67e.PVzGrNgVQz9kF9e3GgewyFTln6A3e.	t	t	f	\N	user	\N
+525	keimer2004samir@gmail.com	KEYMER SAMIR 	SANCHEZ SANTANDER	1093905774	$2a$10$T/PKwY4XalouWEFtkNavyufmC9qViVLQWxsFop4WXSsg9jcfkKHKC	t	t	f	\N	user	\N
+526	jhon970714@gmail.com	JHON FERNANDO	MORALES GUTIERREZ	1093920716	$2a$10$Fpfo4UNykg/PssPpa.ARlOI8ceGvvY08zJQSerx8a.7BswHNRyXLq	t	t	f	\N	user	\N
+527	fabo2802@hotmail.com	ERIKA BEATRIZ	PETRO MALDONADO	1093912487	$2a$10$TPLbEai68hpKiIlwNOI1aekDJbUkBYbPttATHLS5Yk5FBLOmVFsNi	t	t	f	\N	user	\N
+528	jeiferjaircontreras@gmail.com	JEIFER JAIR	CONTRERAS ANGARITA	1093909024	$2a$10$KtdkRG6QPA3bTmT.r4NRlO3e5WFAZKB0cgQlDuyaF8yx4IjYdvq52	t	t	f	\N	user	\N
+529	jhonathanfbn@gmail.com	JHONATHAN FABIAN	ANGARITA TORRES	1093905057	$2a$10$YuBARxlC8p6cu56tbuDTEufO.M5pZGwghJfuyfSRAUqZ4ed0yc7gG	t	t	f	\N	user	\N
+530	nioc2506@gamail.com	NIXON IVAN	CASTRO SILVA	1097970582	$2a$10$RMaKPTk95JgzGK9oIiuVsuz3sy6DANsuOjdodoSkeedd7l2tO8ytC	t	t	f	\N	user	\N
+531	alexvargas0823@hotmail.com	ALEX STIVEN	VARGAS OLARTE	1093788568	$2a$10$JPmYsdaVZO2gjU/9Mv7dDuxjdvlKILSzZ25tOZ4xOyW4L.1iZ9wQe	t	t	f	\N	user	\N
+532	acostamonsalvemaikerestiven@gmail.com	MAIKER ESTIVEN	ACOSTA MONSALVE	1005045501	$2a$10$OrkbjKtkeIrpNNuDl3U6UeYO3v8C7DCpXFMiFyML3NylkrvnFWMSK	t	t	f	\N	user	\N
+533	haroldbarrera0206@hotmail.com	HAROLD SVEN	BARRERA MARIN	1000377362	$2a$10$EmWB0UELQUnSkmscCAGEn.UF1F2Mx3XuNsKayvt/P7JrNzuraIbYO	t	t	f	\N	user	\N
+534	carrillojhoan12@gmail.com	JHOAN SEBASTIAN	CARRILLO OVALLOS	1093591173	$2a$10$qf8M.wZLDPbfBtxUd0jbs.DxYhlSFurQ.cK7N6tFaoPFf/9z6Bnki	t	t	f	\N	user	\N
+535	noregistra@gmail.com	JESUS ALEXIS	ASCANIO CACERES	1007989395	$2a$10$G5BGZSd9pcKZMpox3LT0gez0IA0lh0aa8J5ndRpv4SVNBWeikWmk6	t	t	f	\N	user	\N
+536	noregistra@gmail.com	RUBEN DARIO	GELVIS LIZARAZO	6575400	$2a$10$U8bWkIPEZ3C5l7/nyrwUBeAcWqrCZj749j5CgZYGbttmO0mMXgBVK	t	t	f	\N	user	\N
+537	noregistra@gmail.com	YOEL EMIRO	BRACHO BASTIDAS	5738720	$2a$10$jTud7yvu6CK8bYcF2vjmbuluLI.TJ3SK0Udtft8zNet0h91BtmGRO	t	t	f	\N	user	\N
+538	carlosdelcarmen20081980@gmail.com	CARLOS DEL CARMEN	PACHECO CAMARGO	19707174	$2a$10$iOStlVnJikpDk2keBU45geW5P8KqfeKFh1BMiv6ciH.2V97R8IR3S	t	t	f	\N	user	\N
+539	noregistra@gmail.com	JOSE GREGORIO	CARRILLO VALERO	5743522	$2a$10$GCseMzYipE0C8kFROfGtJOcfAZ.OMSh2yNiyoxSWclIVIml9fOhxK	t	t	f	\N	user	\N
+540	pedro.chinchilla@outlook.com	PEDRO RAMON	CHINCHILLA MEDINA	88254660	$2a$10$5aADofeJW5P.R4ASsoU/beQJbOcS5QCJvlulT1NUtdeTLHfw56Z/u	t	t	f	\N	user	\N
+541	noregistra@gmail.com	JESUS HUMBERTO	CARRILLO	5745526	$2a$10$vSHQSjuhxKjGHzdY/WxMj.GxNPZuRiy8m/FWwKxEvWg1.tzfgVSTS	t	t	f	\N	user	\N
+542	cudrorruben13@gmail.com	RUBEN DARIO	SALCEDO CUADROS	1093906197	$2a$10$BEeQ87Y0RUG04W/GAPPLeuIBGm8AdOMmBmOqsH/wI842J7AAibye6	t	t	f	\N	user	\N
+543	elievervillasmil015@gmail.com	ELIEVER JUNIOR	VILLASMIL SOTO	6876620	$2a$10$e.QlTzC/webKWydPm1/Yne9BWsKd4vbyYmYRKSIP7djjjWCLWLl7m	t	t	f	\N	user	\N
+544	edinsonpabon18@gmail.com	EDINSON 	COLLANTES PABON 	1005074380	$2a$10$lyGu6poqDRApGoBiXz8KbOcizr5dr.39js/m3DxObzi5YKfz3ziZ.	t	t	f	\N	user	\N
+545	jordyvargas638@gmail.com	PABLO JORDY	ARCINIEGAS VARGAS	1110538953	$2a$10$FRHwAocRFHFYMyToUUqYSue7i7nj.IplZyeBDaWC7Li1u.lmu/gjW	t	t	f	\N	user	\N
+546	wilsonvillamizarramirez@gmail.com	WILSON 	VILLAMIZAR RAMIREZ	1093911975	$2a$10$oSRCP7n6zG/PBXNK2kUzGuiFKC0uWDJkyX1CQxGBwZRd5dKd7iun.	t	t	f	\N	user	\N
+547	wilfredovillegas316@gmail.com	WILFREDO JOSE	VILLEGAS MENDEZ	6830389	$2a$10$.Fyl1s8yF9a40M6dRUPqCuZxFz/8cH7r2rTgLX1sFUexLEaDr/bZu	t	t	f	\N	user	\N
+548	RODRIGUEZGRIMALDO@GMAIL.COM	YLEIDA	 GRIMALDO	1005044486	$2a$10$kPk1moH/fru.viyiVXXcCer9S0/oz7PkN7hwGyKJZMTClXuuj1Hhu	t	t	f	\N	user	\N
+549	gjrosales@gmail.com	GERARDO  JAVIER	ROSALES BOLIVAR	18378047	$2a$10$ceJy3jgyn.vPqDf5E5G.o.VVqpnEgtYI2TrdKEQwJOuvBxiHHSpTi	t	t	f	\N	user	\N
+550	wilsonandrespaez2017@gmail.com	WILSON ANDRES	PAEZ PEREZ	1005046907	$2a$10$l3sFsPxjdVUqYKFos08AsOLV/2s/N9rnLR837IGUzoUX.4QlK.BYK	t	t	f	\N	user	\N
+551	natafl180305@gmail.com	SHIRLEY NATALIA	FLOREZ GOMEZ	1116492902	$2a$10$He1uexY4dPeyUnTZEr1YNuezovwdjcPwrBIQA.XGklcEkr9Q6gvcK	t	t	f	\N	user	\N
+552	victordamolmata05@gmail.com	VICTOR DANIEL	MOLINA MATA	1127066262	$2a$10$IUvS/nZrP.Fdca7v9rcX7.A.0xO5u0TrNxMILQmBM2TpPD8U8y06u	t	t	f	\N	user	\N
+553	hcallecocontreras@gmail.com	HEIVER 	CALLE CONTRERAS 	1093923614	$2a$10$COxCAzK0H/E9yrr38fgeiu0N/Vdm8GRjsDaKczkLkLMILVjQJSgYi	t	t	f	\N	user	\N
+554	antonioariashjkg2@gmail.com	ANTONIO	ARIAS LOPEZ	1051667665	$2a$10$i1dUp.0PesMOPHDKhaPQEeGUxelZWs0Q.t19db/qLnA.EPlpH6Hxy	t	t	f	\N	user	\N
+\.
+
+
+--
+-- Data for Name: Activo_asignacion; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Activo_asignacion" (id, fecha, "tipo_asignacionId", "responsableId", "ubicacionId", "sucursalId", "areaId", "activoId", fecha_entrega, estado, obser) FROM stdin;
+1	2025-12-17 00:00:00	1	7	1	1	1	7	\N	\N	
+\.
+
+
+--
+-- Data for Name: Category; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Category" (id, detalle) FROM stdin;
+\.
+
+
+--
+-- Data for Name: EstadoTicket; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."EstadoTicket" (id, detalle) FROM stdin;
+1	Pendiente
+2	En Progreso
+3	Completado
+4	Cancelado
+\.
+
+
+--
+-- Data for Name: Marca; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Marca" (id, "COD_MARCA", detalle) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Permission; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Permission" (id, detalle, sistema) FROM stdin;
+TIPO_ACTIVO-A	TIPO_ACTIVO- ADICIONAR	\N
+TIPO_ACTIVO-B	TIPO_ACTIVO - BORRAR	\N
+TIPO_ACTIVO-i	TIPO_ACTIVO - INGRESO	\N
+TIPO_ACTIVO-M	TIPO_ACTIVO- MODIFICAR	\N
+TIPO_EQUIPO-A	TIPO_EQUIPO-A	\N
+TIPO_EQUIPO-I	TIPO_EQUIPO - INGRESAR	\N
+TIPO_EQUIPO-M	TIPO_EQUIPO - MODIFICAR	\N
+USUARIOS-A	USUARIOS - ADICIONAR	\N
+USUARIOS-B	USUARIOS - BORRAR	\N
+USUARIOS-I	USUARIOS - INGRESAR	\N
+USUARIOS-M	USUARIOS - MODIFICAR	\N
+\.
+
+
+--
+-- Data for Name: Plan_mantenimiento; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Plan_mantenimiento" (id, anio, fecha, "ubicacionId", "sucursalId", "areaId", "activoId", "agenteId", fecha_planeacion, fecha_ejecucion, semana_planeacion, mes_planeacion, semana_ejecucion, mes_ejecucion, semana_pl_software_01, semana_pl_software_02, semana_pl_software_03, semana_pl_software_04, semana_pl_software_05, semana_pl_software_06, semana_pl_software_07, semana_pl_software_08, semana_pl_software_09, semana_pl_software_10, semana_pl_software_11, semana_pl_software_12, semana_pl_hardware_01, semana_pl_hardware_02, semana_pl_hardware_03, semana_pl_hardware_04, semana_pl_hardware_05, semana_pl_hardware_06, semana_pl_hardware_07, semana_pl_hardware_08, semana_pl_hardware_09, semana_pl_hardware_10, semana_pl_hardware_11, semana_pl_hardware_12, semana_pl_copia_01, semana_pl_copia_02, semana_pl_copia_03, semana_pl_copia_04, semana_pl_copia_05, semana_pl_copia_06, semana_pl_copia_07, semana_pl_copia_08, semana_pl_copia_09, semana_pl_copia_10, semana_pl_copia_11, semana_pl_copia_12, semana_pl_revision_01, semana_pl_revision_02, semana_pl_revision_03, semana_pl_revision_04, semana_pl_revision_05, semana_pl_revision_06, semana_pl_revision_07, semana_pl_revision_08, semana_pl_revision_09, semana_pl_revision_10, semana_pl_revision_11, semana_pl_revision_12, semana_ej_software_01, semana_ej_software_02, semana_ej_software_03, semana_ej_software_04, semana_ej_software_05, semana_ej_software_06, semana_ej_software_07, semana_ej_software_08, semana_ej_software_09, semana_ej_software_10, semana_ej_software_11, semana_ej_software_12, semana_ej_hardware_01, semana_ej_hardware_02, semana_ej_hardware_03, semana_ej_hardware_04, semana_ej_hardware_05, semana_ej_hardware_06, semana_ej_hardware_07, semana_ej_hardware_08, semana_ej_hardware_09, semana_ej_hardware_10, semana_ej_hardware_11, semana_ej_hardware_12, semana_ej_copia_01, semana_ej_copia_02, semana_ej_copia_03, semana_ej_copia_04, semana_ej_copia_05, semana_ej_copia_06, semana_ej_copia_07, semana_ej_copia_08, semana_ej_copia_09, semana_ej_copia_10, semana_ej_copia_11, semana_ej_copia_12, semana_ej_revision_01, semana_ej_revision_02, semana_ej_revision_03, semana_ej_revision_04, semana_ej_revision_05, semana_ej_revision_06, semana_ej_revision_07, semana_ej_revision_08, semana_ej_revision_09, semana_ej_revision_10, semana_ej_revision_11, semana_ej_revision_12, estado, obser) FROM stdin;
+1	2025	2025-12-17 00:00:00	\N	\N	\N	3	\N	\N	\N	\N	\N	\N	\N	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	
+\.
+
+
+--
+-- Data for Name: Post; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Post" (id, title, content, "authorId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Prioridad; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Prioridad" (id, detalle) FROM stdin;
+1	Alta
+2	Media
+3	Baja
+\.
+
+
+--
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public.product (id, ref, title, price, description, slug, available, stock, sizes, gender, tags, image, "categoryId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: ProductImage; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."ProductImage" (id, url, "productId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Programa; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Programa" (id, "COD_PROGRAMA", detalle, serial) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Role; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Role" (role, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Sistema_operativo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Sistema_operativo" (id, "COD_SISTEMA_OPERATIVO", detalle) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Ticket_tipo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Ticket_tipo" (id, "COD_TICKET_TIPO", detalle) FROM stdin;
+1	01	SUMINISTRO
+2	02	MTTO PREVENTIVO
+3	03	MTTO CORRECTIVO
+\.
+
+
+--
+-- Data for Name: Ticket; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Ticket" (id, fecha, fecha_fin, hora, titulo, "usuarioId", "activoId", "prioridadId", obser, resumen, "areaId", "sucursalId", "ubicacionId", "agenteId", "estadoTicketId", "ticket_tipoId") FROM stdin;
+5	2025-12-17 00:00:00	\N	23:52	AYUDA XE	5	7	3	PRUEBA		\N	\N	\N	\N	1	\N
+8	2025-12-17 00:00:00	\N	10:50	mantenimiento	1	7	3	mantenimiento	se le hizom amntenimiento fisico y limpieza	1	1	1	2	1	2
+7	2025-12-17 00:00:00	\N	11:03	....	1	7	3	..		1	1	1	\N	1	\N
+4	2025-12-17 00:00:00	\N	11:15	...	1	3	3	...		\N	\N	\N	1	1	1
+9	2025-12-17 00:00:00	\N	11:21	EL CELULAR NO ENCIENDE	2	7	3	NO PRENDE		1	1	1	1	1	\N
+10	2025-12-17 00:00:00	\N	11:26	no prende el celular	1	7	3	el celular no prende		1	1	1	\N	1	\N
+6	2025-12-17 00:00:00	\N	12:06	..	3	7	3	---		1	1	1	1	1	\N
+11	2025-12-17 00:00:00	\N	12:12	titulo de prueba	2	7	3	descripcion		1	1	1	1	1	\N
+\.
+
+
+--
+-- Data for Name: Ticket_mensaje; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."Ticket_mensaje" (id, fecha, hora, mensaje, "userId", "ticketId") FROM stdin;
+1	2025-12-17 00:00:00	08:11	No me han atendido	3	4
+3	2025-12-17 00:00:00	08:16	sigo esperando	3	4
+4	2025-12-17 00:00:00	23:57	Ya estamos buscando el repuesto	1	4
+2	2025-12-17 00:00:00	08:16	siguen sin atenderme	3	4
+5	2025-12-17 00:00:00	11:27	Urgente	1	10
+\.
+
+
+--
+-- Data for Name: TicketImage; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."TicketImage" (id, url, "ticketId", "mensajeTicketId") FROM stdin;
+7	d5a0c897-a303-40a3-83df-3f8022881bfe.jpeg	4	2
+8	c032166b-a19a-483a-9687-bdcaa9b85102.jpeg	10	5
+9	d02b7e6e-7521-4232-ad96-1e539f4fbd1f.webp	6	\N
+\.
+
+
+--
+-- Data for Name: User_permission; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."User_permission" (id, "userId", fecha_permiso, "permissionId") FROM stdin;
+1	1	2025-10-21 00:00:00	USUARIOS-I
+4	1	2025-10-22 12:00:44.582	TIPO_EQUIPO-A
+15	3	2025-10-27 23:27:00.447	TIPO_ACTIVO-B
+16	3	2025-10-27 23:27:01.952	TIPO_ACTIVO-i
+17	3	2025-10-27 23:27:02.676	TIPO_ACTIVO-M
+18	3	2025-10-27 23:27:03.913	TIPO_EQUIPO-A
+19	3	2025-10-27 23:27:05.322	TIPO_EQUIPO-I
+20	3	2025-10-27 23:27:06.494	TIPO_EQUIPO-M
+21	3	2025-10-27 23:27:07.58	USUARIOS-A
+22	3	2025-10-27 23:27:08.611	USUARIOS-B
+23	3	2025-10-27 23:27:10.769	USUARIOS-I
+24	3	2025-10-27 23:27:13.941	USUARIOS-M
+8	1	2025-10-23 02:10:00.787	USUARIOS-M
+7	1	2025-10-23 02:09:56.722	USUARIOS-B
+6	1	2025-10-23 02:09:52.372	USUARIOS-A
+25	3	2025-12-16 23:56:06.493	TIPO_ACTIVO-A
+26	1	2025-12-17 11:45:41.037	TIPO_EQUIPO-M
+27	1	2025-12-17 11:45:44.567	TIPO_EQUIPO-I
+28	1	2025-12-17 11:45:49.205	TIPO_ACTIVO-M
+29	1	2025-12-17 11:45:51.949	TIPO_ACTIVO-i
+30	1	2025-12-17 11:45:55.092	TIPO_ACTIVO-B
+31	1	2025-12-17 11:45:59.427	TIPO_ACTIVO-A
+\.
+
+
+--
+-- Data for Name: _ActivoToPrograma; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public."_ActivoToPrograma" ("A", "B") FROM stdin;
+\.
+
+
+--
+-- Data for Name: _prisma_migrations; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public._prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) FROM stdin;
+241ebe8b-a440-43b0-90cf-e8894d6841a6	cca029bcb18017a052591c3cbc24addfcb993574c349c6d40f07ffc4173fab7a	2025-12-16 16:46:01.544392+00	20251216164600_posgres	\N	\N	2025-12-16 16:46:00.843432+00	1
+\.
+
+
+--
+-- Data for Name: reg_eventos; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public.reg_eventos (id, fecha_hora, hora, usuario, detalle, comando, ip, modulo, tipo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: todo; Type: TABLE DATA; Schema: public; Owner: neondb_owner
+--
+
+COPY public.todo (id, text, "completedAt") FROM stdin;
+\.
+
+
+--
+-- Name: ActivoImage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."ActivoImage_id_seq"', 6, true);
+
+
+--
+-- Name: Activo_asignacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Activo_asignacion_id_seq"', 1, true);
+
+
+--
+-- Name: Activo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Activo_id_seq"', 2, true);
+
+
+--
+-- Name: Area_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Area_id_seq"', 1, true);
+
+
+--
+-- Name: Cargo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Cargo_id_seq"', 1, false);
+
+
+--
+-- Name: Categoria_activo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Categoria_activo_id_seq"', 1, false);
+
+
+--
+-- Name: EstadoTicket_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."EstadoTicket_id_seq"', 1, false);
+
+
+--
+-- Name: Marca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Marca_id_seq"', 1, false);
+
+
+--
+-- Name: Plan_mantenimiento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Plan_mantenimiento_id_seq"', 1, true);
+
+
+--
+-- Name: Post_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Post_id_seq"', 1, false);
+
+
+--
+-- Name: Prioridad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Prioridad_id_seq"', 1, false);
+
+
+--
+-- Name: ProductImage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."ProductImage_id_seq"', 1, false);
+
+
+--
+-- Name: Programa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Programa_id_seq"', 1, false);
+
+
+--
+-- Name: Sistema_operativo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Sistema_operativo_id_seq"', 1, false);
+
+
+--
+-- Name: Sucursal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Sucursal_id_seq"', 2, true);
+
+
+--
+-- Name: TicketImage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."TicketImage_id_seq"', 9, true);
+
+
+--
+-- Name: Ticket_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Ticket_id_seq"', 11, true);
+
+
+--
+-- Name: Ticket_mensaje_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Ticket_mensaje_id_seq"', 5, true);
+
+
+--
+-- Name: Ticket_tipo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Ticket_tipo_id_seq"', 1, false);
+
+
+--
+-- Name: Tipo_activo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Tipo_activo_id_seq"', 1, false);
+
+
+--
+-- Name: Tipo_asignacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Tipo_asignacion_id_seq"', 1, false);
+
+
+--
+-- Name: Tipo_equipo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Tipo_equipo_id_seq"', 1, false);
+
+
+--
+-- Name: Ubicacion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."Ubicacion_id_seq"', 1, true);
+
+
+--
+-- Name: User_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."User_id_seq"', 554, true);
+
+
+--
+-- Name: User_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public."User_permission_id_seq"', 32, true);
+
+
+--
+-- Name: product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public.product_id_seq', 1, false);
+
+
+--
+-- Name: reg_eventos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public.reg_eventos_id_seq', 1, false);
+
+
+--
+-- Name: todo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neondb_owner
+--
+
+SELECT pg_catalog.setval('public.todo_id_seq', 1, false);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

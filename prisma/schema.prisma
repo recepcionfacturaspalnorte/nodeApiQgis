@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model poligonos_productores {
+  gid              Int                      @id @default(autoincrement())
+  fid              Decimal?                 @db.Decimal
+  id               Float?
+  CODIGO_PROVEEDOR String?                  @db.VarChar(254)
+  PROVEEDOR        String?                  @db.VarChar(50)
+  TIPO_PROVEEDOR   String?                  @db.VarChar(254)
+  CLASIFICACION    String?                  @db.VarChar(254)
+  FINCA            String?                  @db.VarChar(50)
+  CODIGO_FINCA     String?                  @db.VarChar(254)
+  LOTE             String?                  @db.VarChar(50)
+  AREA_ha_         Decimal?                 @map("AREA(ha)") @db.Decimal
+  VEREDA           String?                  @db.VarChar(50)
+  ZONA             String?                  @db.VarChar(50)
+  municipio        String?                  @db.VarChar(20)
+  material         String?                  @db.VarChar(30)
+  etapa            String?                  @db.VarChar(50)
+  NUMERO_PALMAS    Decimal?                 @db.Decimal
+  DISTANCIA_PALMAS Decimal?                 @db.Decimal
+  cobertura        String?                  @db.VarChar(80)
+  FECHA_DE_SIEMBRA DateTime?                @map("FECHA DE SIEMBRA") @db.Date
+  edad_palma       Float?
+  tipo             String?                  @db.VarChar(80)
+  uma              Float?
+  asociacion       String?                  @db.VarChar(200)
+  observacio       String?                  @db.VarChar(254)
+  WKT              String?                  @db.Text
+  CODIGO_LOTE      String?                  @db.VarChar(254)
+  geom             Unsupported("geometry")?
+
+  @@index([geom], type: Gist)
+}
+
+//MultiPolygon Z (((-72.58229152 8.5294364 0, -72.58261604 8.5294886 0, -72.58263023 8.52949431 0, -72.58263753 8.52950356 0, -72.58264171 8.5295138 0, -72.58267544 8.52961399 0, -72.58268455 8.52962973 0, -72.58269314 8.52963597 0, -72.58270468 8.5296393
+//MultiPolygon Z (((-72.58229152 8.5294364 0, -72.58261604 8.5294886 0, -72.58263023 8.52949431 0, -72.58263753 8.52950356 0, -72.58264171 8.5295138 0, -72.58267544 8.52961399 0, -72.58268455 8.52962973 0, -72.58269314 8.52963597 0, -72.58270468 8.5296393",
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+}
+
+model untitled_table_250 {
+  id      Int     @id @default(autoincrement())
+  DETALLE String?
+}
