@@ -27,6 +27,8 @@ export class QgisController {
 
   };
 
+
+
   public getByCodigo2 = async (req: Request, res: Response) => {
     const CODIGO_LOTE = req.params.id;
 
@@ -40,6 +42,20 @@ export class QgisController {
 
   };
 
+
+  public getByCodigoFincaAndLote = async (req: Request, res: Response) => {
+    const CODIGO_FINCA = req.params.id;
+    const CODIGO_LOTE = req.params.id2;
+
+    try {
+      const row = await this.service.findByCodigoLoteAndCodigoFinca(CODIGO_FINCA, CODIGO_LOTE);
+      res.json(row);
+
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+
+  };
 
 
 }

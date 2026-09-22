@@ -41,6 +41,25 @@ export class QgisService {
 
 
 
+  public async findByCodigoLoteAndCodigoFinca(CODIGO_FINCA: string, CODIGO_LOTE: string) {
+    const row = await prisma.$queryRaw<{
+      CODIGO_FINCA: string;
+      CODIGO_LOTE: string;
+      WKT: string;
+    }[]>`
+    SELECT 
+      "CODIGO_FINCA",
+      "CODIGO_LOTE",
+      ST_AsText(geom) AS WKT,
+      ST_AsGeoJSON(geom) AS geom_geojson      
+    FROM "poligonos_productores"
+    WHERE "CODIGO_FINCA" = ${CODIGO_FINCA} AND 
+    "CODIGO_LOTE" = ${CODIGO_LOTE}
+    LIMIT 1
+  `;
+    const res = row.length ? row[0] : null;
+    return res;
+  }
 
 
 }

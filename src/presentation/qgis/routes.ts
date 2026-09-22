@@ -24,6 +24,7 @@ export class QgisRoutes {
 
     router.get('/:id', controller.getByCodigo);
 
+    router.get('/:id/:id2', controller.getByCodigoFincaAndLote);
 
 
 
