@@ -41,7 +41,7 @@ export class QgisService {
 
 
 
-  public async findByCodigoLoteAndCodigoFinca(CODIGO_FINCA: string, CODIGO_LOTE: string) {
+  public async findByCodigoFincaAndCodigoLote(CODIGO_FINCA: string, CODIGO_LOTE: string) {
     const row = await prisma.$queryRaw<{
       CODIGO_FINCA: string;
       CODIGO_LOTE: string;

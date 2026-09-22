@@ -48,7 +48,7 @@ export class QgisController {
     const CODIGO_LOTE = req.params.id2;
 
     try {
-      const row = await this.service.findByCodigoLoteAndCodigoFinca(CODIGO_FINCA, CODIGO_LOTE);
+      const row = await this.service.findByCodigoFincaAndCodigoLote(CODIGO_FINCA, CODIGO_LOTE);
       res.json(row);
 
     } catch (error) {
